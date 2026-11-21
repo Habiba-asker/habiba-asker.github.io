@@ -581,3 +581,1229 @@ grid-template-columns:repeat(2,1fr);
 </head>
 
 <body>
+<nav>
+<div class="logo">HABIBA.SEC 🧬</div>
+
+<div>
+<a href="#home">Home</a>
+<a href="#learn">Learn</a>
+<a href="#process">Process</a>
+<a href="#tools">Tools</a>
+<a href="#activities">Missions</a>
+<a href="#gallery">Gallery</a>
+<a href="#game">Game</a>
+<a href="#quiz">Quiz</a>
+</div>
+
+<button class="lang" onclick="toggleLanguage()">عربي / EN</button>
+</nav>
+
+<header class="hero" id="home">
+<div class="orb">🔬</div>
+
+<div class="tag">
+● DIGITAL FORENSICS LAB — ONLINE
+</div>
+
+<h1>HABIBA <span>ASKER</span></h1>
+
+<h2>Digital Forensics & Cybersecurity</h2>
+
+<p>
+Welcome, investigator! Learn the basics,
+explore digital evidence, solve mini cases
+and earn points in a friendly virtual lab.
+</p>
+
+<div class="actions">
+<a class="btn primary" href="#activities">Start Missions →</a>
+<a class="btn" href="#learn">Explore the Lab</a>
+</div>
+
+<div class="scoreline">
+<div class="stat">⭐ XP: <b id="xp">0</b></div>
+<div class="stat">🏅 Badges: <b id="badges">0</b></div>
+<div class="stat">🎯 Missions: <b id="missions">0/5</b></div>
+</div>
+
+<div class="status">SYSTEM STATUS: ACTIVE</div>
+</header>
+
+<section id="learn">
+<h2 class="heading">01. What Is Digital Forensics?</h2>
+
+<p class="sub">The science behind digital investigations.</p>
+
+<div class="card">
+<h3>🔍 Digital Forensics</h3>
+
+<p>
+Digital forensics uses scientific methods to identify,
+collect, examine and analyze digital data while preserving
+its integrity. It helps investigators understand what
+happened and what the evidence can support.
+</p>
+
+<br>
+
+<span class="pill">Evidence Integrity</span>
+<span class="pill">Chain of Custody</span>
+<span class="pill">Scientific Analysis</span>
+</div>
+</section>
+
+<section id="evidence">
+<h2 class="heading">02. Types of Digital Evidence</h2>
+
+<p class="sub">
+Tap a category to reveal what an investigator may examine.
+</p>
+
+<div class="tabs">
+
+<button class="tab active" onclick="showEvidence(0,this)">
+💻 Computer
+</button>
+
+<button class="tab" onclick="showEvidence(1,this)">
+📱 Mobile
+</button>
+
+<button class="tab" onclick="showEvidence(2,this)">
+🌐 Network
+</button>
+
+<button class="tab" onclick="showEvidence(3,this)">
+🧠 Memory
+</button>
+
+</div>
+
+<div class="info" id="evidenceInfo">
+<h3>💻 Computer Forensics</h3>
+<p>
+Files, browser history, deleted data, metadata
+and operating system artifacts.
+</p>
+</div>
+</section>
+
+<section id="process">
+<h2 class="heading">03. Investigation Process</h2>
+
+<p class="sub">
+Click each phase to understand the workflow.
+</p>
+
+<div class="steps">
+
+<button class="step active" onclick="showStep(0,this)">
+<strong>01</strong> Collection
+</button>
+
+<button class="step" onclick="showStep(1,this)">
+<strong>02</strong> Examination
+</button>
+
+<button class="step" onclick="showStep(2,this)">
+<strong>03</strong> Analysis
+</button>
+
+<button class="step" onclick="showStep(3,this)">
+<strong>04</strong> Reporting
+</button>
+
+</div>
+
+<div class="detail" id="stepDetail">
+<h3>01 — Collection</h3>
+<p>
+Identify, document and acquire relevant data
+while preserving evidence integrity.
+</p>
+</div>
+</section>
+
+<section id="principles">
+<h2 class="heading">04. Core Forensic Principles</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="emoji">🔐</div>
+<h3>Evidence Integrity</h3>
+<p>
+Protect evidence from unauthorized changes.
+Hash values can help verify that a copy remains unchanged.
+</p>
+</div>
+
+<div class="card">
+<div class="emoji">🔗</div>
+<h3>Chain of Custody</h3>
+<p>
+Record who handled the evidence, when it was handled
+and how it was transferred or stored.
+</p>
+</div>
+
+<div class="card">
+<div class="emoji">📋</div>
+<h3>Documentation</h3>
+<p>
+Record methods, tools, actions and observations
+throughout the investigation.
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="tools">
+<h2 class="heading">05. Forensic Toolkit</h2>
+
+<p class="sub">
+Explore common tools used in digital investigations.
+</p>
+
+<div class="grid">
+
+<div class="tool">
+🔎 <b>Autopsy</b>
+<p>Analyze disk images and file system artifacts.</p>
+</div>
+
+<div class="tool">
+💽 <b>FTK Imager</b>
+<p>Acquire and preview forensic images and evidence.</p>
+</div>
+
+<div class="tool">
+🌐 <b>Wireshark</b>
+<p>Inspect captured network traffic and packets.</p>
+</div>
+
+<div class="tool">
+🧠 <b>Volatility</b>
+<p>Analyze captured memory and running-process artifacts.</p>
+</div>
+
+<div class="tool">
+🐧 <b>Linux</b>
+<p>A system environment with useful investigation utilities.</p>
+</div>
+
+<div class="tool">
+🐍 <b>Python</b>
+<p>Automate analysis and process data.</p>
+</div>
+
+</div>
+</section>
+
+<section id="activities">
+<h2 class="heading">06. Interactive Missions</h2>
+
+<p class="sub">
+Choose a mission, make decisions and collect XP.
+</p>
+
+<div class="activity-grid">
+
+<div class="activity-card">
+<div class="emoji">🕵️</div>
+<div class="mini-title">MISSION 01</div>
+<h3>Solve the Crime</h3>
+<p>
+A USB drive may contain copied company files.
+Choose the safest first action.
+</p>
+<button class="btn" onclick="openMission('crime')">
+Start Mission
+</button>
+</div>
+
+<div class="activity-card">
+<div class="emoji">🗂️</div>
+<div class="mini-title">MISSION 02</div>
+<h3>Find the Hidden Evidence</h3>
+<p>
+Inspect a folder and identify useful evidence.
+</p>
+<button class="btn" onclick="openMission('evidence')">
+Start Mission
+</button>
+</div>
+
+<div class="activity-card">
+<div class="emoji">📧</div>
+<div class="mini-title">MISSION 03</div>
+<h3>Catch the Phishing</h3>
+<p>Spot warning signs in a suspicious email.</p>
+<button class="btn" onclick="openMission('phishing')">
+Start Mission
+</button>
+</div>
+
+<div class="activity-card">
+<div class="emoji">🕒</div>
+<div class="mini-title">MISSION 04</div>
+<h3>Rebuild the Timeline</h3>
+<p>Choose the correct order of events.</p>
+<button class="btn" onclick="openMission('timeline')">
+Start Mission
+</button>
+</div>
+
+<div class="activity-card">
+<div class="emoji">⚖️</div>
+<div class="mini-title">MISSION 05</div>
+<h3>Evidence or Not?</h3>
+<p>Identify relevant digital evidence.</p>
+<button class="btn" onclick="openMission('valid')">
+Start Mission
+</button>
+</div>
+
+</div>
+
+<div id="missionPanel" class="activity hidden" style="margin-top:20px">
+
+<div class="case-meta">
+<span class="mini-title" id="missionLabel">MISSION</span>
+<span id="missionCount"></span>
+</div>
+
+<h3 id="missionTitle" style="color:var(--cyan);margin:8px 0"></h3>
+
+<p id="missionPrompt"></p>
+
+<div id="missionChoices"></div>
+
+<div class="feedback" id="missionFeedback"></div>
+
+<button class="btn primary hidden"
+id="missionNext"
+onclick="missionNext()"
+style="margin-top:10px">
+Next →
+</button>
+
+</div>
+</section>
+
+<section id="gallery">
+
+<h2 class="heading">07. Inside the Digital Forensics Lab</h2>
+
+<p class="sub">
+A visual tour of common evidence sources and investigation work.
+</p>
+
+<div class="gallery">
+
+<figure>
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85" alt="Computer Hardware">
+<figcaption>
+<b>Computer Hardware</b>
+Devices can contain valuable digital traces.
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=900&q=85" alt="Mobile Phone">
+<figcaption>
+<b>Mobile Devices</b>
+Phones may store messages, media and app data.
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85" alt="Network Servers">
+<figcaption>
+<b>Network Evidence</b>
+Logs and traffic help reconstruct events.
+</figcaption>
+</figure>
+
+<figure>
+<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Digital Investigation">
+<figcaption>
+<b>Digital Investigation</b>
+Examine evidence carefully and document every step.
+</figcaption>
+</figure>
+
+</div>
+</section>
+
+<section id="game">
+
+<h2 class="heading">08. Game: Evidence Hunt</h2>
+
+<p class="sub">
+You are the investigator! Select the four items
+that could be relevant digital evidence.
+</p>
+
+<div class="activity">
+
+<div class="case-meta">
+<span class="mini-title">LEVEL 01 — EVIDENCE ROOM</span>
+<span>Find 4 evidence items</span>
+</div>
+
+<p>
+Click an item to inspect it. Correct evidence earns 5 XP.
+</p>
+
+<div class="game-status">
+<span>🔎 Found: <b id="huntFound">0</b>/4</span>
+<span>⭐ Score: <b id="huntScore">0</b></span>
+</div>
+
+<div class="hunt-grid" id="huntGrid">
+
+<button class="hunt-item" onclick="inspectItem(0)">
+<span class="big">🖥️</span>
+<b>Computer</b>
+<small>Click to inspect</small>
+</button>
+
+<button class="hunt-item" onclick="inspectItem(1)">
+<span class="big">🧾</span>
+<b>System Logs</b>
+<small>Click to inspect</small>
+</button>
+
+<button class="hunt-item" onclick="inspectItem(2)">
+<span class="big">🖼️</span>
+<b>Desktop Wallpaper</b>
+<small>Click to inspect</small>
+</button>
+
+<button class="hunt-item" onclick="inspectItem(3)">
+<span class="big">🕒</span>
+<b>File Timestamps</b>
+<small>Click to inspect</small>
+</button>
+
+<button class="hunt-item" onclick="inspectItem(4)">
+<span class="big">☕</span>
+<b>Coffee Cup</b>
+<small>Click to inspect</small>
+</button>
+
+<button class="hunt-item" onclick="inspectItem(5)">
+<span class="big">🔌</span>
+<b>USB Connection Record</b>
+<small>Click to inspect</small>
+</button>
+
+</div>
+
+<div class="feedback" id="huntFeedback"></div>
+
+<button class="btn primary"
+onclick="resetHunt()"
+style="margin-top:12px">
+Play Again ↻
+</button>
+
+</div>
+</section>
+
+<section id="case">
+
+<h2 class="heading">09. Interactive Case Study</h2>
+
+<p class="sub">
+A fictional training scenario. Choose the best forensic action.
+</p>
+
+<div class="casebox">
+
+<div class="tag">CASE #001 — USB INVESTIGATION</div>
+
+<h3 style="margin:12px 0;color:var(--cyan)">
+The Missing Files
+</h3>
+
+<p>
+A company reports that confidential files may have
+been copied to a USB drive. You are asked to assist
+with an authorized investigation.
+</p>
+
+<br>
+
+<p><b>What should you prioritize first?</b></p>
+
+<button class="choice" onclick="caseAnswer(0)">
+A. Immediately open and modify the original files.
+</button>
+
+<button class="choice" onclick="caseAnswer(1)">
+B. Document the situation and follow authorized
+evidence preservation and acquisition procedures.
+</button>
+
+<button class="choice" onclick="caseAnswer(2)">
+C. Delete suspicious files before examining them.
+</button>
+
+<div class="feedback" id="caseFeedback"></div>
+
+</div>
+</section>
+
+<section id="quiz">
+
+<h2 class="heading">10. Quick Knowledge Challenge</h2>
+
+<p class="sub">
+Answer three questions and check your score.
+</p>
+
+<div class="quizbox">
+
+<div id="questionNumber">Question 1 of 3</div>
+
+<div class="progress">
+<div class="bar" id="progress"></div>
+</div>
+
+<h3 id="question" style="margin:18px 0">
+What is the main purpose of digital forensics?
+</h3>
+
+<div id="answers"></div>
+
+<div class="feedback" id="quizFeedback"></div>
+
+<button class="btn primary hidden"
+id="next"
+onclick="nextQuestion()"
+style="margin-top:12px">
+Next Question →
+</button>
+
+</div>
+</section>
+
+<section id="references">
+
+<h2 class="heading">11. Learning Resources</h2>
+
+<div class="card">
+<h3>📚 NIST SP 800-86</h3>
+
+<p>
+Guide to Integrating Forensic Techniques into Incident Response.
+</p>
+
+<a href="https://csrc.nist.gov/pubs/sp/800/86/final"
+target="_blank"
+rel="noopener"
+style="color:var(--cyan)">
+Explore the official NIST guide →
+</a>
+
+</div>
+</section>
+
+<section id="contact" style="text-align:center">
+
+<h2 class="heading">Let's Connect</h2>
+
+<p class="sub">
+Learning, investigating and discovering the digital world.
+</p>
+
+<a class="btn primary"
+href="https://github.com/Habiba-asker"
+target="_blank"
+rel="noopener">
+Visit My GitHub →
+</a>
+
+</section>
+
+<footer>
+© 2026 Eng/Habiba Asker | Digital Forensics Lab
+<br>
+Investigate • Analyze • Preserve
+</footer>
+
+<script>
+let lang = "en";
+let xp = 0;
+let completed = new Set();
+
+function t(en, ar) {
+    return lang === "en" ? en : ar;
+}
+
+// تبديل اللغة عربي / إنجليزي
+function toggleLanguage() {
+    lang = lang === "en" ? "ar" : "en";
+
+    document.documentElement.lang = lang;
+    document.body.classList.toggle("ar", lang === "ar");
+
+    document.querySelectorAll("[data-en]").forEach(el => {
+        el.textContent = el.dataset[lang];
+    });
+
+    renderQuestion();
+
+    if (currentMission) {
+        renderMission();
+    }
+
+    resetHunt();
+    updateHuntLanguage();
+}
+
+// إضافة النقاط والشارات
+function addXP(points, id) {
+    if (completed.has(id)) return;
+
+    completed.add(id);
+    xp += points;
+
+    document.getElementById("xp").textContent = xp;
+    document.getElementById("badges").textContent = completed.size;
+
+    let missionCount = ["crime", "evidence", "phishing", "timeline", "valid"]
+        .filter(x => completed.has(x)).length;
+
+    document.getElementById("missions").textContent = missionCount + "/5";
+}
+
+// أنواع الأدلة الرقمية
+const evidence = [
+    [
+        "💻 Computer Forensics",
+        "Investigating files, browser history, deleted data and system artifacts.",
+        "تحقيقات الحاسوب: فحص الملفات وسجل المتصفح والبيانات المحذوفة وآثار النظام."
+    ],
+    [
+        "📱 Mobile Forensics",
+        "Examining messages, call records, application data and media.",
+        "تحقيقات الهواتف: فحص الرسائل وسجلات المكالمات وبيانات التطبيقات والوسائط."
+    ],
+    [
+        "🌐 Network Forensics",
+        "Analyzing network traffic, packets and communication logs.",
+        "تحقيقات الشبكات: تحليل حركة مرور الشبكة والحزم وسجلات الاتصالات."
+    ],
+    [
+        "🧠 Memory Forensics",
+        "Examining captured memory, running processes and connections.",
+        "تحقيقات الذاكرة: فحص الذاكرة الملتقطة والعمليات النشطة والاتصالات."
+    ]
+];
+
+function showEvidence(i, btn) {
+    document.querySelectorAll("#evidence .tab").forEach(x => {
+        x.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    let e = evidence[i];
+
+    document.getElementById("evidenceInfo").innerHTML =
+        `<h3>${e[0]}</h3><p>${lang === "en" ? e[1] : e[2]}</p>`;
+}
+
+// مراحل التحقيق
+const steps = [
+    [
+        "01 — Collection",
+        "Identify, document and collect relevant data while preserving evidence integrity.",
+        "١ — الجمع: تحديد البيانات وتوثيقها وجمعها مع الحفاظ على سلامة الأدلة."
+    ],
+    [
+        "02 — Examination",
+        "Examine collected data to find useful files and digital artifacts.",
+        "٢ — الفحص: فحص البيانات المجمعة للعثور على الملفات والآثار الرقمية المهمة."
+    ],
+    [
+        "03 — Analysis",
+        "Interpret findings and connect evidence to understand what happened.",
+        "٣ — التحليل: تفسير النتائج وربط الأدلة لفهم ما حدث."
+    ],
+    [
+        "04 — Reporting",
+        "Document the methods, findings and conclusions in a clear report.",
+        "٤ — التقرير: توثيق الطرق والنتائج والاستنتاجات في تقرير واضح."
+    ]
+];
+
+function showStep(i, btn) {
+    document.querySelectorAll(".step").forEach(x => {
+        x.classList.remove("active");
+    });
+
+    btn.classList.add("active");
+
+    let s = steps[i];
+
+    document.getElementById("stepDetail").innerHTML =
+        `<h3>${lang === "en" ? s[0] : s[2].split(":")[0]}</h3>
+         <p>${lang === "en" ? s[1] : s[2]}</p>`;
+}
+
+// الإجابة على القضية التفاعلية
+function caseAnswer(i) {
+    let feedback = document.getElementById("caseFeedback");
+
+    if (i === 1) {
+        feedback.textContent = t(
+            "✓ Correct! Preserve and document evidence before examination.",
+            "✓ إجابة صحيحة! حافظ على الدليل ووثّقه قبل الفحص."
+        );
+
+        feedback.style.color = "var(--green)";
+        addXP(10, "case");
+    } else {
+        feedback.textContent = t(
+            "Not quite. Avoid changing or deleting evidence. Preserve it first.",
+            "مش بالضبط. تجنب تعديل أو حذف الأدلة. حافظ عليها أولاً."
+        );
+
+        feedback.style.color = "var(--gold)";
+    }
+}
+
+// المهمات التفاعلية
+const missions = {
+    crime: {
+        title: ["The USB Drive", "وحدة USB"],
+        prompt: [
+            "A USB device is found beside a workstation. What is the safest first step?",
+            "تم العثور على USB بجانب جهاز عمل. ما أول خطوة آمنة؟"
+        ],
+        choices: [
+            ["Open every file immediately", "فتح كل الملفات فوراً"],
+            ["Document and preserve it using approved procedures", "توثيقه والحفاظ عليه وفق الإجراءات المعتمدة"],
+            ["Format the USB", "عمل Format للوحدة"]
+        ],
+        correct: 1,
+        why: [
+            "Correct! Preserve and document potential evidence before examination.",
+            "صحيح! حافظ على الدليل المحتمل ووثّقه قبل الفحص."
+        ]
+    },
+
+    evidence: {
+        title: ["Choose the Useful Evidence", "اختار الدليل المفيد"],
+        prompt: [
+            "Which item may help establish when a file was accessed?",
+            "أي عنصر قد يساعد في معرفة وقت الوصول إلى ملف؟"
+        ],
+        choices: [
+            ["File metadata / timestamps", "بيانات الملف الوصفية والطوابع الزمنية"],
+            ["Computer wallpaper", "خلفية الكمبيوتر"],
+            ["Monitor color", "لون الشاشة"]
+        ],
+        correct: 0,
+        why: [
+            "Correct! Metadata and timestamps may provide useful information.",
+            "صحيح! قد توفر البيانات الوصفية والطوابع الزمنية معلومات مفيدة."
+        ]
+    },
+
+    phishing: {
+        title: ["Suspicious Email", "رسالة بريد مشبوهة"],
+        prompt: [
+            "Which sign is a warning of phishing?",
+            "ما العلامة التي تشير إلى احتمال وجود تصيد؟"
+        ],
+        choices: [
+            ["The email uses a company logo", "الرسالة تستخدم شعار الشركة"],
+            ["The sender address is suspicious and the link asks for urgent login", "عنوان المرسل مشبوه والرابط يطلب تسجيل الدخول بسرعة"],
+            ["The email has a greeting", "الرسالة تبدأ بتحية"]
+        ],
+        correct: 1,
+        why: [
+            "Correct! A suspicious sender and urgent login link are warning signs.",
+            "صحيح! عنوان المرسل المشبوه ورابط تسجيل الدخول العاجل من علامات التصيد."
+        ]
+    },
+
+    timeline: {
+        title: ["Order the Events", "رتّب الأحداث"],
+        prompt: [
+            "Choose the most logical order for this incident.",
+            "اختار الترتيب الأكثر منطقية لأحداث الواقعة."
+        ],
+        choices: [
+            ["Alert → Login → File access", "تنبيه ← تسجيل دخول ← الوصول للملف"],
+            ["Suspicious login → File access → Alert", "تسجيل دخول مشبوه ← الوصول للملف ← ظهور التنبيه"],
+            ["File access → Alert → Login", "الوصول للملف ← التنبيه ← تسجيل الدخول"]
+        ],
+        correct: 1,
+        why: [
+            "Correct! Login happens first, followed by file access and then the alert.",
+            "صحيح! يحدث تسجيل الدخول أولاً ثم الوصول للملف وبعد ذلك يظهر التنبيه."
+        ]
+    },
+
+    valid: {
+        title: ["Evidence or Not?", "دليل أم لا؟"],
+        prompt: [
+            "Which item is relevant to a file-copy investigation?",
+            "أي عنصر له علاقة بتحقيق نسخ الملفات؟"
+        ],
+        choices: [
+            ["USB connection records and system logs", "سجلات توصيل USB وسجلات النظام"],
+            ["Desk decoration", "زينة المكتب"],
+            ["Room paint color", "لون طلاء الغرفة"]
+        ],
+        correct: 0,
+        why: [
+            "Correct! Device records and system logs may help reconstruct events.",
+            "صحيح! قد تساعد سجلات الأجهزة والنظام في إعادة بناء الأحداث."
+        ]
+    }
+};
+
+let currentMission = null;
+let missionAnswered = false;
+
+function openMission(id) {
+    currentMission = id;
+    missionAnswered = false;
+
+    document.getElementById("missionPanel").classList.remove("hidden");
+
+    renderMission();
+
+    document.getElementById("missionPanel").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+function renderMission() {
+    if (!currentMission) return;
+
+    let m = missions[currentMission];
+
+    document.getElementById("missionLabel").textContent =
+        t("MISSION " + (Object.keys(missions).indexOf(currentMission) + 1),
+          "المهمة " + (Object.keys(missions).indexOf(currentMission) + 1));
+
+    document.getElementById("missionCount").textContent =
+        t("Earn 10 XP", "اجمع 10 نقاط");
+
+    document.getElementById("missionTitle").textContent =
+        m.title[lang === "en" ? 0 : 1];
+
+    document.getElementById("missionPrompt").textContent =
+        m.prompt[lang === "en" ? 0 : 1];
+
+    document.getElementById("missionFeedback").textContent = "";
+
+    document.getElementById("missionNext").classList.add("hidden");
+
+    let wrap = document.getElementById("missionChoices");
+    wrap.innerHTML = "";
+
+    m.choices.forEach((choice, i) => {
+        let button = document.createElement("button");
+
+        button.className = "choice";
+        button.textContent =
+            String.fromCharCode(65 + i) + ". " +
+            choice[lang === "en" ? 0 : 1];
+
+        button.onclick = () => missionAnswer(i);
+
+        wrap.appendChild(button);
+    });
+}
+
+function missionAnswer(i) {
+    if (missionAnswered) return;
+
+    missionAnswered = true;
+
+    let m = missions[currentMission];
+    let correct = i === m.correct;
+
+    document.querySelectorAll("#missionChoices button").forEach((b, n) => {
+        b.disabled = true;
+
+        if (n === m.correct) {
+            b.style.borderColor = "var(--green)";
+        }
+    });
+
+    let feedback = document.getElementById("missionFeedback");
+
+    feedback.textContent = m.why[lang === "en" ? 0 : 1];
+
+    feedback.style.color = correct ? "var(--green)" : "var(--gold)";
+
+    if (correct) {
+        addXP(10, currentMission);
+    }
+
+    document.getElementById("missionNext").textContent =
+        t("Choose another mission", "اختار مهمة تانية");
+
+    document.getElementById("missionNext").classList.remove("hidden");
+}
+
+function missionNext() {
+    document.getElementById("missionPanel").classList.add("hidden");
+    currentMission = null;
+}
+
+// أسئلة الاختبار
+const questions = [
+    {
+        q: [
+            "What is the main purpose of digital forensics?",
+            "ما الهدف الأساسي من التحقيق الجنائي الرقمي؟"
+        ],
+        a: [
+            ["Modify digital files", "تعديل الملفات الرقمية"],
+            ["Scientifically examine digital evidence", "فحص الأدلة الرقمية علمياً"],
+            ["Create computer games", "إنشاء ألعاب الكمبيوتر"]
+        ],
+        correct: 1,
+        why: [
+            "It examines digital evidence using scientific methods.",
+            "يفحص الأدلة الرقمية باستخدام أساليب علمية."
+        ]
+    },
+
+    {
+        q: [
+            "What does Chain of Custody document?",
+            "ماذا يوثق Chain of Custody؟"
+        ],
+        a: [
+            ["Screen resolution", "دقة الشاشة"],
+            ["The history of evidence handling and transfers", "تاريخ التعامل مع الدليل ونقله"],
+            ["Internet speed", "سرعة الإنترنت"]
+        ],
+        correct: 1,
+        why: [
+            "It records who handled evidence, when and how.",
+            "يسجل من تعامل مع الدليل ومتى وكيف."
+        ]
+    },
+
+    {
+        q: [
+            "Which tool is used for network packet analysis?",
+            "أي أداة تستخدم لتحليل حزم الشبكة؟"
+        ],
+        a: [
+            ["Wireshark", "Wireshark"],
+            ["Autopsy", "Autopsy"],
+            ["Word", "Word"]
+        ],
+        correct: 0,
+        why: [
+            "Wireshark is a network protocol analyzer.",
+            "Wireshark أداة لتحليل بروتوكولات وحركة الشبكة."
+        ]
+    }
+];
+
+let qIndex = 0;
+let score = 0;
+let answered = false;
+let quizDone = false;
+
+function renderQuestion() {
+    if (quizDone) return;
+
+    answered = false;
+
+    let q = questions[qIndex];
+
+    document.getElementById("questionNumber").textContent =
+        t(
+            `Question ${qIndex + 1} of ${questions.length}`,
+            `السؤال ${qIndex + 1} من ${questions.length}`
+        );
+
+    document.getElementById("progress").style.width =
+        (qIndex / questions.length * 100) + "%";
+
+    document.getElementById("question").textContent =
+        q.q[lang === "en" ? 0 : 1];
+
+    document.getElementById("quizFeedback").textContent = "";
+
+    document.getElementById("next").classList.add("hidden");
+
+    let answers = document.getElementById("answers");
+    answers.innerHTML = "";
+
+    q.a.forEach((a, i) => {
+        let button = document.createElement("button");
+
+        button.className = "choice";
+        button.textContent = a[lang === "en" ? 0 : 1];
+
+        button.onclick = () => answer(i);
+
+        answers.appendChild(button);
+    });
+}
+
+function answer(i) {
+    if (answered) return;
+
+    answered = true;
+
+    let q = questions[qIndex];
+    let correct = i === q.correct;
+
+    if (correct) score++;
+
+    let feedback = document.getElementById("quizFeedback");
+
+    feedback.textContent =
+        (correct ? "✓ " : "✗ ") + q.why[lang === "en" ? 0 : 1];
+
+    feedback.style.color = correct ? "var(--green)" : "var(--gold)";
+
+    document.querySelectorAll("#answers button").forEach((b, n) => {
+        b.disabled = true;
+
+        if (n === q.correct) {
+            b.style.borderColor = "var(--green)";
+        }
+    });
+
+    let next = document.getElementById("next");
+
+    next.classList.remove("hidden");
+
+    next.textContent =
+        qIndex === questions.length - 1
+            ? t("See My Result", "اعرض النتيجة")
+            : t("Next Question →", "السؤال التالي ←");
+}
+
+function nextQuestion() {
+    if (quizDone) {
+        qIndex = 0;
+        score = 0;
+        quizDone = false;
+
+        document.getElementById("next").onclick = nextQuestion;
+
+        renderQuestion();
+        return;
+    }
+
+    if (!answered) return;
+
+    qIndex++;
+
+    if (qIndex >= questions.length) {
+        quizDone = true;
+
+        document.getElementById("questionNumber").textContent =
+            t("CHALLENGE COMPLETED", "اكتمل الاختبار");
+
+        document.getElementById("question").textContent =
+            t(
+                `Your score: ${score} / ${questions.length}`,
+                `نتيجتك: ${score} / ${questions.length}`
+            );
+
+        document.getElementById("progress").style.width = "100%";
+
+        document.getElementById("answers").innerHTML =
+            `<p>${t("You completed the challenge!", "لقد أنهيت التحدي!")}</p>`;
+
+        document.getElementById("quizFeedback").textContent =
+            score === 3
+                ? t("Excellent work! 🏆", "عمل ممتاز! 🏆")
+                : t("Good effort! Review and try again.", "مجهود جيد! راجع وحاول مرة أخرى.");
+
+        addXP(score * 5, "quiz");
+
+        document.getElementById("next").textContent =
+            t("Try Again", "حاول مرة أخرى");
+
+        document.getElementById("next").onclick = nextQuestion;
+
+    } else {
+        renderQuestion();
+    }
+}
+
+// لعبة البحث عن الأدلة
+const huntItems = [
+    {
+        en: "Computer",
+        ar: "الكمبيوتر",
+        good: true,
+        why: [
+            "A computer may contain files and system artifacts relevant to the incident.",
+            "قد يحتوي الكمبيوتر على ملفات وآثار نظام مرتبطة بالواقعة."
+        ]
+    },
+    {
+        en: "System Logs",
+        ar: "سجلات النظام",
+        good: true,
+        why: [
+            "Logs may help establish what happened and when.",
+            "قد تساعد السجلات في معرفة ما حدث ومتى."
+        ]
+    },
+    {
+        en: "Desktop Wallpaper",
+        ar: "خلفية سطح المكتب",
+        good: false,
+        why: [
+            "Usually not relevant to proving whether files were copied.",
+            "غالباً لا تساعد في إثبات ما إذا كانت الملفات قد نُسخت."
+        ]
+    },
+    {
+        en: "File Timestamps",
+        ar: "الطوابع الزمنية للملفات",
+        good: true,
+        why: [
+            "Timestamps may help build a timeline, but should be validated.",
+            "قد تساعد الطوابع الزمنية في بناء التسلسل الزمني، مع ضرورة التحقق منها."
+        ]
+    },
+    {
+        en: "Coffee Cup",
+        ar: "فنجان القهوة",
+        good: false,
+        why: [
+            "This is not digital evidence in this scenario.",
+            "هذا ليس دليلاً رقمياً في هذا السيناريو."
+        ]
+    },
+    {
+        en: "USB Connection Record",
+        ar: "سجل توصيل USB",
+        good: true,
+        why: [
+            "A USB connection record may help identify when a device was connected.",
+            "قد يساعد سجل توصيل USB في تحديد وقت توصيل الجهاز."
+        ]
+    }
+];
+
+let huntSelected = new Set();
+let huntPoints = 0;
+let huntFinished = false;
+
+function inspectItem(i) {
+    if (huntSelected.has(i) || huntFinished) return;
+
+    huntSelected.add(i);
+
+    let item = huntItems[i];
+
+    let button = document.querySelectorAll("#huntGrid .hunt-item")[i];
+
+    button.disabled = true;
+
+    let title = lang === "en" ? item.en : item.ar;
+
+    button.classList.add(item.good ? "found" : "missed");
+
+    button.querySelector("small").textContent =
+        item.good
+            ? t("Relevant evidence", "دليل محتمل")
+            : t("Not relevant", "غير مرتبط");
+
+    let feedback = document.getElementById("huntFeedback");
+
+    feedback.textContent =
+        (item.good ? "✓ " : "✗ ") +
+        title + " — " +
+        item.why[lang === "en" ? 0 : 1];
+
+    feedback.style.color =
+        item.good ? "var(--green)" : "var(--gold)";
+
+    if (item.good) {
+        huntPoints++;
+
+        document.getElementById("huntScore").textContent =
+            huntPoints * 5;
+
+        document.getElementById("huntFound").textContent =
+            huntPoints;
+    }
+
+    if (huntSelected.size === huntItems.length || huntPoints === 4) {
+        huntFinished = true;
+
+        if (huntPoints === 4) {
+            feedback.textContent = t(
+                "Excellent! You found all four evidence items.",
+                "ممتاز! اكتشفت الأدلة الأربعة كلها."
+            );
+
+            addXP(20, "evidence-hunt");
+
+        } else {
+            feedback.textContent = t(
+                "Round complete! Press Play Again to try again.",
+                "انتهت الجولة! اضغط العب مرة أخرى وحاول من جديد."
+            );
+        }
+    }
+}
+
+function updateHuntLanguage() {
+    document.querySelectorAll("#huntGrid .hunt-item").forEach((b, i) => {
+        b.querySelector("b").textContent =
+            lang === "en" ? huntItems[i].en : huntItems[i].ar;
+
+        b.querySelector("small").textContent =
+            t("Click to inspect", "اضغط للفحص");
+    });
+}
+
+function resetHunt() {
+    huntSelected.clear();
+    huntPoints = 0;
+    huntFinished = false;
+
+    document.getElementById("huntFound").textContent = "0";
+    document.getElementById("huntScore").textContent = "0";
+    document.getElementById("huntFeedback").textContent = "";
+
+    document.querySelectorAll("#huntGrid .hunt-item").forEach((b, i) => {
+        b.disabled = false;
+
+        b.classList.remove("found", "missed");
+
+        b.querySelector("b").textContent =
+            lang === "en" ? huntItems[i].en : huntItems[i].ar;
+
+        b.querySelector("small").textContent =
+            t("Click to inspect", "اضغط للفحص");
+    });
+}
+
+// تشغيل أول سؤال عند فتح الموقع
+renderQuestion();
+
+</script>
+
+</body>
+</html>
