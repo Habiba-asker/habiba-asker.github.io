@@ -3,250 +3,436 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Habiba Asker | Digital Forensics Lab</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap');
-
-:root {
-  --bg:#07111f;
-  --panel:#0d1d30;
-  --blue:#38bdf8;
-  --cyan:#67e8f9;
-  --text:#e8f4ff;
-  --muted:#91a9bd;
+:root{
+--bg:#071321;--panel:#102238;--blue:#38bdf8;
+--cyan:#67e8f9;--white:#edf7ff;--muted:#9bb1c5;
+--green:#4ade80;--border:#23415c;
 }
-* {box-sizing:border-box;margin:0;padding:0}
-html {scroll-behavior:smooth}
-body {
-  background:var(--bg);
-  color:var(--text);
-  font-family:Inter,sans-serif;
-  overflow-x:hidden;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+background:var(--bg);color:var(--white);
+font-family:Arial,sans-serif;line-height:1.7;
+overflow-x:hidden;
 }
-body::before {
-  content:"";
-  position:fixed;inset:0;z-index:-1;
-  background-image:
-  linear-gradient(#38bdf80b 1px,transparent 1px),
-  linear-gradient(90deg,#38bdf80b 1px,transparent 1px);
-  background-size:40px 40px;
+body:before{
+content:"";position:fixed;inset:0;z-index:-1;
+background-image:linear-gradient(#38bdf808 1px,transparent 1px),
+linear-gradient(90deg,#38bdf808 1px,transparent 1px);
+background-size:35px 35px;
 }
-body::after {
-  content:"";position:fixed;
-  width:450px;height:450px;
-  border-radius:50%;background:#087cbb18;
-  filter:blur(100px);top:10%;left:20%;
-  pointer-events:none;z-index:-1;
+nav{
+position:sticky;top:0;z-index:20;
+background:#071321ed;backdrop-filter:blur(15px);
+padding:15px 6%;display:flex;align-items:center;
+justify-content:space-between;border-bottom:1px solid var(--border);
+gap:15px;
 }
-nav {
-  position:sticky;top:0;z-index:10;
-  display:flex;justify-content:space-between;
-  align-items:center;padding:20px 8%;
-  background:#07111feF;
-  border-bottom:1px solid #38bdf822;
-  backdrop-filter:blur(15px);
+.logo{color:var(--cyan);font-weight:bold;letter-spacing:2px}
+nav a{color:var(--muted);text-decoration:none;margin:0 7px;font-size:13px}
+nav a:hover{color:var(--cyan)}
+button{cursor:pointer;font:inherit}
+.lang,.btn{
+border:1px solid var(--blue);background:transparent;
+color:var(--cyan);padding:10px 16px;border-radius:8px;
+transition:.25s;
 }
-.logo {font-weight:800;color:var(--blue);letter-spacing:2px}
-.logo span {color:white}
-nav a {color:var(--muted);text-decoration:none;font-size:13px;margin:0 10px}
-nav a:hover {color:var(--cyan)}
-.lang {
-  border:1px solid var(--blue);background:transparent;
-  color:var(--blue);padding:9px 15px;border-radius:8px;
-  cursor:pointer;
+.btn.primary{background:var(--blue);color:#061321;font-weight:bold}
+.btn:hover,.lang:hover{background:var(--blue);color:#061321;transform:translateY(-2px)}
+.hero{
+min-height:82vh;display:flex;flex-direction:column;
+align-items:center;justify-content:center;text-align:center;
+padding:65px 20px;
 }
-.hero {
-  min-height:85vh;display:flex;flex-direction:column;
-  justify-content:center;align-items:center;text-align:center;
-  padding:80px 20px;
+.tag{color:var(--green);font-size:12px;letter-spacing:3px}
+.hero h1{font-size:clamp(42px,8vw,78px);margin:15px 0}
+.hero h1 span{color:var(--blue);text-shadow:0 0 30px #38bdf855}
+.hero h2{color:var(--cyan);font-size:clamp(16px,3vw,23px)}
+.hero p{max-width:680px;color:var(--muted);margin:20px auto}
+.cursor{animation:blink 1s infinite}
+@keyframes blink{50%{opacity:0}}
+.orb{
+width:110px;height:110px;border-radius:50%;
+border:1px solid var(--blue);display:grid;place-items:center;
+font-size:52px;margin-bottom:25px;
+box-shadow:0 0 35px #38bdf833,inset 0 0 30px #38bdf822;
+animation:float 4s ease-in-out infinite;
 }
-.tag {
-  color:var(--cyan);border:1px solid #38bdf855;
-  background:#38bdf810;padding:9px 16px;
-  border-radius:30px;font-size:12px;letter-spacing:2px;
+@keyframes float{50%{transform:translateY(-12px)}}
+.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+.status{margin-top:35px;color:var(--green);font-size:12px}
+section{padding:75px 8%;scroll-margin-top:75px}
+.heading{font-size:30px;margin-bottom:10px}
+.heading span{color:var(--blue)}
+.sub{color:var(--muted);margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{
+background:var(--panel);border:1px solid var(--border);
+border-radius:14px;padding:23px;transition:.3s;
 }
-.hero h1 {
-  font-size:clamp(40px,8vw,76px);
-  margin:25px 0 10px;font-weight:800;
-  letter-spacing:-2px;
+.card:hover{transform:translateY(-6px);border-color:var(--blue);box-shadow:0 12px 30px #0005}
+.card h3{color:var(--cyan);margin:8px 0}
+.card p{color:var(--muted);font-size:14px}
+.emoji{font-size:30px}
+.pill{
+display:inline-block;background:#38bdf815;color:var(--cyan);
+border:1px solid #38bdf844;border-radius:20px;
+padding:5px 12px;font-size:12px;margin:4px;
 }
-.hero h1 span {
-  color:var(--blue);
-  text-shadow:0 0 30px #38bdf855;
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.step{
+background:var(--panel);border:1px solid var(--border);
+padding:18px 8px;border-radius:12px;color:var(--muted);
+text-align:center;cursor:pointer;transition:.2s;
 }
-.hero p {color:var(--muted);max-width:650px;line-height:1.9}
-.cursor {animation:blink .8s infinite;color:var(--cyan)}
-@keyframes blink {50%{opacity:0}}
-.actions {display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;justify-content:center}
-.btn {
-  padding:13px 23px;border-radius:9px;text-decoration:none;
-  font-size:14px;font-weight:700;transition:.3s;
+.step.active,.step:hover{border-color:var(--blue);background:#123552;color:white}
+.step strong{display:block;color:var(--cyan);font-size:23px}
+.detail{
+background:#0c2035;border:1px solid var(--blue);
+padding:25px;border-radius:12px;margin-top:15px;
+min-height:125px;
 }
-.primary {background:var(--blue);color:#061321}
-.secondary {border:1px solid #38bdf855;color:var(--blue)}
-.btn:hover {transform:translateY(-4px);box-shadow:0 8px 30px #38bdf833}
-.status {margin-top:45px;color:#76e6ae;font-size:12px;letter-spacing:1px}
-section {padding:85px 9%;scroll-margin-top:75px}
-.heading {font-size:30px;margin-bottom:12px}
-.heading span {color:var(--blue)}
-.sub {color:var(--muted);line-height:1.8;margin-bottom:35px}
-.about {
-  background:linear-gradient(135deg,#0d1d30,#0a1727);
-  border:1px solid #38bdf822;border-radius:18px;
-  padding:30px;line-height:2;color:#b8cbdc;
+.detail h3{color:var(--cyan);margin-bottom:8px}
+.detail p{color:#c1d3e3}
+.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}
+.tab{
+padding:10px 15px;border:1px solid var(--border);
+background:var(--panel);color:var(--muted);border-radius:8px;
 }
-.cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card {
-  background:#0d1d30;border:1px solid #38bdf822;
-  padding:25px;border-radius:15px;transition:.3s;
+.tab.active{background:#124267;color:white;border-color:var(--blue)}
+.info{
+background:#0c2035;border-radius:12px;
+padding:23px;border:1px solid var(--border);
+color:#c5d7e8;min-height:130px;
 }
-.card:hover {
-  transform:translateY(-7px);
-  border-color:var(--blue);
-  box-shadow:0 10px 35px #38bdf815;
+.info h3{color:var(--cyan);margin-bottom:10px}
+.tool{
+background:#102238;border:1px solid var(--border);
+padding:14px;border-radius:10px;
 }
-.card .icon {font-size:30px;margin-bottom:15px}
-.card h3 {color:var(--cyan);margin-bottom:10px}
-.card p {color:var(--muted);font-size:13px;line-height:1.8}
-.tool {
-  display:inline-block;padding:12px 19px;margin:6px;
-  background:#0d1d30;border:1px solid #38bdf833;
-  border-radius:8px;color:#bdeaff;font-size:13px;
+.tool b{color:var(--cyan)}
+.tool p{color:var(--muted);font-size:13px;margin-top:5px}
+.casebox,.quizbox{
+background:linear-gradient(145deg,#102943,#0b1a2c);
+border:1px solid var(--blue);border-radius:15px;padding:25px;
 }
-.terminal {
-  background:#050c16;border:1px solid #38bdf844;
-  border-radius:13px;padding:24px;
-  font-family:monospace;color:#75e5ae;
-  line-height:2;overflow-wrap:anywhere;
+.choice{
+display:block;width:100%;text-align:left;
+background:#0b1b2c;border:1px solid var(--border);
+color:var(--white);padding:13px;border-radius:8px;
+margin:10px 0;transition:.2s;
 }
-.terminal small {color:var(--muted)}
-.contact {text-align:center}
-footer {
-  padding:25px;text-align:center;
-  color:var(--muted);font-size:12px;
-  border-top:1px solid #38bdf822;
-}
-.ar {font-family:Cairo,sans-serif;direction:rtl}
-@media(max-width:650px) {
- nav {padding:15px 4%;flex-wrap:wrap;gap:12px}
- nav a {margin:0 4px;font-size:11px}
- section {padding:65px 6%}
- .hero h1 {letter-spacing:-1px}
+.choice:hover{border-color:var(--cyan);background:#16334d}
+.feedback{margin-top:15px;color:var(--green);min-height:28px}
+.progress{height:7px;background:#23394d;border-radius:10px;margin:15px 0}
+.bar{height:100%;background:var(--blue);width:0%;transition:.3s;border-radius:10px}
+footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted)}
+.ar{direction:rtl;font-family:Arial,sans-serif}
+.ar nav{direction:rtl}
+.ar .choice{text-align:right}
+@media(max-width:700px){
+nav{flex-wrap:wrap}
+nav div:nth-child(2){order:3;width:100%;text-align:center}
+nav a{margin:0 4px}
+.steps{grid-template-columns:repeat(2,1fr)}
+section{padding:55px 5%}
 }
 </style>
 </head>
-
 <body>
+
 <nav>
- <div class="logo">HABIBA<span>.SEC</span></div>
- <div>
-  <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
-  <a href="#about" data-en="About" data-ar="عني">About</a>
-  <a href="#domains" data-en="Domains" data-ar="المجالات">Domains</a>
-  <a href="#tools" data-en="Tools" data-ar="الأدوات">Tools</a>
-  <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
- </div>
- <button class="lang" onclick="toggleLang()">عربي / EN</button>
+<div class="logo">HABIBA.SEC 🧬</div>
+<div>
+<a href="#home">Home</a>
+<a href="#learn">Learn</a>
+<a href="#process">Process</a>
+<a href="#tools">Tools</a>
+<a href="#case">Case Lab</a>
+<a href="#quiz">Quiz</a>
+</div>
+<button class="lang" onclick="toggleLanguage()">عربي / EN</button>
 </nav>
 
 <header class="hero" id="home">
- <div class="tag">DIGITAL FORENSICS LAB • 2026</div>
- <h1>HABIBA <span>ASKER</span></h1>
- <h2 style="color:#b5d7ed;font-size:clamp(18px,3vw,25px)"
- data-en="Cybersecurity Student | Digital Forensics Enthusiast"
- data-ar="طالبة أمن سيبراني | مهتمة بالتحقيق الجنائي الرقمي">
- Cybersecurity Student | Digital Forensics Enthusiast
- </h2>
- <p style="margin-top:20px"
- data-en="Exploring digital evidence, investigating cyber incidents, and understanding the science behind digital investigations."
- data-ar="أستكشف الأدلة الرقمية، وأحلل الحوادث السيبرانية، وأتعلم العلوم والتقنيات وراء التحقيقات الرقمية.">
- Exploring digital evidence, investigating cyber incidents, and understanding the science behind digital investigations.
- </p>
- <div class="actions">
-  <a href="#domains" class="btn primary" data-en="Explore My Lab →" data-ar="اكتشف المعمل ←">Explore My Lab →</a>
-  <a href="#about" class="btn secondary" data-en="About Me" data-ar="اعرف عني">About Me</a>
- </div>
- <div class="status">● LAB STATUS: ONLINE <span class="cursor">_</span></div>
+<div class="orb">🔬</div>
+<div class="tag">● DIGITAL FORENSICS LAB — ONLINE</div>
+<h1>HABIBA <span>ASKER</span></h1>
+<h2 data-en="Digital Forensics & Cybersecurity"
+data-ar="التحقيق الجنائي الرقمي والأمن السيبراني">
+Digital Forensics & Cybersecurity</h2>
+<p data-en="Welcome to my interactive Digital Forensics Lab. Explore digital evidence, discover forensic investigation methods, and test your knowledge through practical scenarios."
+data-ar="مرحباً بكم في معمل التحقيق الجنائي الرقمي التفاعلي. اكتشفوا الأدلة الرقمية وطرق التحقيق واختبروا معلوماتكم من خلال سيناريوهات عملية.">
+Welcome to my interactive Digital Forensics Lab. Explore digital evidence, discover forensic investigation methods, and test your knowledge through practical scenarios.
+</p>
+<div class="actions">
+<a class="btn primary" href="#learn" data-en="Start Exploring →" data-ar="ابدأ الاستكشاف ←">Start Exploring →</a>
+<a class="btn" href="#case" data-en="Try a Case Study" data-ar="جرب قضية افتراضية">Try a Case Study</a>
+</div>
+<div class="status">SYSTEM STATUS: ACTIVE <span class="cursor">_</span></div>
 </header>
 
-<section id="about">
- <h2 class="heading"><span>01.</span> <span data-en="About Me" data-ar="من أنا">About Me</span></h2>
- <p class="sub" data-en="A little introduction about my journey." data-ar="نبذة عن رحلتي في المجال.">A little introduction about my journey.</p>
- <div class="about"
- data-en="I am Habiba Asker, a Cybersecurity student at the Egyptian Russian University with a strong interest in Digital Forensics and cyber investigations. I am passionate about understanding how digital evidence is collected, examined, and interpreted. This portfolio documents my learning journey, technical interests, and practical work as I continue developing my skills."
- data-ar="أنا حبيبة عسكر، طالبة أمن سيبراني بالجامعة المصرية الروسية، ولدي اهتمام خاص بمجال التحقيق الجنائي الرقمي والتحقيقات السيبرانية. أهتم بفهم كيفية جمع الأدلة الرقمية وفحصها وتحليلها. يوثق هذا الموقع رحلتي التعليمية واهتماماتي التقنية وتجاربي العملية أثناء تطوير مهاراتي.">
- I am Habiba Asker, a Cybersecurity student at the Egyptian Russian University with a strong interest in Digital Forensics and cyber investigations. I am passionate about understanding how digital evidence is collected, examined, and interpreted. This portfolio documents my learning journey, technical interests, and practical work as I continue developing my skills.
- </div>
+<section id="learn">
+<h2 class="heading"><span>01.</span> <span data-en="What Is Digital Forensics?"
+data-ar="ما هو التحقيق الجنائي الرقمي؟">What Is Digital Forensics?</span></h2>
+<p class="sub" data-en="Discover the science behind digital investigations."
+data-ar="اكتشفي العلم وراء التحقيقات الرقمية.">Discover the science behind digital investigations.</p>
+<div class="card">
+<h3>🔍 Digital Forensics</h3>
+<p data-en="Digital forensics is the application of scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened, how it happened, and what the available evidence can support."
+data-ar="التحقيق الجنائي الرقمي هو تطبيق الأساليب العلمية لتحديد وجمع وفحص وتحليل البيانات الرقمية مع الحفاظ على سلامتها. ويساعد المحققين على فهم ما حدث وكيف حدث وما الذي يمكن للأدلة المتاحة إثباته.">
+Digital forensics is the application of scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened, how it happened, and what the available evidence can support.
+</p>
+<br>
+<span class="pill">Evidence Integrity</span>
+<span class="pill">Chain of Custody</span>
+<span class="pill">Scientific Analysis</span>
+</div>
 </section>
 
-<section id="domains">
- <h2 class="heading"><span>02.</span> <span data-en="Forensic Domains" data-ar="مجالات التحقيق الرقمي">Forensic Domains</span></h2>
- <p class="sub" data-en="Areas I am exploring and learning about." data-ar="مجالات أستكشفها وأتعلم عنها.">Areas I am exploring and learning about.</p>
- <div class="cards">
-  <div class="card"><div class="icon">💻</div><h3>Computer Forensics</h3><p>Examining computers, storage media, and digital artifacts.</p></div>
-  <div class="card"><div class="icon">📱</div><h3>Mobile Forensics</h3><p>Understanding mobile device data and digital traces.</p></div>
-  <div class="card"><div class="icon">🌐</div><h3>Network Forensics</h3><p>Analyzing network traffic and investigating suspicious activity.</p></div>
-  <div class="card"><div class="icon">🧠</div><h3>Memory Forensics</h3><p>Exploring volatile memory and system activity.</p></div>
- </div>
+<section id="evidence">
+<h2 class="heading"><span>02.</span> Evidence Types</h2>
+<p class="sub" data-en="Select an evidence category to explore it."
+data-ar="اختاري نوع الدليل لاستكشافه.">Select an evidence category to explore it.</p>
+<div class="tabs">
+<button class="tab active" onclick="showEvidence(0,this)">💻 Computer</button>
+<button class="tab" onclick="showEvidence(1,this)">📱 Mobile</button>
+<button class="tab" onclick="showEvidence(2,this)">🌐 Network</button>
+<button class="tab" onclick="showEvidence(3,this)">🧠 Memory</button>
+</div>
+<div class="info" id="evidenceInfo">
+<h3>💻 Computer Forensics</h3>
+<p>Investigating files, file systems, browser history, deleted data, metadata and operating system artifacts.</p>
+</div>
+</section>
+
+<section id="process">
+<h2 class="heading"><span>03.</span> Investigation Process</h2>
+<p class="sub" data-en="Click each phase to understand the forensic workflow."
+data-ar="اضغطي على كل مرحلة لفهم خطوات التحقيق.">Click each phase to understand the forensic workflow.</p>
+<div class="steps">
+<button class="step active" onclick="showStep(0,this)"><strong>01</strong>Collection</button>
+<button class="step" onclick="showStep(1,this)"><strong>02</strong>Examination</button>
+<button class="step" onclick="showStep(2,this)"><strong>03</strong>Analysis</button>
+<button class="step" onclick="showStep(3,this)"><strong>04</strong>Reporting</button>
+</div>
+<div class="detail" id="stepDetail">
+<h3>01 — Collection</h3>
+<p>Identify, document and acquire relevant data using appropriate procedures that preserve evidence integrity.</p>
+</div>
+</section>
+
+<section id="principles">
+<h2 class="heading"><span>04.</span> Core Forensic Principles</h2>
+<div class="grid">
+<div class="card"><div class="emoji">🔐</div><h3>Evidence Integrity</h3><p>Protect evidence from unauthorized alteration. Hash values can help verify that a forensic copy remains unchanged.</p></div>
+<div class="card"><div class="emoji">🔗</div><h3>Chain of Custody</h3><p>Document who handled the evidence, when it was handled, and how it was transferred or stored.</p></div>
+<div class="card"><div class="emoji">📋</div><h3>Documentation</h3><p>Record the methods, tools, actions and observations throughout the investigation.</p></div>
+</div>
 </section>
 
 <section id="tools">
- <h2 class="heading"><span>03.</span> <span data-en="Tools & Technologies" data-ar="الأدوات والتقنيات">Tools & Technologies</span></h2>
- <p class="sub" data-en="Technologies I am learning and exploring." data-ar="تقنيات وأدوات أتعلم استخدامها واستكشافها.">Technologies I am learning and exploring.</p>
- <div>
-  <span class="tool">Autopsy</span>
-  <span class="tool">FTK Imager</span>
-  <span class="tool">Wireshark</span>
-  <span class="tool">Volatility</span>
-  <span class="tool">Linux</span>
-  <span class="tool">Python</span>
-  <span class="tool">Kali Linux</span>
-  <span class="tool">Nmap</span>
-  <span class="tool">Burp Suite</span>
- </div>
+<h2 class="heading"><span>05.</span> Forensic Toolkit</h2>
+<p class="sub">Explore common tools used in digital investigations.</p>
+<div class="grid">
+<div class="tool">🔎 <b>Autopsy</b><p>Digital forensics platform for analyzing disk images and file system artifacts.</p></div>
+<div class="tool">💽 <b>FTK Imager</b><p>Used to acquire and preview forensic images and digital evidence.</p></div>
+<div class="tool">🌐 <b>Wireshark</b><p>Network protocol analyzer for examining captured network traffic.</p></div>
+<div class="tool">🧠 <b>Volatility</b><p>Framework for memory forensics and analyzing memory captures.</p></div>
+<div class="tool">🐧 <b>Linux</b><p>Operating system environment with useful investigation utilities.</p></div>
+<div class="tool">🐍 <b>Python</b><p>Programming language for automating analysis and processing data.</p></div>
+</div>
 </section>
 
-<section id="projects">
- <h2 class="heading"><span>04.</span> <span data-en="Projects & Investigations" data-ar="المشاريع والتحقيقات">Projects & Investigations</span></h2>
- <p class="sub" data-en="A space for documenting practical labs and future case studies." data-ar="مساحة لتوثيق التجارب العملية ودراسات الحالات المستقبلية.">A space for documenting practical labs and future case studies.</p>
- <div class="cards">
-  <div class="card">
-   <div class="icon">🔎</div>
-   <h3>Forensic Case Studies</h3>
-   <p>Practical investigation notes and digital evidence analysis.</p>
-   <p style="color:#38bdf8;margin-top:15px">Coming Soon...</p>
-  </div>
-  <div class="card">
-   <div class="icon">🛡️</div>
-   <h3>Cybersecurity Projects</h3>
-   <p>Technical projects and hands-on cybersecurity experiments.</p>
-   <p style="color:#38bdf8;margin-top:15px">Coming Soon...</p>
-  </div>
- </div>
+<section id="case">
+<h2 class="heading"><span>06.</span> Interactive Case Study</h2>
+<p class="sub">A fictional training scenario. Choose the best forensic action.</p>
+<div class="casebox">
+<div class="tag">CASE #001 — USB INVESTIGATION</div>
+<h3 style="margin:15px 0;color:var(--cyan)">The Missing Files</h3>
+<p>A company reports that confidential files may have been copied to a USB drive. You are asked to assist with an authorized investigation.</p>
+<br>
+<p><b>What should you prioritize first?</b></p>
+<button class="choice" onclick="caseAnswer(0)">A. Immediately open and modify the original files.</button>
+<button class="choice" onclick="caseAnswer(1)">B. Document the situation and follow authorized evidence preservation and acquisition procedures.</button>
+<button class="choice" onclick="caseAnswer(2)">C. Delete suspicious files before examining them.</button>
+<div class="feedback" id="caseFeedback"></div>
+</div>
 </section>
 
-<section id="contact" class="contact">
- <h2 class="heading"><span>05.</span> Let's Connect</h2>
- <p class="sub">Interested in Digital Forensics? Let's connect and learn together.</p>
- <a class="btn primary" href="https://github.com/Habiba-asker" target="_blank">Visit My GitHub →</a>
+<section id="quiz">
+<h2 class="heading"><span>07.</span> Test Your Knowledge</h2>
+<p class="sub">Answer the questions and check your score.</p>
+<div class="quizbox">
+<div id="questionNumber">Question 1 of 3</div>
+<div class="progress"><div class="bar" id="progress"></div></div>
+<h3 id="question" style="margin:20px 0">What is the main purpose of digital forensics?</h3>
+<div id="answers"></div>
+<div class="feedback" id="quizFeedback"></div>
+<button class="btn primary" id="next" onclick="nextQuestion()" style="display:none;margin-top:15px">Next Question →</button>
+</div>
+</section>
+
+<section id="references">
+<h2 class="heading"><span>08.</span> Learning Resources</h2>
+<div class="card">
+<h3>📚 NIST SP 800-86</h3>
+<p>Guide to Integrating Forensic Techniques into Incident Response.</p>
+<a href="https://csrc.nist.gov/pubs/sp/800/86/final" target="_blank" style="color:var(--cyan)">Explore the official NIST guide →</a>
+</div>
+</section>
+
+<section id="contact" style="text-align:center">
+<h2 class="heading">Let's Connect</h2>
+<p class="sub">Learning, investigating and discovering the digital world.</p>
+<a class="btn primary" href="https://github.com/Habiba-asker" target="_blank">Visit My GitHub →</a>
 </section>
 
 <footer>
- © 2026 Habiba Asker | Digital Forensics Portfolio
- <br><br>Investigate • Analyze • Preserve
+© 2026 Habiba Asker | Digital Forensics Portfolio<br>
+Investigate • Analyze • Preserve
 </footer>
 
 <script>
-let currentLang = "en";
-function toggleLang() {
- currentLang = currentLang === "en" ? "ar" : "en";
- document.documentElement.lang = currentLang;
- document.body.classList.toggle("ar",currentLang === "ar");
- document.querySelectorAll("[data-en]").forEach(el=>{
-  el.textContent = el.dataset[currentLang];
- });
+let lang="en";
+
+function toggleLanguage(){
+lang=lang==="en"?"ar":"en";
+document.documentElement.lang=lang;
+document.body.classList.toggle("ar",lang==="ar");
+document.querySelectorAll("[data-en]").forEach(el=>{
+el.textContent=el.dataset[lang];
+});
 }
+
+const evidence=[
+["💻 Computer Forensics","Investigating files, file systems, browser history, deleted data, metadata and operating system artifacts.",
+"تحقيقات الحاسوب: فحص الملفات وأنظمة الملفات وسجل المتصفح والبيانات المحذوفة والبيانات الوصفية وآثار نظام التشغيل."],
+["📱 Mobile Forensics","Examining mobile devices and relevant data such as messages, call records, application artifacts and media, subject to lawful access.",
+"تحقيقات الهواتف: فحص الأجهزة المحمولة والبيانات ذات الصلة مثل الرسائل وسجلات المكالمات وآثار التطبيقات والوسائط، وفق صلاحيات الوصول القانونية."],
+["🌐 Network Forensics","Analyzing network traffic, packet captures, logs and communication patterns to understand network events.",
+"تحقيقات الشبكات: تحليل حركة مرور الشبكة والحزم والسجلات وأنماط الاتصال لفهم الأحداث التي وقعت عبر الشبكة."],
+["🧠 Memory Forensics","Examining captured volatile memory to investigate running processes, connections and other memory artifacts.",
+"تحقيقات الذاكرة: فحص نسخة من الذاكرة المتطايرة لتحليل العمليات النشطة والاتصالات والآثار الموجودة في الذاكرة."]
+];
+
+function showEvidence(i,btn){
+document.querySelectorAll("#evidence .tab").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+let e=evidence[i];
+document.getElementById("evidenceInfo").innerHTML=
+`<h3>${e[0]}</h3><p>${lang==="en"?e[1]:e[2]}</p>`;
+}
+
+const steps=[
+["01 — Collection","Identify, label, document and acquire relevant data using appropriate procedures that preserve evidence integrity.","١ — الجمع: تحديد البيانات ذات الصلة وتسجيلها وتوثيقها وجمعها باستخدام إجراءات تحافظ على سلامة الأدلة."],
+["02 — Examination","Process collected data using suitable methods to extract files and artifacts of interest while protecting their integrity.","٢ — الفحص: معالجة البيانات المجمعة واستخراج الملفات والآثار الرقمية المهمة مع الحفاظ على سلامتها."],
+["03 — Analysis","Interpret the examination results and correlate findings to answer the questions of the investigation.","٣ — التحليل: تفسير نتائج الفحص وربط الأدلة للإجابة عن أسئلة التحقيق."],
+["04 — Reporting","Document the methods, findings, limitations and conclusions in a clear and reproducible report.","٤ — التقرير: توثيق الأساليب والنتائج والقيود والاستنتاجات في تقرير واضح يمكن مراجعته."]
+];
+
+function showStep(i,btn){
+document.querySelectorAll(".step").forEach(x=>x.classList.remove("active"));
+btn.classList.add("active");
+let s=steps[i];
+document.getElementById("stepDetail").innerHTML=
+`<h3>${s[0]}</h3><p>${lang==="en"?s[1]:s[2]}</p>`;
+}
+
+function caseAnswer(i){
+let f=document.getElementById("caseFeedback");
+if(i===1){
+f.textContent="✓ Correct! Preserve and document evidence before examination. Always follow authorization and approved procedures.";
+f.style.color="#4ade80";
+}else{
+f.textContent="✗ Not quite. Avoid altering or deleting potential evidence. Preserve and document it first.";
+f.style.color="#fbbf24";
+}
+}
+
+const questions=[
+{
+q:"What is the main purpose of digital forensics?",
+a:["To modify digital files","To scientifically examine digital evidence","To create computer games"],
+correct:1,
+why:"Digital forensics uses scientific methods to examine digital evidence while preserving its integrity."
+},
+{
+q:"What does Chain of Custody document?",
+a:["Computer screen resolution","The history of evidence handling and transfers","Internet browsing speed"],
+correct:1,
+why:"Chain of Custody records who handled evidence, when and how it was transferred or stored."
+},
+{
+q:"Which tool is commonly used for network packet analysis?",
+a:["Wireshark","Autopsy","Word"],
+correct:0,
+why:"Wireshark is a network protocol analyzer used to inspect captured traffic."
+}
+];
+
+let qIndex=0,score=0,answered=false;
+function renderQuestion(){
+answered=false;
+let q=questions[qIndex];
+document.getElementById("questionNumber").textContent=
+`Question ${qIndex+1} of ${questions.length}`;
+document.getElementById("progress").style.width=
+(qIndex/questions.length*100)+"%";
+document.getElementById("question").textContent=q.q;
+document.getElementById("quizFeedback").textContent="";
+document.getElementById("next").style.display="none";
+document.getElementById("answers").innerHTML="";
+q.a.forEach((a,i)=>{
+let b=document.createElement("button");
+b.className="choice";
+b.textContent=a;
+b.onclick=()=>answer(i);
+document.getElementById("answers").appendChild(b);
+});
+}
+function answer(i){
+if(answered)return;
+answered=true;
+let q=questions[qIndex];
+let correct=i===q.correct;
+if(correct)score++;
+document.getElementById("quizFeedback").textContent=
+(correct?"✓ Correct! ":"✗ Incorrect. ")+q.why;
+document.getElementById("quizFeedback").style.color=
+correct?"#4ade80":"#fbbf24";
+document.querySelectorAll("#answers button").forEach((b,n)=>{
+b.disabled=true;
+if(n===q.correct)b.style.borderColor="#4ade80";
+});
+document.getElementById("next").style.display="inline-block";
+document.getElementById("next").textContent=
+qIndex===questions.length-1?"See My Result":"Next Question →";
+}
+function nextQuestion(){
+if(!answered)return;
+qIndex++;
+if(qIndex>=questions.length){
+document.getElementById("questionNumber").textContent="QUIZ COMPLETED";
+document.getElementById("question").textContent=
+`Your score: ${score} / ${questions.length}`;
+document.getElementById("progress").style.width="100%";
+document.getElementById("answers").innerHTML=
+"<p>Keep learning and exploring digital forensics!</p>";
+document.getElementById("quizFeedback").textContent=
+score===3?"Excellent work!":"Good effort! Review the explanations and try again.";
+document.getElementById("next").textContent="Try Again";
+document.getElementById("next").onclick=()=>{
+qIndex=0;score=0;
+document.getElementById("next").onclick=nextQuestion;
+renderQuestion();
+};
+}else renderQuestion();
+}
+renderQuestion();
 </script>
 </body>
 </html>
