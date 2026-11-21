@@ -1,1831 +1,314 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="An interactive bilingual Digital Forensics learning lab by Eng/Habiba Asker.">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Interactive bilingual Digital Forensics lab by Eng. Habiba Asker | معمل تفاعلي للتحقيق الجنائي الرقمي">
 <title>Habiba Asker | Digital Forensics Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#071321;--panel:#102238;--panel2:#0b1c2e;--blue:#38bdf8;--cyan:#67e8f9;--white:#edf7ff;--muted:#a8bdd0;--green:#4ade80;--pink:#c084fc;--gold:#facc15;--border:#23415c;--shadow:0 15px 40px #0005}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:90px}body{background:var(--bg);color:var(--white);font-family:Arial,Tahoma,sans-serif;line-height:1.7;overflow-x:hidden}body:before{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(#38bdf80a 1px,transparent 1px),linear-gradient(90deg,#38bdf80a 1px,transparent 1px);background-size:34px 34px}button,a{font:inherit}button{cursor:pointer}.container{width:min(1120px,90%);margin:auto}nav{position:sticky;top:0;z-index:50;background:#071321ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:12px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.logo{font-weight:900;letter-spacing:1.5px;color:var(--cyan);white-space:nowrap}nav .links{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}nav a{color:var(--muted);text-decoration:none;font-size:13px}nav a:hover{color:var(--cyan)}.lang,.btn{border:1px solid var(--blue);background:transparent;color:var(--cyan);padding:10px 16px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.2s}.lang:hover,.btn:hover{background:var(--blue);color:#061321;transform:translateY(-2px)}.btn.primary{background:var(--blue);color:#061321;font-weight:bold}.btn.small{padding:7px 12px;font-size:13px}.hero{min-height:80vh;display:grid;place-items:center;text-align:center;padding:65px 18px;position:relative}.hero-inner{max-width:850px}.orb{width:112px;height:112px;margin:0 auto 22px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font-size:54px;box-shadow:0 0 38px #38bdf844,inset 0 0 30px #38bdf822;animation:float 4s ease-in-out infinite}@keyframes float{50%{transform:translateY(-10px)}}.tag{color:var(--green);font-size:12px;letter-spacing:2px}.hero h1{font-size:clamp(43px,8vw,82px);line-height:1.1;margin:15px 0}.hero h1 span{color:var(--blue);text-shadow:0 0 30px #38bdf855}.hero h2{font-size:clamp(17px,3vw,25px);color:var(--cyan)}.hero p{color:var(--muted);max-width:700px;margin:18px auto}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}.stats{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0}.stat{background:#0b1b2c;border:1px solid var(--border);border-radius:10px;padding:8px 14px;color:var(--cyan)}.status{font-size:12px;color:var(--green);letter-spacing:1px}section{padding:62px 0}.heading{font-size:clamp(24px,4vw,33px);margin-bottom:6px}.num{color:var(--blue)}.sub{color:var(--muted);margin-bottom:24px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}.card,.tool,.activity-card,.gallery-card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--border);border-radius:16px;padding:21px;transition:.25s}.card:hover,.tool:hover,.activity-card:hover,.gallery-card:hover{transform:translateY(-5px);border-color:var(--blue);box-shadow:var(--shadow)}.card h3,.tool h3,.activity-card h3{color:var(--cyan);margin:7px 0}.card p,.tool p,.activity-card p{font-size:14px;color:var(--muted)}.emoji{font-size:35px}.pills{margin-top:14px;display:flex;gap:7px;flex-wrap:wrap}.pill{border:1px solid #38bdf855;background:#38bdf812;color:var(--cyan);border-radius:30px;padding:4px 10px;font-size:12px}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab,.step{border:1px solid var(--border);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:10px}.tab.active,.tab:hover,.step.active,.step:hover{background:#124267;color:white;border-color:var(--blue)}.info,.detail{background:var(--panel2);border:1px solid var(--border);border-radius:13px;padding:20px;margin-top:13px;min-height:115px}.info h3,.detail h3{color:var(--cyan);margin-bottom:7px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.step{padding:14px 8px;text-align:center}.step strong{display:block;font-size:23px;color:var(--cyan)}.tool{min-height:150px}.tool .emoji{font-size:28px}.activity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:15px}.activity-card{display:flex;flex-direction:column;align-items:flex-start}.activity-card p{flex:1;margin-bottom:14px}.mini-title{font-size:11px;color:var(--pink);letter-spacing:1px}.panel{background:linear-gradient(145deg,#102943,#0b1a2c);border:1px solid var(--blue);border-radius:16px;padding:23px;margin-top:20px}.hidden{display:none!important}.choice{display:block;width:100%;text-align:start;background:#0b1b2c;border:1px solid var(--border);color:var(--white);padding:12px 14px;border-radius:9px;margin:9px 0;transition:.2s}.choice:hover:not(:disabled){border-color:var(--cyan);background:#16334d}.choice:disabled{cursor:default;opacity:.9}.feedback{min-height:28px;margin-top:12px;color:var(--green)}.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}.gallery-card{padding:0;overflow:hidden}.visual{height:150px;display:grid;place-items:center;font-size:68px;background:radial-gradient(circle at 50% 40%,#1e577a,#102238 70%);border-bottom:1px solid var(--border)}.gallery-card figcaption{padding:14px;color:var(--muted);font-size:14px}.gallery-card b{display:block;color:var(--cyan);margin-bottom:4px}.hunt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:11px;margin-top:16px}.hunt-item{min-height:135px;border:1px solid var(--border);border-radius:13px;background:linear-gradient(145deg,#173957,#0b1b2c);color:var(--white);padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:.2s}.hunt-item:hover:not(:disabled){border-color:var(--cyan);transform:translateY(-3px)}.hunt-item .big{font-size:36px}.hunt-item small{color:var(--muted)}.hunt-item.found{border-color:var(--green);background:#12352e}.hunt-item.missed{border-color:var(--gold);opacity:.8}.game-status{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.game-status span{background:#0b1b2c;border:1px solid var(--border);border-radius:9px;padding:8px 12px;color:var(--cyan)}.progress{height:9px;background:#23394d;border-radius:20px;margin:13px 0;overflow:hidden}.bar{height:100%;background:linear-gradient(90deg,var(--blue),var(--pink));width:0;transition:.3s}.case-meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:13px;margin-bottom:10px}footer{text-align:center;padding:30px 15px;border-top:1px solid var(--border);color:var(--muted)}.ar{direction:rtl}.ar nav{direction:rtl}.ar .hero{text-align:center}.ar .activity-card{align-items:flex-start}.ar .choice{text-align:right}.ar .tag{letter-spacing:0}.ar .logo{letter-spacing:0}
-@media(max-width:760px){nav{justify-content:center}nav .links{order:3;width:100%;gap:10px}nav a{font-size:12px}.container{width:92%}section{padding:45px 0}.steps{grid-template-columns:repeat(2,1fr)}.hero{min-height:70vh}}
+:root{--bg:#071321;--p1:#102238;--p2:#0b1c2e;--blue:#38bdf8;--cyan:#67e8f9;--w:#edf7ff;--mut:#a8bdd0;--grn:#4ade80;--pink:#c084fc;--gold:#facc15;--red:#f87171;--bd:#23415c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--w);font-family:Cairo,Tahoma,Arial,sans-serif;line-height:1.7;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(#38bdf80a 1px,transparent 1px),linear-gradient(90deg,#38bdf80a 1px,transparent 1px);background-size:34px 34px}
+[hidden]{display:none!important}
+button,input{font:inherit;color:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.wrap{width:min(1100px,90%);margin-inline:auto}
+nav{position:sticky;top:0;z-index:50;background:#071321ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);padding:10px 5%;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.logo{font-weight:800;color:var(--cyan);white-space:nowrap}
+.links{display:flex;gap:14px;flex-wrap:wrap}
+.links a{color:var(--mut);text-decoration:none;font-size:14px}.links a:hover{color:var(--cyan)}
+.hud{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--cyan)}
+.xpbar{width:90px;height:8px;background:#23394d;border-radius:9px;overflow:hidden}
+.xpbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink));transition:width .5s}
+.btn{border:1px solid var(--blue);background:transparent;color:var(--cyan);padding:9px 16px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:.2s}
+.btn:hover{background:var(--blue);color:#061321}.btn.pri{background:var(--blue);color:#061321;font-weight:600}.btn.sm{padding:6px 12px;font-size:14px}
+[dir=rtl] .arr{display:inline-block;transform:scaleX(-1)}
+.hero{min-height:82vh;display:grid;place-items:center;text-align:center;padding:60px 16px}
+.orb{width:104px;height:104px;margin:0 auto 18px;border-radius:50%;border:1px solid var(--blue);display:grid;place-items:center;font-size:50px;background:none;box-shadow:0 0 38px #38bdf844,inset 0 0 28px #38bdf822;animation:fl 4s ease-in-out infinite;cursor:pointer}
+.orb:active{transform:scale(.9)}
+@keyframes fl{50%{transform:translateY(-9px)}}
+.hero h1{font-size:clamp(40px,8vw,78px);line-height:1.15;margin:8px 0}.hero h1 span{color:var(--blue)}
+.hero h2{font-size:clamp(17px,3vw,24px);color:var(--cyan);font-weight:600}
+.term{display:inline-block;margin:18px auto;background:#050e18;border:1px solid var(--bd);border-radius:10px;padding:8px 16px;font-family:Consolas,monospace;color:var(--grn);min-height:42px;direction:ltr;unicode-bidi:plaintext;max-width:100%}
+.term:after{content:"▌";animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
+.hero p{color:var(--mut);max-width:680px;margin:6px auto 18px}
+.acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.bdg{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.bdg span{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:21px;border:1px dashed var(--bd);filter:grayscale(1);opacity:.4;transition:.4s}
+.bdg span.on{filter:none;opacity:1;border:1px solid var(--gold);box-shadow:0 0 14px #facc1555}
+section{padding:56px 0}
+h2.hd{font-size:clamp(24px,4vw,34px);margin-bottom:4px}.sub{color:var(--mut);margin-bottom:22px}
+.card,.panel{background:linear-gradient(145deg,var(--p1),var(--p2));border:1px solid var(--bd);border-radius:16px;padding:20px}
+.panel{border-color:var(--blue);margin-top:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{border:1px solid var(--bd);background:var(--p1);color:var(--mut);padding:9px 14px;border-radius:10px}
+.tab.on,.tab:hover{background:#124267;color:#fff;border-color:var(--blue)}
+.info{margin-top:12px;min-height:120px}.info h3,.card h3{color:var(--cyan);margin-bottom:4px}
+.pills{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.pill{border:1px solid #38bdf855;background:#38bdf812;color:var(--cyan);border-radius:30px;padding:3px 11px;font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.steps .tab{text-align:center}.steps b{display:block;font-size:22px;color:var(--cyan)}
+.tool{text-align:start;width:100%;min-height:150px;transition:.25s}.tool:hover{border-color:var(--blue);transform:translateY(-4px)}
+.tool .e{font-size:30px}.tool p{color:var(--mut);font-size:14px}.tool .use{color:var(--grn);margin-top:6px;font-size:14px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.row label{min-width:120px;color:var(--mut);font-size:14px}
+input{flex:1;min-width:200px;background:#050e18;border:1px solid var(--bd);border-radius:9px;padding:9px 12px;direction:ltr;font-family:Consolas,monospace}
+.hx{font-family:Consolas,monospace;font-size:13px;word-break:break-all;direction:ltr;text-align:left;background:#050e18;border-radius:9px;padding:8px 10px;color:var(--cyan);width:100%}
+mark{background:#f8717155;color:#fff;border-radius:3px}
+.fb{margin-top:10px;min-height:28px;font-weight:600}.ok{color:var(--grn)}.bad{color:var(--red)}.warn{color:var(--gold)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.mc{display:flex;flex-direction:column;gap:6px;align-items:flex-start}.mc .e{font-size:34px}.mc h3{margin:0}
+.done:after{content:" ✓";color:var(--grn)}
+.ex{white-space:pre-line;direction:ltr;text-align:left;background:#050e18;border-radius:9px;padding:10px 12px;font-family:Consolas,monospace;font-size:13px;margin:10px 0;color:var(--gold)}
+.ch{display:block;width:100%;text-align:start;background:#0b1b2c;border:1px solid var(--bd);padding:11px 14px;border-radius:9px;margin:8px 0;transition:.2s}
+.ch:hover:not(:disabled){border-color:var(--cyan);background:#16334d}.ch:disabled{cursor:default}
+.ch.right{border-color:var(--grn);background:#12352e}.ch.wrong{border-color:var(--red);background:#3a1a22}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.hg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:11px;margin-top:14px}
+.hi{min-height:128px;border:1px solid var(--bd);border-radius:13px;background:linear-gradient(145deg,#173957,#0b1b2c);padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:.2s}
+.hi:hover:not(:disabled){border-color:var(--cyan);transform:translateY(-3px)}.hi .big{font-size:36px}.hi small{color:var(--mut)}
+.hi.found{border-color:var(--grn);background:#12352e}.hi.miss{border-color:var(--gold);opacity:.75}
+.stat{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.stat span{background:#0b1b2c;border:1px solid var(--bd);border-radius:9px;padding:5px 12px;color:var(--cyan)}
+.prog{height:9px;background:#23394d;border-radius:20px;margin:12px 0;overflow:hidden}.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--pink));transition:.3s}
+footer{text-align:center;padding:28px 14px;border-top:1px solid var(--bd);color:var(--mut)}
+#toast{position:fixed;bottom:22px;inset-inline:0;margin-inline:auto;width:max-content;max-width:90%;background:var(--p1);border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:30px;z-index:90;opacity:0;transform:translateY(20px);transition:.35s;pointer-events:none}
+#toast.show{opacity:1;transform:none}
+.cf{position:fixed;top:-24px;z-index:99;pointer-events:none;animation:fall 1.8s ease-in forwards}
+@keyframes fall{to{transform:translate(var(--x),105vh) rotate(540deg);opacity:0}}
+@media(max-width:760px){.steps{grid-template-columns:repeat(2,1fr)}nav{justify-content:center}.links{order:3;width:100%;justify-content:center}section{padding:42px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
-<body>
-<nav><div class="logo">HABIBA.SEC 🧬</div><div class="links"><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a><a href="#learn" data-en="Learn" data-ar="تعلّمي">Learn</a><a href="#evidence" data-en="Evidence" data-ar="الأدلة">Evidence</a><a href="#process" data-en="Process" data-ar="المراحل">Process</a><a href="#tools" data-en="Tools" data-ar="الأدوات">Tools</a><a href="#activities" data-en="Missions" data-ar="المهمات">Missions</a><a href="#game" data-en="Game" data-ar="اللعبة">Game</a><a href="#quiz" data-en="Quiz" data-ar="اختبار">Quiz</a></div><button class="lang" id="langBtn" onclick="toggleLanguage()">عربي / English</button></nav>
-<header class="hero" id="home"><div class="hero-inner"><div class="orb">🔬</div><div class="tag" data-en="● DIGITAL FORENSICS LAB — ONLINE" data-ar="● معمل التحقيق الجنائي الرقمي — متاح الآن">● DIGITAL FORENSICS LAB — ONLINE</div><h1>HABIBA <span>ASKER</span></h1><h2 data-en="Digital Forensics & Cybersecurity" data-ar="التحقيق الجنائي الرقمي والأمن السيبراني">Digital Forensics & Cybersecurity</h2><p data-en="Welcome, investigator! Explore digital evidence, learn forensic tools, solve mini cases, play a challenge and earn points in your virtual lab." data-ar="أهلاً بيكي أيتها المحققة! اكتشفي الأدلة الرقمية، وتعرّفي على أدوات التحقيق، وحلّي قضايا صغيرة، والعبي تحديات واجمعي نقاط في المعمل الافتراضي.">Welcome, investigator! Explore digital evidence, learn forensic tools, solve mini cases, play a challenge and earn points in your virtual lab.</p><div class="actions"><a class="btn primary" href="#activities" data-en="🚀 Start Missions" data-ar="🚀 ابدأي المهمات">🚀 Start Missions</a><a class="btn" href="#learn" data-en="Explore the Lab ↓" data-ar="استكشفي المعمل ↓">Explore the Lab ↓</a></div><div class="stats"><div class="stat">⭐ <span data-en="XP:" data-ar="النقاط:">XP:</span> <b id="xp">0</b></div><div class="stat">🏅 <span data-en="Badges:" data-ar="الشارات:">Badges:</span> <b id="badges">0</b></div><div class="stat">🎯 <span data-en="Missions:" data-ar="المهمات:">Missions:</span> <b id="missions">0/5</b></div></div><div class="status" data-en="● SYSTEM STATUS: ACTIVE" data-ar="● حالة النظام: نشط">● SYSTEM STATUS: ACTIVE</div></div></header>
-<main class="container">
-<section id="learn"><h2 class="heading"><span class="num">01.</span> <span data-en="What Is Digital Forensics?" data-ar="ما هو التحقيق الجنائي الرقمي؟">What Is Digital Forensics?</span></h2><p class="sub" data-en="The science behind digital investigations." data-ar="العلم اللي بيساعدنا نفهم إيه اللي حصل داخل الأجهزة الرقمية.">The science behind digital investigations.</p><div class="card"><div class="emoji">🔍</div><h3 data-en="Digital Forensics" data-ar="التحقيق الجنائي الرقمي">Digital Forensics</h3><p data-en="Digital forensics uses scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened and what the evidence can support." data-ar="التحقيق الجنائي الرقمي بيستخدم أساليب علمية لتحديد وجمع وفحص وتحليل البيانات الرقمية مع الحفاظ على سلامتها. وبيساعد المحقق يفهم إيه اللي حصل وإيه اللي الأدلة تقدر تثبته.">Digital forensics uses scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened and what the evidence can support.</p><div class="pills"><span class="pill">Evidence Integrity</span><span class="pill">Chain of Custody</span><span class="pill">Scientific Analysis</span></div></div></section>
-<section id="evidence"><h2 class="heading"><span class="num">02.</span> <span data-en="Types of Digital Evidence" data-ar="أنواع الأدلة الرقمية">Types of Digital Evidence</span></h2><p class="sub" data-en="Click a category to explore what an investigator may examine." data-ar="اضغطي على نوع الدليل عشان تعرفي المحقق ممكن يفحص إيه.">Click a category to explore what an investigator may examine.</p><div class="tabs"><button class="tab active" onclick="showEvidence(0,this)">💻 <span data-en="Computer" data-ar="الكمبيوتر">Computer</span></button><button class="tab" onclick="showEvidence(1,this)">📱 <span data-en="Mobile" data-ar="الموبايل">Mobile</span></button><button class="tab" onclick="showEvidence(2,this)">🌐 <span data-en="Network" data-ar="الشبكات">Network</span></button><button class="tab" onclick="showEvidence(3,this)">🧠 <span data-en="Memory" data-ar="الذاكرة">Memory</span></button></div><div class="info" id="evidenceInfo"><h3>💻 Computer Forensics</h3><p>Files, browser history, deleted data, metadata and operating system artifacts.</p></div></section>
-<section id="process"><h2 class="heading"><span class="num">03.</span> <span data-en="Investigation Process" data-ar="مراحل التحقيق">Investigation Process</span></h2><p class="sub" data-en="Tap each phase to understand the workflow." data-ar="اضغطي على كل مرحلة عشان تفهمي خطوات التحقيق.">Tap each phase to understand the workflow.</p><div class="steps"><button class="step active" onclick="showStep(0,this)"><strong>01</strong><span data-en="Collection" data-ar="الجمع">Collection</span></button><button class="step" onclick="showStep(1,this)"><strong>02</strong><span data-en="Examination" data-ar="الفحص">Examination</span></button><button class="step" onclick="showStep(2,this)"><strong>03</strong><span data-en="Analysis" data-ar="التحليل">Analysis</span></button><button class="step" onclick="showStep(3,this)"><strong>04</strong><span data-en="Reporting" data-ar="التقرير">Reporting</span></button></div><div class="detail" id="stepDetail"><h3>01 — Collection</h3><p>Identify, document and acquire relevant data while preserving evidence integrity.</p></div></section>
-<section id="principles"><h2 class="heading"><span class="num">04.</span> <span data-en="Core Forensic Principles" data-ar="المبادئ الأساسية للتحقيق">Core Forensic Principles</span></h2><div class="grid"><article class="card"><div class="emoji">🔐</div><h3 data-en="Evidence Integrity" data-ar="سلامة الدليل">Evidence Integrity</h3><p data-en="Protect evidence from unauthorized changes. Hash values can help verify that a copy remains unchanged." data-ar="حماية الدليل من التغيير غير المصرح به. قيم الـ Hash بتساعدنا نتأكد إن النسخة لم تتغير.">Protect evidence from unauthorized changes. Hash values can help verify that a copy remains unchanged.</p></article><article class="card"><div class="emoji">🔗</div><h3>Chain of Custody</h3><p data-en="Record who handled the evidence, when it was handled and how it was transferred or stored." data-ar="تسجيل مين تعامل مع الدليل، وإمتى، وإزاي تم نقله أو تخزينه.">Record who handled the evidence, when it was handled and how it was transferred or stored.</p></article><article class="card"><div class="emoji">📋</div><h3 data-en="Documentation" data-ar="التوثيق">Documentation</h3><p data-en="Record methods, tools, actions and observations throughout the investigation." data-ar="تسجيل الطرق والأدوات والخطوات والملاحظات طوال فترة التحقيق.">Record methods, tools, actions and observations throughout the investigation.</p></article></div></section>
-<section id="tools"><h2 class="heading"><span class="num">05.</span> <span data-en="Forensic Toolkit" data-ar="أدوات التحقيق الرقمي">Forensic Toolkit</span></h2><p class="sub" data-en="Explore common tools used in digital investigations." data-ar="اتعرفي على أدوات شائعة في التحقيقات الرقمية.">Explore common tools used in digital investigations.</p><div class="grid"><article class="tool"><div class="emoji">🔎</div><h3>Autopsy</h3><p data-en="Analyze disk images and file system artifacts." data-ar="تحليل صور الأقراص وآثار أنظمة الملفات.">Analyze disk images and file system artifacts.</p></article><article class="tool"><div class="emoji">💽</div><h3>FTK Imager</h3><p data-en="Acquire and preview forensic images and evidence." data-ar="إنشاء ومعاينة صور الأدلة الرقمية.">Acquire and preview forensic images and evidence.</p></article><article class="tool"><div class="emoji">🌐</div><h3>Wireshark</h3><p data-en="Inspect captured network traffic and packets." data-ar="فحص حركة مرور الشبكة والحزم الملتقطة.">Inspect captured network traffic and packets.</p></article><article class="tool"><div class="emoji">🧠</div><h3>Volatility</h3><p data-en="Analyze captured memory and running-process artifacts." data-ar="تحليل الذاكرة الملتقطة وآثار العمليات النشطة.">Analyze captured memory and running-process artifacts.</p></article><article class="tool"><div class="emoji">🐧</div><h3>Linux</h3><p data-en="A system environment with useful investigation utilities." data-ar="بيئة تشغيل فيها أدوات مفيدة للتحقيق.">A system environment with useful investigation utilities.</p></article><article class="tool"><div class="emoji">🐍</div><h3>Python</h3><p data-en="Automate analysis and process data." data-ar="أتمتة التحليل ومعالجة البيانات.">Automate analysis and process data.</p></article></div></section>
-<section id="gallery"><h2 class="heading"><span class="num">06.</span> <span data-en="Inside the Digital Lab" data-ar="جولة داخل المعمل الرقمي">Inside the Digital Lab</span></h2><p class="sub" data-en="A visual tour of common forensic evidence and tools." data-ar="جولة مصورة لأشهر أنواع الأدلة وأدوات التحقيق.">A visual tour of common forensic evidence and tools.</p><div class="gallery"><figure class="gallery-card"><div class="visual">💻</div><figcaption><b data-en="Computer Evidence" data-ar="أدلة الكمبيوتر">Computer Evidence</b><span data-en="Files, folders and system activity." data-ar="الملفات والمجلدات ونشاط النظام.">Files, folders and system activity.</span></figcaption></figure><figure class="gallery-card"><div class="visual">📱</div><figcaption><b data-en="Mobile Evidence" data-ar="أدلة الهاتف">Mobile Evidence</b><span data-en="Messages, calls and app artifacts." data-ar="الرسائل والمكالمات وآثار التطبيقات.">Messages, calls and app artifacts.</span></figcaption></figure><figure class="gallery-card"><div class="visual">🌐</div><figcaption><b data-en="Network Traffic" data-ar="حركة الشبكة">Network Traffic</b><span data-en="Packets, connections and logs." data-ar="الحزم والاتصالات والسجلات.">Packets, connections and logs.</span></figcaption></figure><figure class="gallery-card"><div class="visual">🔬</div><figcaption><b data-en="Forensic Examination" data-ar="الفحص الجنائي">Forensic Examination</b><span data-en="Careful analysis and documentation." data-ar="التحليل الدقيق والتوثيق.">Careful analysis and documentation.</span></figcaption></figure></div></section>
-<section id="activities"><h2 class="heading"><span class="num">07.</span> <span data-en="Interactive Missions" data-ar="المهمات التفاعلية">Interactive Missions</span></h2><p class="sub" data-en="Choose a mission, make decisions and collect XP. These are fictional learning activities." data-ar="اختاري مهمة، وخدي قرار، واجمعي نقاط. كل الأنشطة دي سيناريوهات تعليمية افتراضية.">Choose a mission, make decisions and collect XP. These are fictional learning activities.</p><div class="activity-grid"><article class="activity-card"><div class="emoji">🕵️</div><div class="mini-title">MISSION 01</div><h3 data-en="Solve the Case"<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Habiba Asker | Digital Forensics Lab</title>
-
-<style>
-:root {
---bg:#071321;
---panel:#102238;
---panel2:#0c2035;
---blue:#38bdf8;
---cyan:#67e8f9;
---white:#edf7ff;
---muted:#a8bdd0;
---green:#4ade80;
---pink:#c084fc;
---border:#23415c;
---gold:#facc15;
-}
-
-* {
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
-
-html {
-scroll-behavior:smooth;
-}
-
-body {
-background:var(--bg);
-color:var(--white);
-font-family:Arial,sans-serif;
-line-height:1.7;
-overflow-x:hidden;
-}
-
-body:before {
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-background-image:
-linear-gradient(#38bdf808 1px,transparent 1px),
-linear-gradient(90deg,#38bdf808 1px,transparent 1px);
-background-size:35px 35px;
-}
-
-nav {
-position:sticky;
-top:0;
-z-index:20;
-background:#071321ed;
-backdrop-filter:blur(15px);
-padding:13px 5%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-border-bottom:1px solid var(--border);
-gap:12px;
-flex-wrap:wrap;
-}
-
-.logo {
-color:var(--cyan);
-font-weight:bold;
-letter-spacing:2px;
-}
-
-nav a {
-color:var(--muted);
-text-decoration:none;
-margin:0 6px;
-font-size:13px;
-}
-
-nav a:hover {
-color:var(--cyan);
-}
-
-button {
-cursor:pointer;
-font:inherit;
-}
-
-.lang,.btn {
-border:1px solid var(--blue);
-background:transparent;
-color:var(--cyan);
-padding:10px 16px;
-border-radius:9px;
-transition:.2s;
-text-decoration:none;
-display:inline-block;
-}
-
-.btn.primary {
-background:var(--blue);
-color:#061321;
-font-weight:bold;
-}
-
-.btn:hover,.lang:hover {
-background:var(--blue);
-color:#061321;
-transform:translateY(-2px);
-}
-
-.hero {
-min-height:78vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:65px 20px;
-}
-
-.tag {
-color:var(--green);
-font-size:12px;
-letter-spacing:2px;
-}
-
-.hero h1 {
-font-size:clamp(42px,8vw,78px);
-margin:15px 0;
-}
-
-.hero h1 span {
-color:var(--blue);
-text-shadow:0 0 30px #38bdf855;
-}
-
-.hero h2 {
-color:var(--cyan);
-font-size:clamp(16px,3vw,23px);
-}
-
-.hero p {
-max-width:720px;
-color:var(--muted);
-margin:18px auto;
-}
-
-.orb {
-width:110px;
-height:110px;
-border-radius:50%;
-border:1px solid var(--blue);
-display:grid;
-place-items:center;
-font-size:52px;
-margin-bottom:25px;
-box-shadow:0 0 35px #38bdf833,inset 0 0 30px #38bdf822;
-animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-50% {transform:translateY(-12px)}
-}
-
-.actions {
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-justify-content:center;
-margin-top:20px;
-}
-
-.status {
-margin-top:28px;
-color:var(--green);
-font-size:12px;
-}
-
-section {
-padding:65px 8%;
-scroll-margin-top:80px;
-}
-
-.heading {
-font-size:clamp(24px,4vw,32px);
-margin-bottom:8px;
-}
-
-.heading span {
-color:var(--blue);
-}
-
-.sub {
-color:var(--muted);
-margin-bottom:25px;
-}
-
-.grid {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:17px;
-}
-
-.card,.tool {
-background:var(--panel);
-border:1px solid var(--border);
-border-radius:14px;
-padding:22px;
-transition:.25s;
-}
-
-.card:hover,.tool:hover {
-transform:translateY(-5px);
-border-color:var(--blue);
-box-shadow:0 12px 30px #0005;
-}
-
-.card h3,.tool b {
-color:var(--cyan);
-margin:7px 0;
-}
-
-.card p,.tool p {
-color:var(--muted);
-font-size:14px;
-}
-
-.emoji {
-font-size:30px;
-}
-
-.pill {
-display:inline-block;
-background:#38bdf815;
-color:var(--cyan);
-border:1px solid #38bdf844;
-border-radius:20px;
-padding:4px 11px;
-font-size:12px;
-margin:4px;
-}
-
-.tabs {
-display:flex;
-gap:9px;
-flex-wrap:wrap;
-}
-
-.tab {
-padding:9px 14px;
-border:1px solid var(--border);
-background:var(--panel);
-color:var(--muted);
-border-radius:8px;
-}
-
-.tab.active,.tab:hover {
-background:#124267;
-color:white;
-border-color:var(--blue);
-}
-
-.info,.detail {
-background:var(--panel2);
-border:1px solid var(--border);
-padding:22px;
-border-radius:12px;
-margin-top:14px;
-min-height:110px;
-color:#c5d7e8;
-}
-
-.info h3,.detail h3 {
-color:var(--cyan);
-margin-bottom:8px;
-}
-
-.steps {
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
-}
-
-.step {
-background:var(--panel);
-border:1px solid var(--border);
-padding:15px 8px;
-border-radius:12px;
-color:var(--muted);
-text-align:center;
-cursor:pointer;
-}
-
-.step.active,.step:hover {
-border-color:var(--blue);
-background:#123552;
-color:white;
-}
-
-.step strong {
-display:block;
-color:var(--cyan);
-font-size:22px;
-}
-
-.casebox,.quizbox,.activity {
-background:linear-gradient(145deg,#102943,#0b1a2c);
-border:1px solid var(--blue);
-border-radius:15px;
-padding:24px;
-}
-
-.choice {
-display:block;
-width:100%;
-text-align:left;
-background:#0b1b2c;
-border:1px solid var(--border);
-color:var(--white);
-padding:12px 14px;
-border-radius:8px;
-margin:9px 0;
-transition:.2s;
-}
-
-.choice:hover:not(:disabled) {
-border-color:var(--cyan);
-background:#16334d;
-}
-
-.choice:disabled {
-cursor:default;
-opacity:.85;
-}
-
-.feedback {
-margin-top:13px;
-min-height:28px;
-color:var(--green);
-}
-
-.progress {
-height:8px;
-background:#23394d;
-border-radius:10px;
-margin:13px 0;
-}
-
-.bar {
-height:100%;
-background:linear-gradient(90deg,var(--blue),var(--pink));
-width:0%;
-transition:.3s;
-border-radius:10px;
-}
-
-.activity-grid {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:16px;
-}
-
-.activity-card {
-background:linear-gradient(145deg,#122c46,#0b1a2c);
-border:1px solid var(--border);
-border-radius:14px;
-padding:20px;
-transition:.25s;
-}
-
-.activity-card:hover {
-transform:translateY(-5px);
-border-color:var(--pink);
-}
-
-.activity-card h3 {
-color:var(--cyan);
-margin:8px 0;
-}
-
-.activity-card p {
-color:var(--muted);
-font-size:14px;
-margin-bottom:12px;
-}
-
-.scoreline {
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin:15px 0;
-}
-
-.stat {
-background:#0b1b2c;
-border:1px solid var(--border);
-border-radius:10px;
-padding:9px 14px;
-color:var(--cyan);
-}
-
-.hidden {
-display:none!important;
-}
-
-.mini-title {
-color:var(--pink);
-font-size:12px;
-letter-spacing:1px;
-}
-
-.case-meta {
-display:flex;
-justify-content:space-between;
-gap:10px;
-flex-wrap:wrap;
-color:var(--muted);
-font-size:13px;
-margin-bottom:10px;
-}
-
-.gallery {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-gap:16px;
-}
-
-.gallery figure {
-margin:0;
-overflow:hidden;
-border:1px solid var(--border);
-border-radius:14px;
-background:var(--panel);
-}
-
-.gallery img {
-display:block;
-width:100%;
-height:165px;
-object-fit:cover;
-transition:.35s;
-}
-
-.gallery figure:hover img {
-transform:scale(1.05);
-}
-
-.gallery figcaption {
-padding:13px;
-color:var(--muted);
-font-size:14px;
-}
-
-.gallery figcaption b {
-display:block;
-color:var(--cyan);
-margin-bottom:3px;
-}
-
-.hunt-grid {
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
-gap:12px;
-margin-top:18px;
-}
-
-.hunt-item {
-min-height:145px;
-border:1px solid var(--border);
-border-radius:13px;
-background:linear-gradient(145deg,#173957,#0b1b2c);
-color:var(--white);
-padding:15px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-gap:8px;
-transition:.2s;
-}
-
-.hunt-item:hover:not(:disabled) {
-border-color:var(--cyan);
-transform:translateY(-3px);
-}
-
-.hunt-item .big {
-font-size:38px;
-}
-
-.hunt-item small {
-color:var(--muted);
-}
-
-.hunt-item.found {
-border-color:var(--green);
-background:#12352e;
-}
-
-.hunt-item.missed {
-border-color:var(--gold);
-opacity:.75;
-}
-
-.game-status {
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:14px;
-}
-
-.game-status span {
-background:#0b1b2c;
-border:1px solid var(--border);
-border-radius:9px;
-padding:8px 12px;
-color:var(--cyan);
-}
-
-.ar {
-direction:rtl;
-font-family:Arial,sans-serif;
-}
-
-.ar nav {
-direction:rtl;
-}
-
-.ar .choice {
-text-align:right;
-}
-
-.ar .hero,.ar section {
-text-align:right;
-}
-
-.ar .hero {
-text-align:center;
-}
-
-.ar .actions,.ar .tabs {
-justify-content:flex-start;
-}
-
-.ar .activity-card,.ar .card {
-text-align:right;
-}
-
-footer {
-text-align:center;
-padding:30px;
-border-top:1px solid var(--border);
-color:var(--muted);
-}
-
-@media(max-width:720px) {
-nav {
-justify-content:center;
-}
-
-nav div:nth-child(2) {
-width:100%;
-text-align:center;
-order:3;
-}
-
-nav a {
-margin:0 4px;
-}
-
-section {
-padding:48px 5%;
-}
-
-.steps {
-grid-template-columns:repeat(2,1fr);
-}
-}
-</style>
-</head>
-
 <body>
 <nav>
-<div class="logo">HABIBA.SEC 🧬</div>
-
-<div>
-<a href="#home">Home</a>
-<a href="#learn">Learn</a>
-<a href="#process">Process</a>
-<a href="#tools">Tools</a>
-<a href="#activities">Missions</a>
-<a href="#gallery">Gallery</a>
-<a href="#game">Game</a>
-<a href="#quiz">Quiz</a>
-</div>
-
-<button class="lang" onclick="toggleLanguage()">عربي / EN</button>
+<b class="logo">HABIBA.SEC 🧬</b>
+<div class="links"><a href="#learn" data-t="nLearn"></a><a href="#hash" data-t="nHash"></a><a href="#tools" data-t="nTools"></a><a href="#missions" data-t="nMis"></a><a href="#game" data-t="nGame"></a><a href="#quiz" data-t="nQuiz"></a></div>
+<div class="hud">🎖️ <span id="lv"></span><div class="xpbar"><i id="xpf"></i></div><b id="xp">0</b> XP</div>
+<button class="btn sm" id="lb" onclick="setLang()"></button>
 </nav>
 
-<header class="hero" id="home">
-<div class="orb">🔬</div>
-
-<div class="tag">
-● DIGITAL FORENSICS LAB — ONLINE
-</div>
-
+<header class="hero"><div>
+<button class="orb" onclick="orb()" aria-label="Easter egg">🔬</button>
 <h1>HABIBA <span>ASKER</span></h1>
+<h2 data-t="hSub"></h2>
+<div class="term" id="term"></div>
+<p data-t="hP"></p>
+<div class="acts"><a class="btn pri" href="#missions"><span data-t="cta1"></span><span class="arr">→</span></a><a class="btn" href="#learn" data-t="cta2"></a></div>
+<div class="bdg" id="bdg"></div>
+</div></header>
 
-<h2>Digital Forensics & Cybersecurity</h2>
-
-<p>
-Welcome, investigator! Learn the basics,
-explore digital evidence, solve mini cases
-and earn points in a friendly virtual lab.
-</p>
-
-<div class="actions">
-<a class="btn primary" href="#activities">Start Missions →</a>
-<a class="btn" href="#learn">Explore the Lab</a>
-</div>
-
-<div class="scoreline">
-<div class="stat">⭐ XP: <b id="xp">0</b></div>
-<div class="stat">🏅 Badges: <b id="badges">0</b></div>
-<div class="stat">🎯 Missions: <b id="missions">0/5</b></div>
-</div>
-
-<div class="status">SYSTEM STATUS: ACTIVE</div>
-</header>
-
+<main class="wrap">
 <section id="learn">
-<h2 class="heading">01. What Is Digital Forensics?</h2>
-
-<p class="sub">The science behind digital investigations.</p>
-
-<div class="card">
-<h3>🔍 Digital Forensics</h3>
-
-<p>
-Digital forensics uses scientific methods to identify,
-collect, examine and analyze digital data while preserving
-its integrity. It helps investigators understand what
-happened and what the evidence can support.
-</p>
-
-<br>
-
-<span class="pill">Evidence Integrity</span>
-<span class="pill">Chain of Custody</span>
-<span class="pill">Scientific Analysis</span>
-</div>
+<h2 class="hd" data-t="s1"></h2><p class="sub" data-t="s1p"></p>
+<div class="card"><h3 data-t="dfT"></h3><p data-t="dfP"></p>
+<div class="pills"><span class="pill" data-t="p1"></span><span class="pill" data-t="p2"></span><span class="pill" data-t="p3"></span></div></div>
+<h2 class="hd" style="margin-top:44px" data-t="s2"></h2><p class="sub" data-t="s2p"></p>
+<div class="tabs" id="evTabs"></div><div class="card info" id="evInfo"></div>
+<h2 class="hd" style="margin-top:44px" data-t="s3"></h2><p class="sub" data-t="s3p"></p>
+<div class="steps" id="stTabs"></div><div class="card info" id="stInfo"></div>
 </section>
 
-<section id="evidence">
-<h2 class="heading">02. Types of Digital Evidence</h2>
-
-<p class="sub">
-Tap a category to reveal what an investigator may examine.
-</p>
-
-<div class="tabs">
-
-<button class="tab active" onclick="showEvidence(0,this)">
-💻 Computer
-</button>
-
-<button class="tab" onclick="showEvidence(1,this)">
-📱 Mobile
-</button>
-
-<button class="tab" onclick="showEvidence(2,this)">
-🌐 Network
-</button>
-
-<button class="tab" onclick="showEvidence(3,this)">
-🧠 Memory
-</button>
-
-</div>
-
-<div class="info" id="evidenceInfo">
-<h3>💻 Computer Forensics</h3>
-<p>
-Files, browser history, deleted data, metadata
-and operating system artifacts.
-</p>
-</div>
-</section>
-
-<section id="process">
-<h2 class="heading">03. Investigation Process</h2>
-
-<p class="sub">
-Click each phase to understand the workflow.
-</p>
-
-<div class="steps">
-
-<button class="step active" onclick="showStep(0,this)">
-<strong>01</strong> Collection
-</button>
-
-<button class="step" onclick="showStep(1,this)">
-<strong>02</strong> Examination
-</button>
-
-<button class="step" onclick="showStep(2,this)">
-<strong>03</strong> Analysis
-</button>
-
-<button class="step" onclick="showStep(3,this)">
-<strong>04</strong> Reporting
-</button>
-
-</div>
-
-<div class="detail" id="stepDetail">
-<h3>01 — Collection</h3>
-<p>
-Identify, document and acquire relevant data
-while preserving evidence integrity.
-</p>
-</div>
-</section>
-
-<section id="principles">
-<h2 class="heading">04. Core Forensic Principles</h2>
-
-<div class="grid">
-
-<div class="card">
-<div class="emoji">🔐</div>
-<h3>Evidence Integrity</h3>
-<p>
-Protect evidence from unauthorized changes.
-Hash values can help verify that a copy remains unchanged.
-</p>
-</div>
-
-<div class="card">
-<div class="emoji">🔗</div>
-<h3>Chain of Custody</h3>
-<p>
-Record who handled the evidence, when it was handled
-and how it was transferred or stored.
-</p>
-</div>
-
-<div class="card">
-<div class="emoji">📋</div>
-<h3>Documentation</h3>
-<p>
-Record methods, tools, actions and observations
-throughout the investigation.
-</p>
-</div>
-
+<section id="hash">
+<h2 class="hd" data-t="s4"></h2><p class="sub" data-t="s4p"></p>
+<div class="panel">
+<div class="row"><label data-t="hOrig"></label><input id="h1" value="CONFIDENTIAL_REPORT_V1" readonly></div>
+<div class="hx" id="ha"></div>
+<div class="row" style="margin-top:16px"><label data-t="hCopy"></label><input id="h2" value="CONFIDENTIAL_REPORT_V1" oninput="hashUI()" spellcheck="false"><button class="btn sm" onclick="h2.value=h1.value;hashUI()" data-t="reset"></button></div>
+<div class="hx" id="hb"></div>
+<div class="fb" id="hs" aria-live="polite"></div>
 </div>
 </section>
 
 <section id="tools">
-<h2 class="heading">05. Forensic Toolkit</h2>
-
-<p class="sub">
-Explore common tools used in digital investigations.
-</p>
-
-<div class="grid">
-
-<div class="tool">
-🔎 <b>Autopsy</b>
-<p>Analyze disk images and file system artifacts.</p>
-</div>
-
-<div class="tool">
-💽 <b>FTK Imager</b>
-<p>Acquire and preview forensic images and evidence.</p>
-</div>
-
-<div class="tool">
-🌐 <b>Wireshark</b>
-<p>Inspect captured network traffic and packets.</p>
-</div>
-
-<div class="tool">
-🧠 <b>Volatility</b>
-<p>Analyze captured memory and running-process artifacts.</p>
-</div>
-
-<div class="tool">
-🐧 <b>Linux</b>
-<p>A system environment with useful investigation utilities.</p>
-</div>
-
-<div class="tool">
-🐍 <b>Python</b>
-<p>Automate analysis and process data.</p>
-</div>
-
-</div>
+<h2 class="hd" data-t="s5"></h2><p class="sub" data-t="s5p"></p>
+<div class="grid" id="toolGrid"></div>
 </section>
 
-<section id="activities">
-<h2 class="heading">06. Interactive Missions</h2>
-
-<p class="sub">
-Choose a mission, make decisions and collect XP.
-</p>
-
-<div class="activity-grid">
-
-<div class="activity-card">
-<div class="emoji">🕵️</div>
-<div class="mini-title">MISSION 01</div>
-<h3>Solve the Crime</h3>
-<p>
-A USB drive may contain copied company files.
-Choose the safest first action.
-</p>
-<button class="btn" onclick="openMission('crime')">
-Start Mission
-</button>
-</div>
-
-<div class="activity-card">
-<div class="emoji">🗂️</div>
-<div class="mini-title">MISSION 02</div>
-<h3>Find the Hidden Evidence</h3>
-<p>
-Inspect a folder and identify useful evidence.
-</p>
-<button class="btn" onclick="openMission('evidence')">
-Start Mission
-</button>
-</div>
-
-<div class="activity-card">
-<div class="emoji">📧</div>
-<div class="mini-title">MISSION 03</div>
-<h3>Catch the Phishing</h3>
-<p>Spot warning signs in a suspicious email.</p>
-<button class="btn" onclick="openMission('phishing')">
-Start Mission
-</button>
-</div>
-
-<div class="activity-card">
-<div class="emoji">🕒</div>
-<div class="mini-title">MISSION 04</div>
-<h3>Rebuild the Timeline</h3>
-<p>Choose the correct order of events.</p>
-<button class="btn" onclick="openMission('timeline')">
-Start Mission
-</button>
-</div>
-
-<div class="activity-card">
-<div class="emoji">⚖️</div>
-<div class="mini-title">MISSION 05</div>
-<h3>Evidence or Not?</h3>
-<p>Identify relevant digital evidence.</p>
-<button class="btn" onclick="openMission('valid')">
-Start Mission
-</button>
-</div>
-
-</div>
-
-<div id="missionPanel" class="activity hidden" style="margin-top:20px">
-
-<div class="case-meta">
-<span class="mini-title" id="missionLabel">MISSION</span>
-<span id="missionCount"></span>
-</div>
-
-<h3 id="missionTitle" style="color:var(--cyan);margin:8px 0"></h3>
-
-<p id="missionPrompt"></p>
-
-<div id="missionChoices"></div>
-
-<div class="feedback" id="missionFeedback"></div>
-
-<button class="btn primary hidden"
-id="missionNext"
-onclick="missionNext()"
-style="margin-top:10px">
-Next →
-</button>
-
-</div>
-</section>
-
-<section id="gallery">
-
-<h2 class="heading">07. Inside the Digital Forensics Lab</h2>
-
-<p class="sub">
-A visual tour of common evidence sources and investigation work.
-</p>
-
-<div class="gallery">
-
-<figure>
-<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=85" alt="Computer Hardware">
-<figcaption>
-<b>Computer Hardware</b>
-Devices can contain valuable digital traces.
-</figcaption>
-</figure>
-
-<figure>
-<img src="https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=900&q=85" alt="Mobile Phone">
-<figcaption>
-<b>Mobile Devices</b>
-Phones may store messages, media and app data.
-</figcaption>
-</figure>
-
-<figure>
-<img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=900&q=85" alt="Network Servers">
-<figcaption>
-<b>Network Evidence</b>
-Logs and traffic help reconstruct events.
-</figcaption>
-</figure>
-
-<figure>
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=85" alt="Digital Investigation">
-<figcaption>
-<b>Digital Investigation</b>
-Examine evidence carefully and document every step.
-</figcaption>
-</figure>
-
+<section id="missions">
+<h2 class="hd" data-t="s6"></h2><p class="sub" data-t="s6p"></p>
+<div class="mgrid" id="mGrid"></div>
+<div class="panel" id="mp" hidden>
+<h3 id="mt" style="color:var(--cyan)"></h3><p id="mq"></p><div class="ex" id="mx" hidden></div>
+<div id="mc"></div><div class="fb" id="mf" aria-live="polite"></div>
+<button class="btn sm" onclick="closeM()" data-t="close"></button>
 </div>
 </section>
 
 <section id="game">
-
-<h2 class="heading">08. Game: Evidence Hunt</h2>
-
-<p class="sub">
-You are the investigator! Select the four items
-that could be relevant digital evidence.
-</p>
-
-<div class="activity">
-
-<div class="case-meta">
-<span class="mini-title">LEVEL 01 — EVIDENCE ROOM</span>
-<span>Find 4 evidence items</span>
-</div>
-
-<p>
-Click an item to inspect it. Correct evidence earns 5 XP.
-</p>
-
-<div class="game-status">
-<span>🔎 Found: <b id="huntFound">0</b>/4</span>
-<span>⭐ Score: <b id="huntScore">0</b></span>
-</div>
-
-<div class="hunt-grid" id="huntGrid">
-
-<button class="hunt-item" onclick="inspectItem(0)">
-<span class="big">🖥️</span>
-<b>Computer</b>
-<small>Click to inspect</small>
-</button>
-
-<button class="hunt-item" onclick="inspectItem(1)">
-<span class="big">🧾</span>
-<b>System Logs</b>
-<small>Click to inspect</small>
-</button>
-
-<button class="hunt-item" onclick="inspectItem(2)">
-<span class="big">🖼️</span>
-<b>Desktop Wallpaper</b>
-<small>Click to inspect</small>
-</button>
-
-<button class="hunt-item" onclick="inspectItem(3)">
-<span class="big">🕒</span>
-<b>File Timestamps</b>
-<small>Click to inspect</small>
-</button>
-
-<button class="hunt-item" onclick="inspectItem(4)">
-<span class="big">☕</span>
-<b>Coffee Cup</b>
-<small>Click to inspect</small>
-</button>
-
-<button class="hunt-item" onclick="inspectItem(5)">
-<span class="big">🔌</span>
-<b>USB Connection Record</b>
-<small>Click to inspect</small>
-</button>
-
-</div>
-
-<div class="feedback" id="huntFeedback"></div>
-
-<button class="btn primary"
-onclick="resetHunt()"
-style="margin-top:12px">
-Play Again ↻
-</button>
-
-</div>
-</section>
-
-<section id="case">
-
-<h2 class="heading">09. Interactive Case Study</h2>
-
-<p class="sub">
-A fictional training scenario. Choose the best forensic action.
-</p>
-
-<div class="casebox">
-
-<div class="tag">CASE #001 — USB INVESTIGATION</div>
-
-<h3 style="margin:12px 0;color:var(--cyan)">
-The Missing Files
-</h3>
-
-<p>
-A company reports that confidential files may have
-been copied to a USB drive. You are asked to assist
-with an authorized investigation.
-</p>
-
-<br>
-
-<p><b>What should you prioritize first?</b></p>
-
-<button class="choice" onclick="caseAnswer(0)">
-A. Immediately open and modify the original files.
-</button>
-
-<button class="choice" onclick="caseAnswer(1)">
-B. Document the situation and follow authorized
-evidence preservation and acquisition procedures.
-</button>
-
-<button class="choice" onclick="caseAnswer(2)">
-C. Delete suspicious files before examining them.
-</button>
-
-<div class="feedback" id="caseFeedback"></div>
-
-</div>
+<h2 class="hd" data-t="s7"></h2><p class="sub" data-t="s7p"></p>
+<div class="panel" style="margin-top:0"><b data-t="case"></b><p class="sub" style="margin:4px 0 0" data-t="caseP"></p>
+<div class="hg" id="hg"></div>
+<div class="stat"><span>🎯 <span data-t="found"></span> <b id="hf">0</b>/4</span><span>🧭 <span data-t="tries"></span> <b id="ht">0</b></span></div>
+<div class="fb" id="hfb" aria-live="polite"></div>
+<button class="btn sm" onclick="resetHunt()" data-t="again"></button></div>
 </section>
 
 <section id="quiz">
-
-<h2 class="heading">10. Quick Knowledge Challenge</h2>
-
-<p class="sub">
-Answer three questions and check your score.
-</p>
-
-<div class="quizbox">
-
-<div id="questionNumber">Question 1 of 3</div>
-
-<div class="progress">
-<div class="bar" id="progress"></div>
-</div>
-
-<h3 id="question" style="margin:18px 0">
-What is the main purpose of digital forensics?
-</h3>
-
-<div id="answers"></div>
-
-<div class="feedback" id="quizFeedback"></div>
-
-<button class="btn primary hidden"
-id="next"
-onclick="nextQuestion()"
-style="margin-top:12px">
-Next Question →
-</button>
-
+<h2 class="hd" data-t="s8"></h2><p class="sub" data-t="s8p"></p>
+<div class="panel" style="margin-top:0">
+<div id="qn"></div><div class="prog"><i id="qp"></i></div>
+<h3 id="qq" style="margin:14px 0"></h3><div id="qa"></div><div class="fb" id="qf" aria-live="polite"></div>
+<button class="btn pri" id="qx" onclick="qNext()" hidden></button>
 </div>
 </section>
 
-<section id="references">
-
-<h2 class="heading">11. Learning Resources</h2>
-
-<div class="card">
-<h3>📚 NIST SP 800-86</h3>
-
-<p>
-Guide to Integrating Forensic Techniques into Incident Response.
-</p>
-
-<a href="https://csrc.nist.gov/pubs/sp/800/86/final"
-target="_blank"
-rel="noopener"
-style="color:var(--cyan)">
-Explore the official NIST guide →
-</a>
-
-</div>
+<section style="text-align:center">
+<h2 class="hd" data-t="s9"></h2><p class="sub" data-t="s9p"></p>
+<a class="btn" href="https://csrc.nist.gov/pubs/sp/800/86/final" target="_blank" rel="noopener">📚 NIST SP 800-86 ↗</a>
+<a class="btn pri" href="https://github.com/Habiba-asker" target="_blank" rel="noopener">GitHub ↗</a>
 </section>
-
-<section id="contact" style="text-align:center">
-
-<h2 class="heading">Let's Connect</h2>
-
-<p class="sub">
-Learning, investigating and discovering the digital world.
-</p>
-
-<a class="btn primary"
-href="https://github.com/Habiba-asker"
-target="_blank"
-rel="noopener">
-Visit My GitHub →
-</a>
-
-</section>
-
-<footer>
-© 2026 Eng/Habiba Asker | Digital Forensics Lab
-<br>
-Investigate • Analyze • Preserve
-</footer>
+</main>
+<footer>© 2026 Eng. Habiba Asker | Digital Forensics Lab<br><span data-t="foot"></span></footer>
+<div id="toast" role="status"></div>
 
 <script>
-let lang = "en";
-let xp = 0;
-let completed = new Set();
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const ST=(k,v)=>{try{return v===undefined?localStorage.getItem(k):localStorage.setItem(k,v)}catch(e){return null}};
+let L=ST('lang')||'en',S;try{S=JSON.parse(ST('hs')||'')}catch(e){}S=S&&S.b?S:{xp:0,b:[]};
+const t=a=>a[L=='en'?0:1];
 
-function t(en, ar) {
-    return lang === "en" ? en : ar;
-}
-
-// تبديل اللغة عربي / إنجليزي
-function toggleLanguage() {
-    lang = lang === "en" ? "ar" : "en";
-
-    document.documentElement.lang = lang;
-    document.body.classList.toggle("ar", lang === "ar");
-
-    document.querySelectorAll("[data-en]").forEach(el => {
-        el.textContent = el.dataset[lang];
-    });
-
-    renderQuestion();
-
-    if (currentMission) {
-        renderMission();
-    }
-
-    resetHunt();
-    updateHuntLanguage();
-}
-
-// إضافة النقاط والشارات
-function addXP(points, id) {
-    if (completed.has(id)) return;
-
-    completed.add(id);
-    xp += points;
-
-    document.getElementById("xp").textContent = xp;
-    document.getElementById("badges").textContent = completed.size;
-
-    let missionCount = ["crime", "evidence", "phishing", "timeline", "valid"]
-        .filter(x => completed.has(x)).length;
-
-    document.getElementById("missions").textContent = missionCount + "/5";
-}
-
-// أنواع الأدلة الرقمية
-const evidence = [
-    [
-        "💻 Computer Forensics",
-        "Investigating files, browser history, deleted data and system artifacts.",
-        "تحقيقات الحاسوب: فحص الملفات وسجل المتصفح والبيانات المحذوفة وآثار النظام."
-    ],
-    [
-        "📱 Mobile Forensics",
-        "Examining messages, call records, application data and media.",
-        "تحقيقات الهواتف: فحص الرسائل وسجلات المكالمات وبيانات التطبيقات والوسائط."
-    ],
-    [
-        "🌐 Network Forensics",
-        "Analyzing network traffic, packets and communication logs.",
-        "تحقيقات الشبكات: تحليل حركة مرور الشبكة والحزم وسجلات الاتصالات."
-    ],
-    [
-        "🧠 Memory Forensics",
-        "Examining captured memory, running processes and connections.",
-        "تحقيقات الذاكرة: فحص الذاكرة الملتقطة والعمليات النشطة والاتصالات."
-    ]
-];
-
-function showEvidence(i, btn) {
-    document.querySelectorAll("#evidence .tab").forEach(x => {
-        x.classList.remove("active");
-    });
-
-    btn.classList.add("active");
-
-    let e = evidence[i];
-
-    document.getElementById("evidenceInfo").innerHTML =
-        `<h3>${e[0]}</h3><p>${lang === "en" ? e[1] : e[2]}</p>`;
-}
-
-// مراحل التحقيق
-const steps = [
-    [
-        "01 — Collection",
-        "Identify, document and collect relevant data while preserving evidence integrity.",
-        "١ — الجمع: تحديد البيانات وتوثيقها وجمعها مع الحفاظ على سلامة الأدلة."
-    ],
-    [
-        "02 — Examination",
-        "Examine collected data to find useful files and digital artifacts.",
-        "٢ — الفحص: فحص البيانات المجمعة للعثور على الملفات والآثار الرقمية المهمة."
-    ],
-    [
-        "03 — Analysis",
-        "Interpret findings and connect evidence to understand what happened.",
-        "٣ — التحليل: تفسير النتائج وربط الأدلة لفهم ما حدث."
-    ],
-    [
-        "04 — Reporting",
-        "Document the methods, findings and conclusions in a clear report.",
-        "٤ — التقرير: توثيق الطرق والنتائج والاستنتاجات في تقرير واضح."
-    ]
-];
-
-function showStep(i, btn) {
-    document.querySelectorAll(".step").forEach(x => {
-        x.classList.remove("active");
-    });
-
-    btn.classList.add("active");
-
-    let s = steps[i];
-
-    document.getElementById("stepDetail").innerHTML =
-        `<h3>${lang === "en" ? s[0] : s[2].split(":")[0]}</h3>
-         <p>${lang === "en" ? s[1] : s[2]}</p>`;
-}
-
-// الإجابة على القضية التفاعلية
-function caseAnswer(i) {
-    let feedback = document.getElementById("caseFeedback");
-
-    if (i === 1) {
-        feedback.textContent = t(
-            "✓ Correct! Preserve and document evidence before examination.",
-            "✓ إجابة صحيحة! حافظ على الدليل ووثّقه قبل الفحص."
-        );
-
-        feedback.style.color = "var(--green)";
-        addXP(10, "case");
-    } else {
-        feedback.textContent = t(
-            "Not quite. Avoid changing or deleting evidence. Preserve it first.",
-            "مش بالضبط. تجنب تعديل أو حذف الأدلة. حافظ عليها أولاً."
-        );
-
-        feedback.style.color = "var(--gold)";
-    }
-}
-
-// المهمات التفاعلية
-const missions = {
-    crime: {
-        title: ["The USB Drive", "وحدة USB"],
-        prompt: [
-            "A USB device is found beside a workstation. What is the safest first step?",
-            "تم العثور على USB بجانب جهاز عمل. ما أول خطوة آمنة؟"
-        ],
-        choices: [
-            ["Open every file immediately", "فتح كل الملفات فوراً"],
-            ["Document and preserve it using approved procedures", "توثيقه والحفاظ عليه وفق الإجراءات المعتمدة"],
-            ["Format the USB", "عمل Format للوحدة"]
-        ],
-        correct: 1,
-        why: [
-            "Correct! Preserve and document potential evidence before examination.",
-            "صحيح! حافظ على الدليل المحتمل ووثّقه قبل الفحص."
-        ]
-    },
-
-    evidence: {
-        title: ["Choose the Useful Evidence", "اختار الدليل المفيد"],
-        prompt: [
-            "Which item may help establish when a file was accessed?",
-            "أي عنصر قد يساعد في معرفة وقت الوصول إلى ملف؟"
-        ],
-        choices: [
-            ["File metadata / timestamps", "بيانات الملف الوصفية والطوابع الزمنية"],
-            ["Computer wallpaper", "خلفية الكمبيوتر"],
-            ["Monitor color", "لون الشاشة"]
-        ],
-        correct: 0,
-        why: [
-            "Correct! Metadata and timestamps may provide useful information.",
-            "صحيح! قد توفر البيانات الوصفية والطوابع الزمنية معلومات مفيدة."
-        ]
-    },
-
-    phishing: {
-        title: ["Suspicious Email", "رسالة بريد مشبوهة"],
-        prompt: [
-            "Which sign is a warning of phishing?",
-            "ما العلامة التي تشير إلى احتمال وجود تصيد؟"
-        ],
-        choices: [
-            ["The email uses a company logo", "الرسالة تستخدم شعار الشركة"],
-            ["The sender address is suspicious and the link asks for urgent login", "عنوان المرسل مشبوه والرابط يطلب تسجيل الدخول بسرعة"],
-            ["The email has a greeting", "الرسالة تبدأ بتحية"]
-        ],
-        correct: 1,
-        why: [
-            "Correct! A suspicious sender and urgent login link are warning signs.",
-            "صحيح! عنوان المرسل المشبوه ورابط تسجيل الدخول العاجل من علامات التصيد."
-        ]
-    },
-
-    timeline: {
-        title: ["Order the Events", "رتّب الأحداث"],
-        prompt: [
-            "Choose the most logical order for this incident.",
-            "اختار الترتيب الأكثر منطقية لأحداث الواقعة."
-        ],
-        choices: [
-            ["Alert → Login → File access", "تنبيه ← تسجيل دخول ← الوصول للملف"],
-            ["Suspicious login → File access → Alert", "تسجيل دخول مشبوه ← الوصول للملف ← ظهور التنبيه"],
-            ["File access → Alert → Login", "الوصول للملف ← التنبيه ← تسجيل الدخول"]
-        ],
-        correct: 1,
-        why: [
-            "Correct! Login happens first, followed by file access and then the alert.",
-            "صحيح! يحدث تسجيل الدخول أولاً ثم الوصول للملف وبعد ذلك يظهر التنبيه."
-        ]
-    },
-
-    valid: {
-        title: ["Evidence or Not?", "دليل أم لا؟"],
-        prompt: [
-            "Which item is relevant to a file-copy investigation?",
-            "أي عنصر له علاقة بتحقيق نسخ الملفات؟"
-        ],
-        choices: [
-            ["USB connection records and system logs", "سجلات توصيل USB وسجلات النظام"],
-            ["Desk decoration", "زينة المكتب"],
-            ["Room paint color", "لون طلاء الغرفة"]
-        ],
-        correct: 0,
-        why: [
-            "Correct! Device records and system logs may help reconstruct events.",
-            "صحيح! قد تساعد سجلات الأجهزة والنظام في إعادة بناء الأحداث."
-        ]
-    }
+const T={
+nLearn:['Learn','تعلّمي'],nHash:['Hash Lab','معمل الـ Hash'],nTools:['Tools','الأدوات'],nMis:['Missions','المهمات'],nGame:['Game','اللعبة'],nQuiz:['Quiz','الاختبار'],
+hSub:['Digital Forensics & Cybersecurity','التحقيق الجنائي الرقمي والأمن السيبراني'],
+hP:['Welcome, investigator! Explore evidence, test a hash, solve missions and earn badges. Tip: click the lab icon.','أهلاً بكِ أيتها المحقّقة! اكتشفي الأدلة، وجرّبي الـ Hash، وحلّي المهمات، واجمعي الشارات. جرّبي الضغط على أيقونة المعمل.'],
+cta1:['Start missions','ابدئي المهمات'],cta2:['Explore the lab ↓','استكشفي المعمل ↓'],
+s1:['What is digital forensics?','ما هو التحقيق الجنائي الرقمي؟'],s1p:['The science behind digital investigations.','العلم الذي يكشف ما حدث داخل الأجهزة الرقمية.'],
+dfT:['Digital forensics','التحقيق الجنائي الرقمي'],
+dfP:['It uses scientific methods to identify, collect, examine and analyze digital data while preserving its integrity, so investigators can show what happened and what the evidence supports.','يستخدم أساليب علمية لتحديد البيانات الرقمية وجمعها وفحصها وتحليلها مع الحفاظ على سلامتها، ليتمكّن المحقق من إثبات ما حدث وما تدعمه الأدلة.'],
+p1:['Evidence integrity','سلامة الدليل'],p2:['Chain of custody','سلسلة الحيازة'],p3:['Documentation','التوثيق'],
+s2:['Types of digital evidence','أنواع الأدلة الرقمية'],s2p:['Pick a category to see what an investigator examines.','اختاري نوعاً لتري ما الذي يفحصه المحقق.'],
+s3:['Investigation process','مراحل التحقيق'],s3p:['Tap each phase to follow the workflow.','اضغطي على كل مرحلة لتتبّعي خطوات العمل.'],
+s4:['Hash lab: can you break the seal?','معمل الـ Hash: هل تستطيعين كسر الختم؟'],
+s4p:['A hash is a digital fingerprint. Change a single letter in your copy and watch the whole fingerprint change.','الـ Hash بصمة رقمية للملف. غيّري حرفاً واحداً في النسخة وشاهدي البصمة كلها تتغير.'],
+hOrig:['Original evidence','الدليل الأصلي'],hCopy:['Your copy','نسختك'],reset:['Reset','إعادة'],
+same:['✓ Identical hashes: the copy is intact.','✓ البصمتان متطابقتان: النسخة سليمة.'],
+diff:['✗ Different hashes: the copy was altered, so it is not reliable evidence.','✗ البصمتان مختلفتان: النسخة تغيّرت ولا يمكن الاعتماد عليها كدليل.'],
+noc:['Hashing needs a secure page (https or localhost).','الحساب يحتاج صفحة آمنة (https أو localhost).'],
+s5:['Forensic toolkit','أدوات التحقيق'],s5p:['Click a tool to see when investigators use it.','اضغطي على الأداة لتعرفي متى يستخدمها المحققون.'],
+s6:['Interactive missions','المهمات التفاعلية'],s6p:['Choose a mission and earn 10 XP. These are fictional training scenarios.','اختاري مهمة واكسبي 10 نقاط. جميعها سيناريوهات تدريبية افتراضية.'],
+start:['Start','ابدئي'],close:['Close','إغلاق'],retry:['Not quite. Try another answer!','ليست الإجابة الصحيحة. جرّبي خياراً آخر!'],
+s7:['Evidence hunt','لعبة صيد الأدلة'],s7p:['Inspect the items and find the 4 that matter.','افحصي العناصر واعثري على الأربعة المهمة.'],
+case:['Case DF-204: USB data leak','القضية DF-204: تسريب بيانات عبر USB'],
+caseP:['Confidential files may have been copied to an external device. Which items help the investigation?','يُشتبه بنسخ ملفات سرية إلى جهاز خارجي. ما العناصر التي تفيد التحقيق؟'],
+found:['Found:','المكتشف:'],tries:['Attempts:','المحاولات:'],again:['Play again','العبي مرة أخرى'],
+inspect:['Inspect','افحصي'],rel:['Relevant','مرتبط'],nrel:['Not relevant','غير مرتبط'],
+win:['Excellent! All four found. 🎉','ممتاز! وجدتِ الأدلة الأربعة. 🎉'],
+s8:['Quick knowledge challenge','اختبار المعلومات السريع'],s8p:['Five questions, one attempt each.','خمسة أسئلة، ومحاولة واحدة لكل سؤال.'],
+next:['Next question','السؤال التالي'],res:['See result','عرض النتيجة'],retryQ:['Try again','أعيدي المحاولة'],
+qdone:['Challenge complete','اكتمل الاختبار'],
+star:['Perfect! You are a Forensics Star 🏆','رائع! أنتِ نجمة التحقيق الرقمي 🏆'],good:['Good effort! Review and try again.','مجهود جميل! راجعي وحاولي مجدداً.'],
+s9:["Let's connect",'لنتواصل'],s9p:['Learning, investigating and discovering the digital world.','نتعلّم ونحقّق ونكتشف العالم الرقمي.'],
+foot:['Investigate • Analyze • Preserve','حقّقي • حلّلي • احفظي الأدلة'],
+lvls:[['Rookie','مبتدئة'],['Analyst','محلّلة'],['Investigator','محقّقة'],['Expert','خبيرة']]
 };
-
-let currentMission = null;
-let missionAnswered = false;
-
-function openMission(id) {
-    currentMission = id;
-    missionAnswered = false;
-
-    document.getElementById("missionPanel").classList.remove("hidden");
-
-    renderMission();
-
-    document.getElementById("missionPanel").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
-}
-
-function renderMission() {
-    if (!currentMission) return;
-
-    let m = missions[currentMission];
-
-    document.getElementById("missionLabel").textContent =
-        t("MISSION " + (Object.keys(missions).indexOf(currentMission) + 1),
-          "المهمة " + (Object.keys(missions).indexOf(currentMission) + 1));
-
-    document.getElementById("missionCount").textContent =
-        t("Earn 10 XP", "اجمع 10 نقاط");
-
-    document.getElementById("missionTitle").textContent =
-        m.title[lang === "en" ? 0 : 1];
-
-    document.getElementById("missionPrompt").textContent =
-        m.prompt[lang === "en" ? 0 : 1];
-
-    document.getElementById("missionFeedback").textContent = "";
-
-    document.getElementById("missionNext").classList.add("hidden");
-
-    let wrap = document.getElementById("missionChoices");
-    wrap.innerHTML = "";
-
-    m.choices.forEach((choice, i) => {
-        let button = document.createElement("button");
-
-        button.className = "choice";
-        button.textContent =
-            String.fromCharCode(65 + i) + ". " +
-            choice[lang === "en" ? 0 : 1];
-
-        button.onclick = () => missionAnswer(i);
-
-        wrap.appendChild(button);
-    });
-}
-
-function missionAnswer(i) {
-    if (missionAnswered) return;
-
-    missionAnswered = true;
-
-    let m = missions[currentMission];
-    let correct = i === m.correct;
-
-    document.querySelectorAll("#missionChoices button").forEach((b, n) => {
-        b.disabled = true;
-
-        if (n === m.correct) {
-            b.style.borderColor = "var(--green)";
-        }
-    });
-
-    let feedback = document.getElementById("missionFeedback");
-
-    feedback.textContent = m.why[lang === "en" ? 0 : 1];
-
-    feedback.style.color = correct ? "var(--green)" : "var(--gold)";
-
-    if (correct) {
-        addXP(10, currentMission);
-    }
-
-    document.getElementById("missionNext").textContent =
-        t("Choose another mission", "اختار مهمة تانية");
-
-    document.getElementById("missionNext").classList.remove("hidden");
-}
-
-function missionNext() {
-    document.getElementById("missionPanel").classList.add("hidden");
-    currentMission = null;
-}
-
-// أسئلة الاختبار
-const questions = [
-    {
-        q: [
-            "What is the main purpose of digital forensics?",
-            "ما الهدف الأساسي من التحقيق الجنائي الرقمي؟"
-        ],
-        a: [
-            ["Modify digital files", "تعديل الملفات الرقمية"],
-            ["Scientifically examine digital evidence", "فحص الأدلة الرقمية علمياً"],
-            ["Create computer games", "إنشاء ألعاب الكمبيوتر"]
-        ],
-        correct: 1,
-        why: [
-            "It examines digital evidence using scientific methods.",
-            "يفحص الأدلة الرقمية باستخدام أساليب علمية."
-        ]
-    },
-
-    {
-        q: [
-            "What does Chain of Custody document?",
-            "ماذا يوثق Chain of Custody؟"
-        ],
-        a: [
-            ["Screen resolution", "دقة الشاشة"],
-            ["The history of evidence handling and transfers", "تاريخ التعامل مع الدليل ونقله"],
-            ["Internet speed", "سرعة الإنترنت"]
-        ],
-        correct: 1,
-        why: [
-            "It records who handled evidence, when and how.",
-            "يسجل من تعامل مع الدليل ومتى وكيف."
-        ]
-    },
-
-    {
-        q: [
-            "Which tool is used for network packet analysis?",
-            "أي أداة تستخدم لتحليل حزم الشبكة؟"
-        ],
-        a: [
-            ["Wireshark", "Wireshark"],
-            ["Autopsy", "Autopsy"],
-            ["Word", "Word"]
-        ],
-        correct: 0,
-        why: [
-            "Wireshark is a network protocol analyzer.",
-            "Wireshark أداة لتحليل بروتوكولات وحركة الشبكة."
-        ]
-    }
-];
-
-let qIndex = 0;
-let score = 0;
-let answered = false;
-let quizDone = false;
-
-function renderQuestion() {
-    if (quizDone) return;
-
-    answered = false;
-
-    let q = questions[qIndex];
-
-    document.getElementById("questionNumber").textContent =
-        t(
-            `Question ${qIndex + 1} of ${questions.length}`,
-            `السؤال ${qIndex + 1} من ${questions.length}`
-        );
-
-    document.getElementById("progress").style.width =
-        (qIndex / questions.length * 100) + "%";
-
-    document.getElementById("question").textContent =
-        q.q[lang === "en" ? 0 : 1];
-
-    document.getElementById("quizFeedback").textContent = "";
-
-    document.getElementById("next").classList.add("hidden");
-
-    let answers = document.getElementById("answers");
-    answers.innerHTML = "";
-
-    q.a.forEach((a, i) => {
-        let button = document.createElement("button");
-
-        button.className = "choice";
-        button.textContent = a[lang === "en" ? 0 : 1];
-
-        button.onclick = () => answer(i);
-
-        answers.appendChild(button);
-    });
-}
-
-function answer(i) {
-    if (answered) return;
-
-    answered = true;
-
-    let q = questions[qIndex];
-    let correct = i === q.correct;
-
-    if (correct) score++;
-
-    let feedback = document.getElementById("quizFeedback");
-
-    feedback.textContent =
-        (correct ? "✓ " : "✗ ") + q.why[lang === "en" ? 0 : 1];
-
-    feedback.style.color = correct ? "var(--green)" : "var(--gold)";
-
-    document.querySelectorAll("#answers button").forEach((b, n) => {
-        b.disabled = true;
-
-        if (n === q.correct) {
-            b.style.borderColor = "var(--green)";
-        }
-    });
-
-    let next = document.getElementById("next");
-
-    next.classList.remove("hidden");
-
-    next.textContent =
-        qIndex === questions.length - 1
-            ? t("See My Result", "اعرض النتيجة")
-            : t("Next Question →", "السؤال التالي ←");
-}
-
-function nextQuestion() {
-    if (quizDone) {
-        qIndex = 0;
-        score = 0;
-        quizDone = false;
-
-        document.getElementById("next").onclick = nextQuestion;
-
-        renderQuestion();
-        return;
-    }
-
-    if (!answered) return;
-
-    qIndex++;
-
-    if (qIndex >= questions.length) {
-        quizDone = true;
-
-        document.getElementById("questionNumber").textContent =
-            t("CHALLENGE COMPLETED", "اكتمل الاختبار");
-
-        document.getElementById("question").textContent =
-            t(
-                `Your score: ${score} / ${questions.length}`,
-                `نتيجتك: ${score} / ${questions.length}`
-            );
-
-        document.getElementById("progress").style.width = "100%";
-
-        document.getElementById("answers").innerHTML =
-            `<p>${t("You completed the challenge!", "لقد أنهيت التحدي!")}</p>`;
-
-        document.getElementById("quizFeedback").textContent =
-            score === 3
-                ? t("Excellent work! 🏆", "عمل ممتاز! 🏆")
-                : t("Good effort! Review and try again.", "مجهود جيد! راجع وحاول مرة أخرى.");
-
-        addXP(score * 5, "quiz");
-
-        document.getElementById("next").textContent =
-            t("Try Again", "حاول مرة أخرى");
-
-        document.getElementById("next").onclick = nextQuestion;
-
-    } else {
-        renderQuestion();
-    }
-}
-
-// لعبة البحث عن الأدلة
-const huntItems = [
-    {
-        en: "Computer",
-        ar: "الكمبيوتر",
-        good: true,
-        why: [
-            "A computer may contain files and system artifacts relevant to the incident.",
-            "قد يحتوي الكمبيوتر على ملفات وآثار نظام مرتبطة بالواقعة."
-        ]
-    },
-    {
-        en: "System Logs",
-        ar: "سجلات النظام",
-        good: true,
-        why: [
-            "Logs may help establish what happened and when.",
-            "قد تساعد السجلات في معرفة ما حدث ومتى."
-        ]
-    },
-    {
-        en: "Desktop Wallpaper",
-        ar: "خلفية سطح المكتب",
-        good: false,
-        why: [
-            "Usually not relevant to proving whether files were copied.",
-            "غالباً لا تساعد في إثبات ما إذا كانت الملفات قد نُسخت."
-        ]
-    },
-    {
-        en: "File Timestamps",
-        ar: "الطوابع الزمنية للملفات",
-        good: true,
-        why: [
-            "Timestamps may help build a timeline, but should be validated.",
-            "قد تساعد الطوابع الزمنية في بناء التسلسل الزمني، مع ضرورة التحقق منها."
-        ]
-    },
-    {
-        en: "Coffee Cup",
-        ar: "فنجان القهوة",
-        good: false,
-        why: [
-            "This is not digital evidence in this scenario.",
-            "هذا ليس دليلاً رقمياً في هذا السيناريو."
-        ]
-    },
-    {
-        en: "USB Connection Record",
-        ar: "سجل توصيل USB",
-        good: true,
-        why: [
-            "A USB connection record may help identify when a device was connected.",
-            "قد يساعد سجل توصيل USB في تحديد وقت توصيل الجهاز."
-        ]
-    }
-];
-
-let huntSelected = new Set();
-let huntPoints = 0;
-let huntFinished = false;
-
-function inspectItem(i) {
-    if (huntSelected.has(i) || huntFinished) return;
-
-    huntSelected.add(i);
-
-    let item = huntItems[i];
-
-    let button = document.querySelectorAll("#huntGrid .hunt-item")[i];
-
-    button.disabled = true;
-
-    let title = lang === "en" ? item.en : item.ar;
-
-    button.classList.add(item.good ? "found" : "missed");
-
-    button.querySelector("small").textContent =
-        item.good
-            ? t("Relevant evidence", "دليل محتمل")
-            : t("Not relevant", "غير مرتبط");
-
-    let feedback = document.getElementById("huntFeedback");
-
-    feedback.textContent =
-        (item.good ? "✓ " : "✗ ") +
-        title + " — " +
-        item.why[lang === "en" ? 0 : 1];
-
-    feedback.style.color =
-        item.good ? "var(--green)" : "var(--gold)";
-
-    if (item.good) {
-        huntPoints++;
-
-        document.getElementById("huntScore").textContent =
-            huntPoints * 5;
-
-        document.getElementById("huntFound").textContent =
-            huntPoints;
-    }
-
-    if (huntSelected.size === huntItems.length || huntPoints === 4) {
-        huntFinished = true;
-
-        if (huntPoints === 4) {
-            feedback.textContent = t(
-                "Excellent! You found all four evidence items.",
-                "ممتاز! اكتشفت الأدلة الأربعة كلها."
-            );
-
-            addXP(20, "evidence-hunt");
-
-        } else {
-            feedback.textContent = t(
-                "Round complete! Press Play Again to try again.",
-                "انتهت الجولة! اضغط العب مرة أخرى وحاول من جديد."
-            );
-        }
-    }
-}
-
-function updateHuntLanguage() {
-    document.querySelectorAll("#huntGrid .hunt-item").forEach((b, i) => {
-        b.querySelector("b").textContent =
-            lang === "en" ? huntItems[i].en : huntItems[i].ar;
-
-        b.querySelector("small").textContent =
-            t("Click to inspect", "اضغط للفحص");
-    });
-}
-
-function resetHunt() {
-    huntSelected.clear();
-    huntPoints = 0;
-    huntFinished = false;
-
-    document.getElementById("huntFound").textContent = "0";
-    document.getElementById("huntScore").textContent = "0";
-    document.getElementById("huntFeedback").textContent = "";
-
-    document.querySelectorAll("#huntGrid .hunt-item").forEach((b, i) => {
-        b.disabled = false;
-
-        b.classList.remove("found", "missed");
-
-        b.querySelector("b").textContent =
-            lang === "en" ? huntItems[i].en : huntItems[i].ar;
-
-        b.querySelector("small").textContent =
-            t("Click to inspect", "اضغط للفحص");
-    });
-}
-
-// تشغيل أول سؤال عند فتح الموقع
-renderQuestion();
-
+const PH=[['$ sha256sum evidence.img','$ sha256sum evidence.img'],['$ chain_of_custody --log','$ chain_of_custody --log'],['Investigate. Analyze. Preserve.','حقّق · حلّل · احفظ']];
+const EV=[['💻',['Computer','الكمبيوتر'],['Files, file systems, browser history, deleted data, metadata and OS artifacts.','الملفات وأنظمة الملفات وسجل المتصفح والبيانات المحذوفة والبيانات الوصفية وآثار نظام التشغيل.'],[['Browser history','سجل المتصفح'],['Deleted files','ملفات محذوفة'],['Metadata','بيانات وصفية']]],
+['📱',['Mobile','الموبايل'],['Messages, call records, app artifacts and media, always subject to lawful access.','الرسائل وسجلات المكالمات وآثار التطبيقات والوسائط، وفق صلاحيات الوصول القانونية.'],[['Messages','الرسائل'],['Call logs','سجل المكالمات'],['App data','بيانات التطبيقات']]],
+['🌐',['Network','الشبكات'],['Traffic, packet captures, logs and communication patterns.','حركة المرور والحزم الملتقطة والسجلات وأنماط الاتصال.'],[['Packets','الحزم'],['Firewall logs','سجلات الجدار الناري'],['DNS queries','طلبات DNS']]],
+['🧠',['Memory','الذاكرة'],['Volatile memory, running processes and connections that disappear when power is lost.','الذاكرة المتطايرة والعمليات النشطة والاتصالات التي تختفي عند انقطاع الطاقة.'],[['Processes','العمليات'],['Open connections','اتصالات مفتوحة'],['Encryption keys','مفاتيح التشفير']]]];
+const SP=[[['Collection','الجمع'],['Identify, label, document and acquire relevant data using procedures that preserve integrity.','تحديد البيانات ذات الصلة وترقيمها وتوثيقها وجمعها بإجراءات تحافظ على سلامتها.']],
+[['Examination','الفحص'],['Process the collected data and extract the files and artifacts of interest.','معالجة البيانات المجمّعة واستخراج الملفات والآثار المهمة.']],
+[['Analysis','التحليل'],['Interpret the results and correlate findings to answer the investigation questions.','تفسير النتائج وربط الأدلة للإجابة عن أسئلة التحقيق.']],
+[['Reporting','التقرير'],['Document methods, findings, limitations and conclusions in a clear report.','توثيق الأساليب والنتائج والقيود والاستنتاجات في تقرير واضح.']]];
+const TL=[['🔎','Autopsy',['Analyze disk images and file system artifacts.','تحليل صور الأقراص وآثار أنظمة الملفات.'],['Use it to browse a disk image and recover deleted files.','استخدميها لتصفّح صورة قرص واستعادة الملفات المحذوفة.']],
+['💽','FTK Imager',['Acquire and preview forensic images.','إنشاء ومعاينة الصور الجنائية للأدلة.'],['Use it first, to copy a drive without changing it.','استخدميها أولاً لنسخ القرص دون تغيير محتواه.']],
+['🌐','Wireshark',['Inspect captured network traffic.','فحص حركة الشبكة الملتقطة.'],['Use it to see who talked to whom, and when.','استخدميه لمعرفة من تواصل مع من ومتى.']],
+['🧠','Volatility',['Analyze captured memory dumps.','تحليل نسخ الذاكرة الملتقطة.'],['Use it to find hidden processes in RAM.','استخدميها لاكتشاف العمليات المخفية في الذاكرة.']],
+['🐧','Linux',['An environment full of investigation utilities.','بيئة مليئة بأدوات التحقيق.'],['Use it for tools like sha256sum, grep and dd.','استخدميه لأدوات مثل sha256sum وgrep وdd.']],
+['🐍','Python',['Automate analysis and process data.','أتمتة التحليل ومعالجة البيانات.'],['Use it to parse thousands of log lines in seconds.','استخدميها لتحليل آلاف أسطر السجلات في ثوانٍ.']]];
+const MS=[
+{id:'crime',e:'🕵️',t:['The USB drive','وحدة الـ USB'],q:['A USB drive is found next to a workstation in a suspected data leak. What is the safest first step?','عُثر على وحدة USB بجانب جهاز عمل في واقعة اشتباه بتسريب بيانات. ما أول خطوة آمنة؟'],c:[['Open every file to see what is inside','فتح كل الملفات لمعرفة محتواها'],['Document it and preserve it using approved procedures','توثيقها والحفاظ عليها وفق الإجراءات المعتمدة'],['Format it to remove any threat','عمل Format لها للتخلص من أي تهديد']],a:1,w:['Correct! Document and preserve before examining.','صحيح! الحفظ والتوثيق قبل أي فحص.']},
+{id:'evidence',e:'🗂️',t:['Useful evidence','الدليل المفيد'],q:['Which item may show when a file was last accessed?','أي عنصر قد يوضح وقت آخر وصول إلى ملف؟'],c:[['File metadata and timestamps','البيانات الوصفية والطوابع الزمنية'],['The desktop wallpaper','خلفية سطح المكتب'],['Monitor brightness','سطوع الشاشة']],a:0,w:['Correct! Timestamps help build a timeline, once validated.','صحيح! الطوابع الزمنية تساعد في بناء التسلسل بعد التحقق منها.']},
+{id:'phishing',e:'📧',t:['Catch the phishing','اكتشفي التصيّد'],x:'From: it-support@micr0soft-help.com\nSubject: URGENT! Verify within 10 minutes\nhttp://login-verify.example/secure',q:['Which sign is the strongest warning here?','ما أقوى علامة تحذير هنا؟'],c:[['The email has a company logo','الرسالة تحمل شعار شركة'],['A misspelled sender domain and an urgent login link','نطاق مرسل مكتوب بشكل خاطئ ورابط دخول عاجل'],['The email starts with a greeting','الرسالة تبدأ بتحية']],a:1,w:['Correct! Fake domain plus urgency is classic phishing.','صحيح! نطاق مزيّف مع استعجال هو أسلوب التصيّد المعروف.']},
+{id:'timeline',e:'🕒',t:['Rebuild the timeline','أعيدي بناء التسلسل'],x:'09:06  ALERT raised\n09:02  LOGIN from unknown device\n09:05  FILE confidential.xlsx opened',q:['Using the timestamps, what is the correct order?','باستخدام الطوابع الزمنية، ما الترتيب الصحيح؟'],c:[['Alert → login → file opened','التنبيه ← الدخول ← فتح الملف'],['Login → file opened → alert','الدخول ← فتح الملف ← التنبيه'],['File opened → alert → login','فتح الملف ← التنبيه ← الدخول']],a:1,w:['Correct! 09:02, then 09:05, then 09:06.','صحيح! 09:02 ثم 09:05 ثم 09:06.']},
+{id:'valid',e:'⚖️',t:['Evidence or not?','دليل أم لا؟'],q:['Which item is most relevant in a file-copy investigation?','أي عنصر أكثر ارتباطاً بتحقيق نسخ الملفات؟'],c:[['USB connection records and system logs','سجلات توصيل USB وسجلات النظام'],['Desk decoration','زينة المكتب'],['Room paint color','لون طلاء الغرفة']],a:0,w:['Correct! Device records and logs help reconstruct events.','صحيح! سجلات الأجهزة والنظام تساعد في إعادة بناء الأحداث.']}];
+const HI=[['💻',['Computer','الكمبيوتر'],1,['It may hold files and system artifacts.','قد يحتوي على ملفات وآثار نظام.']],['📜',['System logs','سجلات النظام'],1,['Logs show what happened and when.','السجلات توضح ما حدث ومتى.']],['🖼️',['Wallpaper','الخلفية'],0,['Not useful for proving file copying.','لا تفيد في إثبات نسخ الملفات.']],['🕒',['File timestamps','الطوابع الزمنية'],1,['They help build a timeline, once validated.','تساعد في بناء التسلسل بعد التحقق.']],['☕',['Coffee cup','فنجان القهوة'],0,['Not digital evidence.','ليس دليلاً رقمياً.']],['🔌',['USB record','سجل USB'],1,['Shows when a device was connected.','يوضح وقت توصيل الجهاز.']]];
+const QZ=[{q:['What is the main purpose of digital forensics?','ما الهدف الأساسي من التحقيق الجنائي الرقمي؟'],c:[['Modify digital files','تعديل الملفات الرقمية'],['Scientifically examine digital evidence','فحص الأدلة الرقمية علمياً'],['Create games','إنشاء الألعاب']],a:1,w:['It examines evidence using scientific methods.','يفحص الأدلة بأساليب علمية.']},
+{q:['What does the chain of custody document?','ماذا توثّق سلسلة الحيازة؟'],c:[['Screen resolution','دقة الشاشة'],['Who handled the evidence, when and how','من تعامل مع الدليل ومتى وكيف'],['Internet speed','سرعة الإنترنت']],a:1,w:['It records every handling and transfer.','تسجّل كل تعامل ونقل للدليل.']},
+{q:['Which tool is common for packet analysis?','أي أداة شائعة لتحليل الحزم؟'],c:[['Wireshark','Wireshark'],['Autopsy','Autopsy'],['Word','Word']],a:0,w:['Wireshark is a network protocol analyzer.','Wireshark محلّل لبروتوكولات الشبكة.']},
+{q:['What can a hash value help verify?','ماذا تساعد قيمة الـ Hash على التحقق منه؟'],c:[['That evidence has not changed','أن الدليل لم يتغير'],['Screen size','حجم الشاشة'],['Internet provider','مزوّد الإنترنت']],a:0,w:['A matching hash shows the copy is unchanged.','تطابق البصمة يعني أن النسخة لم تتغير.']},
+{q:['What is the first phase of the investigation?','ما أول مرحلة في التحقيق؟'],c:[['Reporting','كتابة التقرير'],['Collection','الجمع'],['Analysis','التحليل']],a:1,w:['The workflow starts with collection.','تبدأ الخطوات بمرحلة الجمع.']}];
+const BG={crime:'🕵️',evidence:'🗂️',phishing:'📧',timeline:'🕒',valid:'⚖️',hunt:'🔎',hash:'🔐',quiz:'🏆'};
+
+/* ---------- XP, level, badges ---------- */
+const LV=[0,25,60,100];
+function lvl(){let i=0;LV.forEach((v,n)=>{if(S.xp>=v)i=n});return i}
+function hud(){const i=lvl(),nx=LV[i+1],lo=LV[i];$('#lv').textContent=t(T.lvls[i]);$('#xp').textContent=S.xp;$('#xpf').style.width=(nx?(S.xp-lo)/(nx-lo)*100:100)+'%';
+$('#bdg').innerHTML=Object.entries(BG).map(([k,e])=>`<span class="${S.b.includes(k)?'on':''}">${e}</span>`).join('')}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');clearTimeout(toast.i);toast.i=setTimeout(()=>e.classList.remove('show'),2300)}
+function boom(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;for(let i=0;i<24;i++){const e=document.createElement('i');e.className='cf';e.textContent=['✨','🔹','⭐','🔷'][i%4];e.style.cssText=`left:${Math.random()*100}vw;animation-delay:${Math.random()*.4}s;--x:${(Math.random()-.5)*220}px`;document.body.appendChild(e);setTimeout(()=>e.remove(),2300)}}
+function award(id,pts){if(S.b.includes(id))return;const old=lvl();S.b.push(id);S.xp+=pts;ST('hs',JSON.stringify(S));hud();renderMissions();boom();
+toast(`${BG[id]} +${pts} XP`+(lvl()>old?' · '+t(T.lvls[lvl()]):''))}
+function orb(){const e=$('.orb');e.style.transform='rotate(360deg) scale(1.2)';e.style.transition='.6s';setTimeout(()=>{e.style.transform='';e.style.transition=''},600);boom();toast(L=='en'?'🕵️ Case closed, detective!':'🕵️ أُغلقت القضية أيتها المحقّقة!')}
+
+/* ---------- language ---------- */
+function setLang(){L=L=='en'?'ar':'en';ST('lang',L);applyLang()}
+function applyLang(){document.documentElement.lang=L;document.documentElement.dir=L=='en'?'ltr':'rtl';
+$$('[data-t]').forEach(e=>e.textContent=t(T[e.dataset.t]));$('#lb').textContent=L=='en'?'العربية':'English';
+renderEv();renderSt();renderTools();renderMissions();renderM();renderHunt();renderQ();hud();hashUI();typeStart()}
+
+/* ---------- typing line ---------- */
+let tp=0,tc=0,tt;
+function typeStart(){clearTimeout(tt);tp=0;tc=0;typeTick()}
+function typeTick(){const s=t(PH[tp]),el=$('#term');
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent=s;return}
+el.textContent=s.slice(0,tc);if(tc<s.length){tc++;tt=setTimeout(typeTick,70)}else{tt=setTimeout(()=>{tp=(tp+1)%PH.length;tc=0;typeTick()},1600)}}
+
+/* ---------- evidence & process ---------- */
+let ei=0,si=0;
+function renderEv(){$('#evTabs').innerHTML=EV.map((e,i)=>`<button class="tab ${i==ei?'on':''}" onclick="ei=${i};renderEv()">${e[0]} ${t(e[1])}</button>`).join('');
+const e=EV[ei];$('#evInfo').innerHTML=`<h3>${e[0]} ${t(e[1])}</h3><p>${t(e[2])}</p><div class="pills">${e[3].map(p=>`<span class="pill">${t(p)}</span>`).join('')}</div>`}
+function renderSt(){$('#stTabs').innerHTML=SP.map((s,i)=>`<button class="tab ${i==si?'on':''}" onclick="si=${i};renderSt()"><b>0${i+1}</b>${t(s[0])}</button>`).join('');
+const s=SP[si];$('#stInfo').innerHTML=`<h3>0${si+1} · ${t(s[0])}</h3><p>${t(s[1])}</p>`}
+
+/* ---------- hash lab ---------- */
+async function sha(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return null}}
+async function hashUI(){const a=await sha($('#h1').value),b=await sha($('#h2').value),s=$('#hs');
+if(!a){s.className='fb warn';s.textContent=t(T.noc);return}
+$('#ha').textContent=a;$('#hb').innerHTML=[...b].map((c,i)=>c==a[i]?c:`<mark>${c}</mark>`).join('');
+const same=a==b;s.className='fb '+(same?'ok':'bad');s.textContent=t(same?T.same:T.diff);if(!same)award('hash',15)}
+
+/* ---------- tools ---------- */
+function renderTools(){$('#toolGrid').innerHTML=TL.map((x,i)=>`<button class="card tool" onclick="this.classList.toggle('open');this.querySelector('.use').hidden=!this.querySelector('.use').hidden"><div class="e">${x[0]}</div><h3>${x[1]}</h3><p>${t(x[2])}</p><p class="use" hidden>💡 ${t(x[3])}</p></button>`).join('')}
+
+/* ---------- shared choices ---------- */
+function choices(box,it,st,pick){box.innerHTML='';it.c.forEach((c,i)=>{const b=document.createElement('button');b.className='ch';b.textContent=(L=='en'?'ABC':'أبج')[i]+'. '+t(c);
+if(st.done){b.disabled=true;if(i==it.a)b.classList.add('right');else if(i==st.sel)b.classList.add('wrong')}
+else if(st.wrong.has(i)){b.disabled=true;b.classList.add('wrong')}else b.onclick=()=>pick(i);box.appendChild(b)})}
+
+/* ---------- missions ---------- */
+let cm=null,ms;
+function renderMissions(){$('#mGrid').innerHTML=MS.map(m=>`<article class="card mc"><div class="e">${m.e}</div><h3 class="${S.b.includes(m.id)?'done':''}">${t(m.t)}</h3><button class="btn sm" onclick="openM('${m.id}')">${t(T.start)} <span class="arr">→</span></button></article>`).join('')}
+function openM(id){cm=id;ms={done:false,sel:null,wrong:new Set()};$('#mp').hidden=false;renderM();$('#mp').scrollIntoView({behavior:'smooth',block:'center'})}
+function closeM(){cm=null;$('#mp').hidden=true}
+function renderM(){if(!cm)return;const m=MS.find(x=>x.id==cm);$('#mt').textContent=t(m.t);$('#mq').textContent=t(m.q);$('#mx').hidden=!m.x;$('#mx').textContent=m.x||'';
+choices($('#mc'),m,ms,i=>{if(i==m.a){ms.done=true;ms.sel=i;award(m.id,10)}else{ms.wrong.add(i);$('#mp').classList.remove('shake');void $('#mp').offsetWidth;$('#mp').classList.add('shake')}renderM()});
+const f=$('#mf');f.className='fb '+(ms.done?'ok':'warn');f.textContent=ms.done?t(m.w):(ms.wrong.size?t(T.retry):'')}
+
+/* ---------- evidence hunt ---------- */
+let hf=new Set(),hm=new Set(),hdone=false;
+function renderHunt(){$('#hg').innerHTML=HI.map((x,i)=>{const s=hf.has(i)?'found':hm.has(i)?'miss':'';return`<button class="hi ${s}" ${s?'disabled':''} onclick="inspect(${i})"><span class="big">${x[0]}</span><b>${t(x[1])}</b><small>${s=='found'?t(T.rel):s=='miss'?t(T.nrel):t(T.inspect)}</small></button>`}).join('');
+$('#hf').textContent=hf.size;$('#ht').textContent=hf.size+hm.size;if(hdone){$('#hfb').className='fb ok';$('#hfb').textContent=t(T.win)}}
+function inspect(i){if(hdone)return;const x=HI[i];(x[2]?hf:hm).add(i);if(hf.size==4){hdone=true;award('hunt',20)}renderHunt();
+const f=$('#hfb');if(!hdone){f.className='fb '+(x[2]?'ok':'warn');f.textContent=(x[2]?'✓ ':'✗ ')+t(x[1])+': '+t(x[3])}if(!x[2])$$('.hi')[i].classList.add('shake')}
+function resetHunt(){hf.clear();hm.clear();hdone=false;$('#hfb').textContent='';renderHunt()}
+
+/* ---------- quiz ---------- */
+let qi=0,qs={done:false,sel:null,wrong:new Set()},qsc=0,qend=false;
+function renderQ(){const q=QZ[qi];$('#qx').hidden=!qs.done&&!qend;
+if(qend){$('#qn').textContent=t(T.qdone);$('#qp').style.width='100%';$('#qq').textContent=(L=='en'?'Score: ':'النتيجة: ')+qsc+' / '+QZ.length;$('#qa').innerHTML='';
+$('#qf').className='fb ok';$('#qf').textContent=t(qsc==5?T.star:T.good);$('#qx').textContent=t(T.retryQ);$('#qx').hidden=false;return}
+$('#qn').textContent=(L=='en'?`Question ${qi+1} of 5`:`السؤال ${qi+1} من 5`);$('#qp').style.width=(qi/5*100)+'%';$('#qq').textContent=t(q.q);
+choices($('#qa'),q,qs,i=>{qs.done=true;qs.sel=i;if(i==q.a)qsc++;renderQ()});
+const f=$('#qf');if(qs.done){const ok=qs.sel==q.a;f.className='fb '+(ok?'ok':'bad');f.textContent=(ok?'✓ ':'✗ ')+t(q.w)}else{f.textContent=''}
+$('#qx').textContent=t(qi==4?T.res:T.next)}
+function qNext(){if(qend){qi=0;qsc=0;qend=false}else if(qi<4)qi++;else{qend=true;if(qsc>0)award('quiz',qsc*5);renderQ();return}
+qs={done:false,sel:null,wrong:new Set()};renderQ()}
+
+applyLang();
 </script>
-
 </body>
 </html>
