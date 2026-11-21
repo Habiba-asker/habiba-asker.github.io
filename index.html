@@ -1,438 +1,583 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Habiba Asker | Digital Forensics Lab</title>
+
 <style>
-:root{
---bg:#071321;--panel:#102238;--blue:#38bdf8;
---cyan:#67e8f9;--white:#edf7ff;--muted:#9bb1c5;
---green:#4ade80;--border:#23415c;
+:root {
+--bg:#071321;
+--panel:#102238;
+--panel2:#0c2035;
+--blue:#38bdf8;
+--cyan:#67e8f9;
+--white:#edf7ff;
+--muted:#a8bdd0;
+--green:#4ade80;
+--pink:#c084fc;
+--border:#23415c;
+--gold:#facc15;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-background:var(--bg);color:var(--white);
-font-family:Arial,sans-serif;line-height:1.7;
+
+* {
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html {
+scroll-behavior:smooth;
+}
+
+body {
+background:var(--bg);
+color:var(--white);
+font-family:Arial,sans-serif;
+line-height:1.7;
 overflow-x:hidden;
 }
-body:before{
-content:"";position:fixed;inset:0;z-index:-1;
-background-image:linear-gradient(#38bdf808 1px,transparent 1px),
+
+body:before {
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+background-image:
+linear-gradient(#38bdf808 1px,transparent 1px),
 linear-gradient(90deg,#38bdf808 1px,transparent 1px);
 background-size:35px 35px;
 }
-nav{
-position:sticky;top:0;z-index:20;
-background:#071321ed;backdrop-filter:blur(15px);
-padding:15px 6%;display:flex;align-items:center;
-justify-content:space-between;border-bottom:1px solid var(--border);
-gap:15px;
+
+nav {
+position:sticky;
+top:0;
+z-index:20;
+background:#071321ed;
+backdrop-filter:blur(15px);
+padding:13px 5%;
+display:flex;
+align-items:center;
+justify-content:space-between;
+border-bottom:1px solid var(--border);
+gap:12px;
+flex-wrap:wrap;
 }
-.logo{color:var(--cyan);font-weight:bold;letter-spacing:2px}
-nav a{color:var(--muted);text-decoration:none;margin:0 7px;font-size:13px}
-nav a:hover{color:var(--cyan)}
-button{cursor:pointer;font:inherit}
-.lang,.btn{
-border:1px solid var(--blue);background:transparent;
-color:var(--cyan);padding:10px 16px;border-radius:8px;
-transition:.25s;
+
+.logo {
+color:var(--cyan);
+font-weight:bold;
+letter-spacing:2px;
 }
-.btn.primary{background:var(--blue);color:#061321;font-weight:bold}
-.btn:hover,.lang:hover{background:var(--blue);color:#061321;transform:translateY(-2px)}
-.hero{
-min-height:82vh;display:flex;flex-direction:column;
-align-items:center;justify-content:center;text-align:center;
+
+nav a {
+color:var(--muted);
+text-decoration:none;
+margin:0 6px;
+font-size:13px;
+}
+
+nav a:hover {
+color:var(--cyan);
+}
+
+button {
+cursor:pointer;
+font:inherit;
+}
+
+.lang,.btn {
+border:1px solid var(--blue);
+background:transparent;
+color:var(--cyan);
+padding:10px 16px;
+border-radius:9px;
+transition:.2s;
+text-decoration:none;
+display:inline-block;
+}
+
+.btn.primary {
+background:var(--blue);
+color:#061321;
+font-weight:bold;
+}
+
+.btn:hover,.lang:hover {
+background:var(--blue);
+color:#061321;
+transform:translateY(-2px);
+}
+
+.hero {
+min-height:78vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
 padding:65px 20px;
 }
-.tag{color:var(--green);font-size:12px;letter-spacing:3px}
-.hero h1{font-size:clamp(42px,8vw,78px);margin:15px 0}
-.hero h1 span{color:var(--blue);text-shadow:0 0 30px #38bdf855}
-.hero h2{color:var(--cyan);font-size:clamp(16px,3vw,23px)}
-.hero p{max-width:680px;color:var(--muted);margin:20px auto}
-.cursor{animation:blink 1s infinite}
-@keyframes blink{50%{opacity:0}}
-.orb{
-width:110px;height:110px;border-radius:50%;
-border:1px solid var(--blue);display:grid;place-items:center;
-font-size:52px;margin-bottom:25px;
+
+.tag {
+color:var(--green);
+font-size:12px;
+letter-spacing:2px;
+}
+
+.hero h1 {
+font-size:clamp(42px,8vw,78px);
+margin:15px 0;
+}
+
+.hero h1 span {
+color:var(--blue);
+text-shadow:0 0 30px #38bdf855;
+}
+
+.hero h2 {
+color:var(--cyan);
+font-size:clamp(16px,3vw,23px);
+}
+
+.hero p {
+max-width:720px;
+color:var(--muted);
+margin:18px auto;
+}
+
+.orb {
+width:110px;
+height:110px;
+border-radius:50%;
+border:1px solid var(--blue);
+display:grid;
+place-items:center;
+font-size:52px;
+margin-bottom:25px;
 box-shadow:0 0 35px #38bdf833,inset 0 0 30px #38bdf822;
 animation:float 4s ease-in-out infinite;
 }
-@keyframes float{50%{transform:translateY(-12px)}}
-.actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
-.status{margin-top:35px;color:var(--green);font-size:12px}
-section{padding:75px 8%;scroll-margin-top:75px}
-.heading{font-size:30px;margin-bottom:10px}
-.heading span{color:var(--blue)}
-.sub{color:var(--muted);margin-bottom:30px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.card{
-background:var(--panel);border:1px solid var(--border);
-border-radius:14px;padding:23px;transition:.3s;
+
+@keyframes float {
+50% {transform:translateY(-12px)}
 }
-.card:hover{transform:translateY(-6px);border-color:var(--blue);box-shadow:0 12px 30px #0005}
-.card h3{color:var(--cyan);margin:8px 0}
-.card p{color:var(--muted);font-size:14px}
-.emoji{font-size:30px}
-.pill{
-display:inline-block;background:#38bdf815;color:var(--cyan);
-border:1px solid #38bdf844;border-radius:20px;
-padding:5px 12px;font-size:12px;margin:4px;
+
+.actions {
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+justify-content:center;
+margin-top:20px;
 }
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.step{
-background:var(--panel);border:1px solid var(--border);
-padding:18px 8px;border-radius:12px;color:var(--muted);
-text-align:center;cursor:pointer;transition:.2s;
+
+.status {
+margin-top:28px;
+color:var(--green);
+font-size:12px;
 }
-.step.active,.step:hover{border-color:var(--blue);background:#123552;color:white}
-.step strong{display:block;color:var(--cyan);font-size:23px}
-.detail{
-background:#0c2035;border:1px solid var(--blue);
-padding:25px;border-radius:12px;margin-top:15px;
-min-height:125px;
+
+section {
+padding:65px 8%;
+scroll-margin-top:80px;
 }
-.detail h3{color:var(--cyan);margin-bottom:8px}
-.detail p{color:#c1d3e3}
-.tabs{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:15px}
-.tab{
-padding:10px 15px;border:1px solid var(--border);
-background:var(--panel);color:var(--muted);border-radius:8px;
+
+.heading {
+font-size:clamp(24px,4vw,32px);
+margin-bottom:8px;
 }
-.tab.active{background:#124267;color:white;border-color:var(--blue)}
-.info{
-background:#0c2035;border-radius:12px;
-padding:23px;border:1px solid var(--border);
-color:#c5d7e8;min-height:130px;
+
+.heading span {
+color:var(--blue);
 }
-.info h3{color:var(--cyan);margin-bottom:10px}
-.tool{
-background:#102238;border:1px solid var(--border);
-padding:14px;border-radius:10px;
+
+.sub {
+color:var(--muted);
+margin-bottom:25px;
 }
-.tool b{color:var(--cyan)}
-.tool p{color:var(--muted);font-size:13px;margin-top:5px}
-.casebox,.quizbox{
+
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:17px;
+}
+
+.card,.tool {
+background:var(--panel);
+border:1px solid var(--border);
+border-radius:14px;
+padding:22px;
+transition:.25s;
+}
+
+.card:hover,.tool:hover {
+transform:translateY(-5px);
+border-color:var(--blue);
+box-shadow:0 12px 30px #0005;
+}
+
+.card h3,.tool b {
+color:var(--cyan);
+margin:7px 0;
+}
+
+.card p,.tool p {
+color:var(--muted);
+font-size:14px;
+}
+
+.emoji {
+font-size:30px;
+}
+
+.pill {
+display:inline-block;
+background:#38bdf815;
+color:var(--cyan);
+border:1px solid #38bdf844;
+border-radius:20px;
+padding:4px 11px;
+font-size:12px;
+margin:4px;
+}
+
+.tabs {
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+}
+
+.tab {
+padding:9px 14px;
+border:1px solid var(--border);
+background:var(--panel);
+color:var(--muted);
+border-radius:8px;
+}
+
+.tab.active,.tab:hover {
+background:#124267;
+color:white;
+border-color:var(--blue);
+}
+
+.info,.detail {
+background:var(--panel2);
+border:1px solid var(--border);
+padding:22px;
+border-radius:12px;
+margin-top:14px;
+min-height:110px;
+color:#c5d7e8;
+}
+
+.info h3,.detail h3 {
+color:var(--cyan);
+margin-bottom:8px;
+}
+
+.steps {
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.step {
+background:var(--panel);
+border:1px solid var(--border);
+padding:15px 8px;
+border-radius:12px;
+color:var(--muted);
+text-align:center;
+cursor:pointer;
+}
+
+.step.active,.step:hover {
+border-color:var(--blue);
+background:#123552;
+color:white;
+}
+
+.step strong {
+display:block;
+color:var(--cyan);
+font-size:22px;
+}
+
+.casebox,.quizbox,.activity {
 background:linear-gradient(145deg,#102943,#0b1a2c);
-border:1px solid var(--blue);border-radius:15px;padding:25px;
+border:1px solid var(--blue);
+border-radius:15px;
+padding:24px;
 }
-.choice{
-display:block;width:100%;text-align:left;
-background:#0b1b2c;border:1px solid var(--border);
-color:var(--white);padding:13px;border-radius:8px;
-margin:10px 0;transition:.2s;
+
+.choice {
+display:block;
+width:100%;
+text-align:left;
+background:#0b1b2c;
+border:1px solid var(--border);
+color:var(--white);
+padding:12px 14px;
+border-radius:8px;
+margin:9px 0;
+transition:.2s;
 }
-.choice:hover{border-color:var(--cyan);background:#16334d}
-.feedback{margin-top:15px;color:var(--green);min-height:28px}
-.progress{height:7px;background:#23394d;border-radius:10px;margin:15px 0}
-.bar{height:100%;background:var(--blue);width:0%;transition:.3s;border-radius:10px}
-footer{text-align:center;padding:30px;border-top:1px solid var(--border);color:var(--muted)}
-.ar{direction:rtl;font-family:Arial,sans-serif}
-.ar nav{direction:rtl}
-.ar .choice{text-align:right}
-@media(max-width:700px){
-nav{flex-wrap:wrap}
-nav div:nth-child(2){order:3;width:100%;text-align:center}
-nav a{margin:0 4px}
-.steps{grid-template-columns:repeat(2,1fr)}
-section{padding:55px 5%}
+
+.choice:hover:not(:disabled) {
+border-color:var(--cyan);
+background:#16334d;
+}
+
+.choice:disabled {
+cursor:default;
+opacity:.85;
+}
+
+.feedback {
+margin-top:13px;
+min-height:28px;
+color:var(--green);
+}
+
+.progress {
+height:8px;
+background:#23394d;
+border-radius:10px;
+margin:13px 0;
+}
+
+.bar {
+height:100%;
+background:linear-gradient(90deg,var(--blue),var(--pink));
+width:0%;
+transition:.3s;
+border-radius:10px;
+}
+
+.activity-grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:16px;
+}
+
+.activity-card {
+background:linear-gradient(145deg,#122c46,#0b1a2c);
+border:1px solid var(--border);
+border-radius:14px;
+padding:20px;
+transition:.25s;
+}
+
+.activity-card:hover {
+transform:translateY(-5px);
+border-color:var(--pink);
+}
+
+.activity-card h3 {
+color:var(--cyan);
+margin:8px 0;
+}
+
+.activity-card p {
+color:var(--muted);
+font-size:14px;
+margin-bottom:12px;
+}
+
+.scoreline {
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin:15px 0;
+}
+
+.stat {
+background:#0b1b2c;
+border:1px solid var(--border);
+border-radius:10px;
+padding:9px 14px;
+color:var(--cyan);
+}
+
+.hidden {
+display:none!important;
+}
+
+.mini-title {
+color:var(--pink);
+font-size:12px;
+letter-spacing:1px;
+}
+
+.case-meta {
+display:flex;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+color:var(--muted);
+font-size:13px;
+margin-bottom:10px;
+}
+
+.gallery {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+gap:16px;
+}
+
+.gallery figure {
+margin:0;
+overflow:hidden;
+border:1px solid var(--border);
+border-radius:14px;
+background:var(--panel);
+}
+
+.gallery img {
+display:block;
+width:100%;
+height:165px;
+object-fit:cover;
+transition:.35s;
+}
+
+.gallery figure:hover img {
+transform:scale(1.05);
+}
+
+.gallery figcaption {
+padding:13px;
+color:var(--muted);
+font-size:14px;
+}
+
+.gallery figcaption b {
+display:block;
+color:var(--cyan);
+margin-bottom:3px;
+}
+
+.hunt-grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+gap:12px;
+margin-top:18px;
+}
+
+.hunt-item {
+min-height:145px;
+border:1px solid var(--border);
+border-radius:13px;
+background:linear-gradient(145deg,#173957,#0b1b2c);
+color:var(--white);
+padding:15px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:8px;
+transition:.2s;
+}
+
+.hunt-item:hover:not(:disabled) {
+border-color:var(--cyan);
+transform:translateY(-3px);
+}
+
+.hunt-item .big {
+font-size:38px;
+}
+
+.hunt-item small {
+color:var(--muted);
+}
+
+.hunt-item.found {
+border-color:var(--green);
+background:#12352e;
+}
+
+.hunt-item.missed {
+border-color:var(--gold);
+opacity:.75;
+}
+
+.game-status {
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:14px;
+}
+
+.game-status span {
+background:#0b1b2c;
+border:1px solid var(--border);
+border-radius:9px;
+padding:8px 12px;
+color:var(--cyan);
+}
+
+.ar {
+direction:rtl;
+font-family:Arial,sans-serif;
+}
+
+.ar nav {
+direction:rtl;
+}
+
+.ar .choice {
+text-align:right;
+}
+
+.ar .hero,.ar section {
+text-align:right;
+}
+
+.ar .hero {
+text-align:center;
+}
+
+.ar .actions,.ar .tabs {
+justify-content:flex-start;
+}
+
+.ar .activity-card,.ar .card {
+text-align:right;
+}
+
+footer {
+text-align:center;
+padding:30px;
+border-top:1px solid var(--border);
+color:var(--muted);
+}
+
+@media(max-width:720px) {
+nav {
+justify-content:center;
+}
+
+nav div:nth-child(2) {
+width:100%;
+text-align:center;
+order:3;
+}
+
+nav a {
+margin:0 4px;
+}
+
+section {
+padding:48px 5%;
+}
+
+.steps {
+grid-template-columns:repeat(2,1fr);
+}
 }
 </style>
 </head>
+
 <body>
-
-<nav>
-<div class="logo">HABIBA.SEC 🧬</div>
-<div>
-<a href="#home">Home</a>
-<a href="#learn">Learn</a>
-<a href="#process">Process</a>
-<a href="#tools">Tools</a>
-<a href="#case">Case Lab</a>
-<a href="#quiz">Quiz</a>
-</div>
-<button class="lang" onclick="toggleLanguage()">عربي / EN</button>
-</nav>
-
-<header class="hero" id="home">
-<div class="orb">🔬</div>
-<div class="tag">● DIGITAL FORENSICS LAB — ONLINE</div>
-<h1>HABIBA <span>ASKER</span></h1>
-<h2 data-en="Digital Forensics & Cybersecurity"
-data-ar="التحقيق الجنائي الرقمي والأمن السيبراني">
-Digital Forensics & Cybersecurity</h2>
-<p data-en="Welcome to my interactive Digital Forensics Lab. Explore digital evidence, discover forensic investigation methods, and test your knowledge through practical scenarios."
-data-ar="مرحباً بكم في معمل التحقيق الجنائي الرقمي التفاعلي. اكتشفوا الأدلة الرقمية وطرق التحقيق واختبروا معلوماتكم من خلال سيناريوهات عملية.">
-Welcome to my interactive Digital Forensics Lab. Explore digital evidence, discover forensic investigation methods, and test your knowledge through practical scenarios.
-</p>
-<div class="actions">
-<a class="btn primary" href="#learn" data-en="Start Exploring →" data-ar="ابدأ الاستكشاف ←">Start Exploring →</a>
-<a class="btn" href="#case" data-en="Try a Case Study" data-ar="جرب قضية افتراضية">Try a Case Study</a>
-</div>
-<div class="status">SYSTEM STATUS: ACTIVE <span class="cursor">_</span></div>
-</header>
-
-<section id="learn">
-<h2 class="heading"><span>01.</span> <span data-en="What Is Digital Forensics?"
-data-ar="ما هو التحقيق الجنائي الرقمي؟">What Is Digital Forensics?</span></h2>
-<p class="sub" data-en="Discover the science behind digital investigations."
-data-ar="اكتشفي العلم وراء التحقيقات الرقمية.">Discover the science behind digital investigations.</p>
-<div class="card">
-<h3>🔍 Digital Forensics</h3>
-<p data-en="Digital forensics is the application of scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened, how it happened, and what the available evidence can support."
-data-ar="التحقيق الجنائي الرقمي هو تطبيق الأساليب العلمية لتحديد وجمع وفحص وتحليل البيانات الرقمية مع الحفاظ على سلامتها. ويساعد المحققين على فهم ما حدث وكيف حدث وما الذي يمكن للأدلة المتاحة إثباته.">
-Digital forensics is the application of scientific methods to identify, collect, examine and analyze digital data while preserving its integrity. It helps investigators understand what happened, how it happened, and what the available evidence can support.
-</p>
-<br>
-<span class="pill">Evidence Integrity</span>
-<span class="pill">Chain of Custody</span>
-<span class="pill">Scientific Analysis</span>
-</div>
-</section>
-
-<section id="evidence">
-<h2 class="heading"><span>02.</span> Evidence Types</h2>
-<p class="sub" data-en="Select an evidence category to explore it."
-data-ar="اختاري نوع الدليل لاستكشافه.">Select an evidence category to explore it.</p>
-<div class="tabs">
-<button class="tab active" onclick="showEvidence(0,this)">💻 Computer</button>
-<button class="tab" onclick="showEvidence(1,this)">📱 Mobile</button>
-<button class="tab" onclick="showEvidence(2,this)">🌐 Network</button>
-<button class="tab" onclick="showEvidence(3,this)">🧠 Memory</button>
-</div>
-<div class="info" id="evidenceInfo">
-<h3>💻 Computer Forensics</h3>
-<p>Investigating files, file systems, browser history, deleted data, metadata and operating system artifacts.</p>
-</div>
-</section>
-
-<section id="process">
-<h2 class="heading"><span>03.</span> Investigation Process</h2>
-<p class="sub" data-en="Click each phase to understand the forensic workflow."
-data-ar="اضغطي على كل مرحلة لفهم خطوات التحقيق.">Click each phase to understand the forensic workflow.</p>
-<div class="steps">
-<button class="step active" onclick="showStep(0,this)"><strong>01</strong>Collection</button>
-<button class="step" onclick="showStep(1,this)"><strong>02</strong>Examination</button>
-<button class="step" onclick="showStep(2,this)"><strong>03</strong>Analysis</button>
-<button class="step" onclick="showStep(3,this)"><strong>04</strong>Reporting</button>
-</div>
-<div class="detail" id="stepDetail">
-<h3>01 — Collection</h3>
-<p>Identify, document and acquire relevant data using appropriate procedures that preserve evidence integrity.</p>
-</div>
-</section>
-
-<section id="principles">
-<h2 class="heading"><span>04.</span> Core Forensic Principles</h2>
-<div class="grid">
-<div class="card"><div class="emoji">🔐</div><h3>Evidence Integrity</h3><p>Protect evidence from unauthorized alteration. Hash values can help verify that a forensic copy remains unchanged.</p></div>
-<div class="card"><div class="emoji">🔗</div><h3>Chain of Custody</h3><p>Document who handled the evidence, when it was handled, and how it was transferred or stored.</p></div>
-<div class="card"><div class="emoji">📋</div><h3>Documentation</h3><p>Record the methods, tools, actions and observations throughout the investigation.</p></div>
-</div>
-</section>
-
-<section id="tools">
-<h2 class="heading"><span>05.</span> Forensic Toolkit</h2>
-<p class="sub">Explore common tools used in digital investigations.</p>
-<div class="grid">
-<div class="tool">🔎 <b>Autopsy</b><p>Digital forensics platform for analyzing disk images and file system artifacts.</p></div>
-<div class="tool">💽 <b>FTK Imager</b><p>Used to acquire and preview forensic images and digital evidence.</p></div>
-<div class="tool">🌐 <b>Wireshark</b><p>Network protocol analyzer for examining captured network traffic.</p></div>
-<div class="tool">🧠 <b>Volatility</b><p>Framework for memory forensics and analyzing memory captures.</p></div>
-<div class="tool">🐧 <b>Linux</b><p>Operating system environment with useful investigation utilities.</p></div>
-<div class="tool">🐍 <b>Python</b><p>Programming language for automating analysis and processing data.</p></div>
-</div>
-</section>
-
-<section id="case">
-<h2 class="heading"><span>06.</span> Interactive Case Study</h2>
-<p class="sub">A fictional training scenario. Choose the best forensic action.</p>
-<div class="casebox">
-<div class="tag">CASE #001 — USB INVESTIGATION</div>
-<h3 style="margin:15px 0;color:var(--cyan)">The Missing Files</h3>
-<p>A company reports that confidential files may have been copied to a USB drive. You are asked to assist with an authorized investigation.</p>
-<br>
-<p><b>What should you prioritize first?</b></p>
-<button class="choice" onclick="caseAnswer(0)">A. Immediately open and modify the original files.</button>
-<button class="choice" onclick="caseAnswer(1)">B. Document the situation and follow authorized evidence preservation and acquisition procedures.</button>
-<button class="choice" onclick="caseAnswer(2)">C. Delete suspicious files before examining them.</button>
-<div class="feedback" id="caseFeedback"></div>
-</div>
-</section>
-
-<section id="quiz">
-<h2 class="heading"><span>07.</span> Test Your Knowledge</h2>
-<p class="sub">Answer the questions and check your score.</p>
-<div class="quizbox">
-<div id="questionNumber">Question 1 of 3</div>
-<div class="progress"><div class="bar" id="progress"></div></div>
-<h3 id="question" style="margin:20px 0">What is the main purpose of digital forensics?</h3>
-<div id="answers"></div>
-<div class="feedback" id="quizFeedback"></div>
-<button class="btn primary" id="next" onclick="nextQuestion()" style="display:none;margin-top:15px">Next Question →</button>
-</div>
-</section>
-
-<section id="references">
-<h2 class="heading"><span>08.</span> Learning Resources</h2>
-<div class="card">
-<h3>📚 NIST SP 800-86</h3>
-<p>Guide to Integrating Forensic Techniques into Incident Response.</p>
-<a href="https://csrc.nist.gov/pubs/sp/800/86/final" target="_blank" style="color:var(--cyan)">Explore the official NIST guide →</a>
-</div>
-</section>
-
-<section id="contact" style="text-align:center">
-<h2 class="heading">Let's Connect</h2>
-<p class="sub">Learning, investigating and discovering the digital world.</p>
-<a class="btn primary" href="https://github.com/Habiba-asker" target="_blank">Visit My GitHub →</a>
-</section>
-
-<footer>
-© 2026 Habiba Asker | Digital Forensics Portfolio<br>
-Investigate • Analyze • Preserve
-</footer>
-
-<script>
-let lang="en";
-
-function toggleLanguage(){
-lang=lang==="en"?"ar":"en";
-document.documentElement.lang=lang;
-document.body.classList.toggle("ar",lang==="ar");
-document.querySelectorAll("[data-en]").forEach(el=>{
-el.textContent=el.dataset[lang];
-});
-}
-
-const evidence=[
-["💻 Computer Forensics","Investigating files, file systems, browser history, deleted data, metadata and operating system artifacts.",
-"تحقيقات الحاسوب: فحص الملفات وأنظمة الملفات وسجل المتصفح والبيانات المحذوفة والبيانات الوصفية وآثار نظام التشغيل."],
-["📱 Mobile Forensics","Examining mobile devices and relevant data such as messages, call records, application artifacts and media, subject to lawful access.",
-"تحقيقات الهواتف: فحص الأجهزة المحمولة والبيانات ذات الصلة مثل الرسائل وسجلات المكالمات وآثار التطبيقات والوسائط، وفق صلاحيات الوصول القانونية."],
-["🌐 Network Forensics","Analyzing network traffic, packet captures, logs and communication patterns to understand network events.",
-"تحقيقات الشبكات: تحليل حركة مرور الشبكة والحزم والسجلات وأنماط الاتصال لفهم الأحداث التي وقعت عبر الشبكة."],
-["🧠 Memory Forensics","Examining captured volatile memory to investigate running processes, connections and other memory artifacts.",
-"تحقيقات الذاكرة: فحص نسخة من الذاكرة المتطايرة لتحليل العمليات النشطة والاتصالات والآثار الموجودة في الذاكرة."]
-];
-
-function showEvidence(i,btn){
-document.querySelectorAll("#evidence .tab").forEach(x=>x.classList.remove("active"));
-btn.classList.add("active");
-let e=evidence[i];
-document.getElementById("evidenceInfo").innerHTML=
-`<h3>${e[0]}</h3><p>${lang==="en"?e[1]:e[2]}</p>`;
-}
-
-const steps=[
-["01 — Collection","Identify, label, document and acquire relevant data using appropriate procedures that preserve evidence integrity.","١ — الجمع: تحديد البيانات ذات الصلة وتسجيلها وتوثيقها وجمعها باستخدام إجراءات تحافظ على سلامة الأدلة."],
-["02 — Examination","Process collected data using suitable methods to extract files and artifacts of interest while protecting their integrity.","٢ — الفحص: معالجة البيانات المجمعة واستخراج الملفات والآثار الرقمية المهمة مع الحفاظ على سلامتها."],
-["03 — Analysis","Interpret the examination results and correlate findings to answer the questions of the investigation.","٣ — التحليل: تفسير نتائج الفحص وربط الأدلة للإجابة عن أسئلة التحقيق."],
-["04 — Reporting","Document the methods, findings, limitations and conclusions in a clear and reproducible report.","٤ — التقرير: توثيق الأساليب والنتائج والقيود والاستنتاجات في تقرير واضح يمكن مراجعته."]
-];
-
-function showStep(i,btn){
-document.querySelectorAll(".step").forEach(x=>x.classList.remove("active"));
-btn.classList.add("active");
-let s=steps[i];
-document.getElementById("stepDetail").innerHTML=
-`<h3>${s[0]}</h3><p>${lang==="en"?s[1]:s[2]}</p>`;
-}
-
-function caseAnswer(i){
-let f=document.getElementById("caseFeedback");
-if(i===1){
-f.textContent="✓ Correct! Preserve and document evidence before examination. Always follow authorization and approved procedures.";
-f.style.color="#4ade80";
-}else{
-f.textContent="✗ Not quite. Avoid altering or deleting potential evidence. Preserve and document it first.";
-f.style.color="#fbbf24";
-}
-}
-
-const questions=[
-{
-q:"What is the main purpose of digital forensics?",
-a:["To modify digital files","To scientifically examine digital evidence","To create computer games"],
-correct:1,
-why:"Digital forensics uses scientific methods to examine digital evidence while preserving its integrity."
-},
-{
-q:"What does Chain of Custody document?",
-a:["Computer screen resolution","The history of evidence handling and transfers","Internet browsing speed"],
-correct:1,
-why:"Chain of Custody records who handled evidence, when and how it was transferred or stored."
-},
-{
-q:"Which tool is commonly used for network packet analysis?",
-a:["Wireshark","Autopsy","Word"],
-correct:0,
-why:"Wireshark is a network protocol analyzer used to inspect captured traffic."
-}
-];
-
-let qIndex=0,score=0,answered=false;
-function renderQuestion(){
-answered=false;
-let q=questions[qIndex];
-document.getElementById("questionNumber").textContent=
-`Question ${qIndex+1} of ${questions.length}`;
-document.getElementById("progress").style.width=
-(qIndex/questions.length*100)+"%";
-document.getElementById("question").textContent=q.q;
-document.getElementById("quizFeedback").textContent="";
-document.getElementById("next").style.display="none";
-document.getElementById("answers").innerHTML="";
-q.a.forEach((a,i)=>{
-let b=document.createElement("button");
-b.className="choice";
-b.textContent=a;
-b.onclick=()=>answer(i);
-document.getElementById("answers").appendChild(b);
-});
-}
-function answer(i){
-if(answered)return;
-answered=true;
-let q=questions[qIndex];
-let correct=i===q.correct;
-if(correct)score++;
-document.getElementById("quizFeedback").textContent=
-(correct?"✓ Correct! ":"✗ Incorrect. ")+q.why;
-document.getElementById("quizFeedback").style.color=
-correct?"#4ade80":"#fbbf24";
-document.querySelectorAll("#answers button").forEach((b,n)=>{
-b.disabled=true;
-if(n===q.correct)b.style.borderColor="#4ade80";
-});
-document.getElementById("next").style.display="inline-block";
-document.getElementById("next").textContent=
-qIndex===questions.length-1?"See My Result":"Next Question →";
-}
-function nextQuestion(){
-if(!answered)return;
-qIndex++;
-if(qIndex>=questions.length){
-document.getElementById("questionNumber").textContent="QUIZ COMPLETED";
-document.getElementById("question").textContent=
-`Your score: ${score} / ${questions.length}`;
-document.getElementById("progress").style.width="100%";
-document.getElementById("answers").innerHTML=
-"<p>Keep learning and exploring digital forensics!</p>";
-document.getElementById("quizFeedback").textContent=
-score===3?"Excellent work!":"Good effort! Review the explanations and try again.";
-document.getElementById("next").textContent="Try Again";
-document.getElementById("next").onclick=()=>{
-qIndex=0;score=0;
-document.getElementById("next").onclick=nextQuestion;
-renderQuestion();
-};
-}else renderQuestion();
-}
-renderQuestion();
-</script>
-</body>
-</html>
