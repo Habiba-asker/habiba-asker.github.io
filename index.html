@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habiba Asker | Digital Forensics Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap');
+
+:root {
+  --bg:#07111f;
+  --panel:#0d1d30;
+  --blue:#38bdf8;
+  --cyan:#67e8f9;
+  --text:#e8f4ff;
+  --muted:#91a9bd;
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
+  overflow-x:hidden;
+}
+body::before {
+  content:"";
+  position:fixed;inset:0;z-index:-1;
+  background-image:
+  linear-gradient(#38bdf80b 1px,transparent 1px),
+  linear-gradient(90deg,#38bdf80b 1px,transparent 1px);
+  background-size:40px 40px;
+}
+body::after {
+  content:"";position:fixed;
+  width:450px;height:450px;
+  border-radius:50%;background:#087cbb18;
+  filter:blur(100px);top:10%;left:20%;
+  pointer-events:none;z-index:-1;
+}
+nav {
+  position:sticky;top:0;z-index:10;
+  display:flex;justify-content:space-between;
+  align-items:center;padding:20px 8%;
+  background:#07111feF;
+  border-bottom:1px solid #38bdf822;
+  backdrop-filter:blur(15px);
+}
+.logo {font-weight:800;color:var(--blue);letter-spacing:2px}
+.logo span {color:white}
+nav a {color:var(--muted);text-decoration:none;font-size:13px;margin:0 10px}
+nav a:hover {color:var(--cyan)}
+.lang {
+  border:1px solid var(--blue);background:transparent;
+  color:var(--blue);padding:9px 15px;border-radius:8px;
+  cursor:pointer;
+}
+.hero {
+  min-height:85vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:80px 20px;
+}
+.tag {
+  color:var(--cyan);border:1px solid #38bdf855;
+  background:#38bdf810;padding:9px 16px;
+  border-radius:30px;font-size:12px;letter-spacing:2px;
+}
+.hero h1 {
+  font-size:clamp(40px,8vw,76px);
+  margin:25px 0 10px;font-weight:800;
+  letter-spacing:-2px;
+}
+.hero h1 span {
+  color:var(--blue);
+  text-shadow:0 0 30px #38bdf855;
+}
+.hero p {color:var(--muted);max-width:650px;line-height:1.9}
+.cursor {animation:blink .8s infinite;color:var(--cyan)}
+@keyframes blink {50%{opacity:0}}
+.actions {display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;justify-content:center}
+.btn {
+  padding:13px 23px;border-radius:9px;text-decoration:none;
+  font-size:14px;font-weight:700;transition:.3s;
+}
+.primary {background:var(--blue);color:#061321}
+.secondary {border:1px solid #38bdf855;color:var(--blue)}
+.btn:hover {transform:translateY(-4px);box-shadow:0 8px 30px #38bdf833}
+.status {margin-top:45px;color:#76e6ae;font-size:12px;letter-spacing:1px}
+section {padding:85px 9%;scroll-margin-top:75px}
+.heading {font-size:30px;margin-bottom:12px}
+.heading span {color:var(--blue)}
+.sub {color:var(--muted);line-height:1.8;margin-bottom:35px}
+.about {
+  background:linear-gradient(135deg,#0d1d30,#0a1727);
+  border:1px solid #38bdf822;border-radius:18px;
+  padding:30px;line-height:2;color:#b8cbdc;
+}
+.cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card {
+  background:#0d1d30;border:1px solid #38bdf822;
+  padding:25px;border-radius:15px;transition:.3s;
+}
+.card:hover {
+  transform:translateY(-7px);
+  border-color:var(--blue);
+  box-shadow:0 10px 35px #38bdf815;
+}
+.card .icon {font-size:30px;margin-bottom:15px}
+.card h3 {color:var(--cyan);margin-bottom:10px}
+.card p {color:var(--muted);font-size:13px;line-height:1.8}
+.tool {
+  display:inline-block;padding:12px 19px;margin:6px;
+  background:#0d1d30;border:1px solid #38bdf833;
+  border-radius:8px;color:#bdeaff;font-size:13px;
+}
+.terminal {
+  background:#050c16;border:1px solid #38bdf844;
+  border-radius:13px;padding:24px;
+  font-family:monospace;color:#75e5ae;
+  line-height:2;overflow-wrap:anywhere;
+}
+.terminal small {color:var(--muted)}
+.contact {text-align:center}
+footer {
+  padding:25px;text-align:center;
+  color:var(--muted);font-size:12px;
+  border-top:1px solid #38bdf822;
+}
+.ar {font-family:Cairo,sans-serif;direction:rtl}
+@media(max-width:650px) {
+ nav {padding:15px 4%;flex-wrap:wrap;gap:12px}
+ nav a {margin:0 4px;font-size:11px}
+ section {padding:65px 6%}
+ .hero h1 {letter-spacing:-1px}
+}
+</style>
+</head>
+
+<body>
+<nav>
+ <div class="logo">HABIBA<span>.SEC</span></div>
+ <div>
+  <a href="#home" data-en="Home" data-ar="الرئيسية">Home</a>
+  <a href="#about" data-en="About" data-ar="عني">About</a>
+  <a href="#domains" data-en="Domains" data-ar="المجالات">Domains</a>
+  <a href="#tools" data-en="Tools" data-ar="الأدوات">Tools</a>
+  <a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a>
+ </div>
+ <button class="lang" onclick="toggleLang()">عربي / EN</button>
+</nav>
+
+<header class="hero" id="home">
+ <div class="tag">DIGITAL FORENSICS LAB • 2026</div>
+ <h1>HABIBA <span>ASKER</span></h1>
+ <h2 style="color:#b5d7ed;font-size:clamp(18px,3vw,25px)"
+ data-en="Cybersecurity Student | Digital Forensics Enthusiast"
+ data-ar="طالبة أمن سيبراني | مهتمة بالتحقيق الجنائي الرقمي">
+ Cybersecurity Student | Digital Forensics Enthusiast
+ </h2>
+ <p style="margin-top:20px"
+ data-en="Exploring digital evidence, investigating cyber incidents, and understanding the science behind digital investigations."
+ data-ar="أستكشف الأدلة الرقمية، وأحلل الحوادث السيبرانية، وأتعلم العلوم والتقنيات وراء التحقيقات الرقمية.">
+ Exploring digital evidence, investigating cyber incidents, and understanding the science behind digital investigations.
+ </p>
+ <div class="actions">
+  <a href="#domains" class="btn primary" data-en="Explore My Lab →" data-ar="اكتشف المعمل ←">Explore My Lab →</a>
+  <a href="#about" class="btn secondary" data-en="About Me" data-ar="اعرف عني">About Me</a>
+ </div>
+ <div class="status">● LAB STATUS: ONLINE <span class="cursor">_</span></div>
+</header>
+
+<section id="about">
+ <h2 class="heading"><span>01.</span> <span data-en="About Me" data-ar="من أنا">About Me</span></h2>
+ <p class="sub" data-en="A little introduction about my journey." data-ar="نبذة عن رحلتي في المجال.">A little introduction about my journey.</p>
+ <div class="about"
+ data-en="I am Habiba Asker, a Cybersecurity student at the Egyptian Russian University with a strong interest in Digital Forensics and cyber investigations. I am passionate about understanding how digital evidence is collected, examined, and interpreted. This portfolio documents my learning journey, technical interests, and practical work as I continue developing my skills."
+ data-ar="أنا حبيبة عسكر، طالبة أمن سيبراني بالجامعة المصرية الروسية، ولدي اهتمام خاص بمجال التحقيق الجنائي الرقمي والتحقيقات السيبرانية. أهتم بفهم كيفية جمع الأدلة الرقمية وفحصها وتحليلها. يوثق هذا الموقع رحلتي التعليمية واهتماماتي التقنية وتجاربي العملية أثناء تطوير مهاراتي.">
+ I am Habiba Asker, a Cybersecurity student at the Egyptian Russian University with a strong interest in Digital Forensics and cyber investigations. I am passionate about understanding how digital evidence is collected, examined, and interpreted. This portfolio documents my learning journey, technical interests, and practical work as I continue developing my skills.
+ </div>
+</section>
+
+<section id="domains">
+ <h2 class="heading"><span>02.</span> <span data-en="Forensic Domains" data-ar="مجالات التحقيق الرقمي">Forensic Domains</span></h2>
+ <p class="sub" data-en="Areas I am exploring and learning about." data-ar="مجالات أستكشفها وأتعلم عنها.">Areas I am exploring and learning about.</p>
+ <div class="cards">
+  <div class="card"><div class="icon">💻</div><h3>Computer Forensics</h3><p>Examining computers, storage media, and digital artifacts.</p></div>
+  <div class="card"><div class="icon">📱</div><h3>Mobile Forensics</h3><p>Understanding mobile device data and digital traces.</p></div>
+  <div class="card"><div class="icon">🌐</div><h3>Network Forensics</h3><p>Analyzing network traffic and investigating suspicious activity.</p></div>
+  <div class="card"><div class="icon">🧠</div><h3>Memory Forensics</h3><p>Exploring volatile memory and system activity.</p></div>
+ </div>
+</section>
+
+<section id="tools">
+ <h2 class="heading"><span>03.</span> <span data-en="Tools & Technologies" data-ar="الأدوات والتقنيات">Tools & Technologies</span></h2>
+ <p class="sub" data-en="Technologies I am learning and exploring." data-ar="تقنيات وأدوات أتعلم استخدامها واستكشافها.">Technologies I am learning and exploring.</p>
+ <div>
+  <span class="tool">Autopsy</span>
+  <span class="tool">FTK Imager</span>
+  <span class="tool">Wireshark</span>
+  <span class="tool">Volatility</span>
+  <span class="tool">Linux</span>
+  <span class="tool">Python</span>
+  <span class="tool">Kali Linux</span>
+  <span class="tool">Nmap</span>
+  <span class="tool">Burp Suite</span>
+ </div>
+</section>
+
+<section id="projects">
+ <h2 class="heading"><span>04.</span> <span data-en="Projects & Investigations" data-ar="المشاريع والتحقيقات">Projects & Investigations</span></h2>
+ <p class="sub" data-en="A space for documenting practical labs and future case studies." data-ar="مساحة لتوثيق التجارب العملية ودراسات الحالات المستقبلية.">A space for documenting practical labs and future case studies.</p>
+ <div class="cards">
+  <div class="card">
+   <div class="icon">🔎</div>
+   <h3>Forensic Case Studies</h3>
+   <p>Practical investigation notes and digital evidence analysis.</p>
+   <p style="color:#38bdf8;margin-top:15px">Coming Soon...</p>
+  </div>
+  <div class="card">
+   <div class="icon">🛡️</div>
+   <h3>Cybersecurity Projects</h3>
+   <p>Technical projects and hands-on cybersecurity experiments.</p>
+   <p style="color:#38bdf8;margin-top:15px">Coming Soon...</p>
+  </div>
+ </div>
+</section>
+
+<section id="contact" class="contact">
+ <h2 class="heading"><span>05.</span> Let's Connect</h2>
+ <p class="sub">Interested in Digital Forensics? Let's connect and learn together.</p>
+ <a class="btn primary" href="https://github.com/Habiba-asker" target="_blank">Visit My GitHub →</a>
+</section>
+
+<footer>
+ © 2026 Habiba Asker | Digital Forensics Portfolio
+ <br><br>Investigate • Analyze • Preserve
+</footer>
+
+<script>
+let currentLang = "en";
+function toggleLang() {
+ currentLang = currentLang === "en" ? "ar" : "en";
+ document.documentElement.lang = currentLang;
+ document.body.classList.toggle("ar",currentLang === "ar");
+ document.querySelectorAll("[data-en]").forEach(el=>{
+  el.textContent = el.dataset[currentLang];
+ });
+}
+</script>
+</body>
+</html>
